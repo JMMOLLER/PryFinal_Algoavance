@@ -77,5 +77,9 @@ nbdist/
 # Ignore code-workspaces
 *.code-workspace
 
-# End of https://www.toptal.com/developers/gitignore/api/java,git,visualstudiocode,netbeans
-/target/
+# Custom ignores:
+target/*/Classes/
+target/maven-archiver
+target/maven-status
+target/surefire-reports
+.netbeans_automatic_build
