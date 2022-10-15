@@ -1,9 +1,5 @@
 package LISTA_ENLAZADA;
 
-/**
- *
- * @author jlmmj
- */
 public class Nodo {
     //DECLARACION DE VARAIBLES
     private String[] dato;

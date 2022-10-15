@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package FRAMES;
+
+package VISTAS;
 
 import java.awt.Color;
 import java.sql.SQLException;
@@ -11,22 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jlmmj
- */
 public class Listar extends javax.swing.JFrame {
 DefaultTableModel modelo= new DefaultTableModel();
 ArrayList<String[]> my_dict = new ArrayList<>();  
-    /**
-     * Creates new form Listar
-     * @throws java.sql.SQLException
-     * @throws java.lang.CloneNotSupportedException
-     */
+    
     public Listar() throws SQLException, CloneNotSupportedException {
         initComponents();
         this.setLocationRelativeTo(this);
-        this.getContentPane().setBackground(new Color(204, 255, 255));
+        this.getContentPane().setBackground(new Color(0, 102, 102));
         Clases.data.setElements();
         Table("Reset");
     }
@@ -71,16 +60,16 @@ ArrayList<String[]> my_dict = new ArrayList<>();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Elementos de la Base de Datos");
 
-        BTN_BACK.setBackground(new java.awt.Color(255, 204, 204));
-        BTN_BACK.setForeground(new java.awt.Color(0, 0, 0));
-        BTN_BACK.setText("Volver");
+        BTN_BACK.setBackground(new java.awt.Color(0, 102, 102));
+        BTN_BACK.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_BACK.setText("VOLVER");
         BTN_BACK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTN_BACKActionPerformed(evt);
             }
         });
 
-        TBL_AREA.setBackground(new java.awt.Color(102, 204, 255));
+        TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
         TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
         TBL_AREA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,7 +108,7 @@ ArrayList<String[]> my_dict = new ArrayList<>();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTN_BACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BACKActionPerformed
-        Main ma= new Main();
+        Inicio ma= new Inicio();
         ma.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BTN_BACKActionPerformed

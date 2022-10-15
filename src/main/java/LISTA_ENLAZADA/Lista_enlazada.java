@@ -2,10 +2,6 @@ package LISTA_ENLAZADA;
 
 import java.util.Arrays;
 
-/**
- *
- * @author jlmmj
- */
 public class Lista_enlazada {
     private Nodo inicio, fin;
     

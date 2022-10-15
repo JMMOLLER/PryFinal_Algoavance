@@ -1,109 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package FRAMES;
 
-import java.awt.Color;
-import java.awt.HeadlessException;
+package VISTAS;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jlmmj
- */
-public class Buscar extends javax.swing.JFrame {
-ArrayList<String[]> my_dict = new ArrayList<>();  
-DefaultTableModel modelo= new DefaultTableModel();
-int init = 1;
-    /**
-     * Creates new form Buscar
-     * @throws java.sql.SQLException
-     * @throws java.lang.CloneNotSupportedException
-     */
-    public Buscar() throws SQLException, CloneNotSupportedException {
-        initComponents();
-        this.setLocationRelativeTo(this);
-        this.getContentPane().setBackground(new Color(204, 255, 255));
-        Clases.data.setElements();
-        Table("Reset", null);
-    }
-
-    public void Table(String tipo, String buscar) throws SQLException, CloneNotSupportedException{
-        ArrayList<String> lista = new ArrayList<>();
-        
-        if(init==1){
-            init=0;
-            lista.add("ID");
-            lista.add("Descripción");
-            lista.add("Prioridad");
-            lista.add("Proveedor");
-            lista.add("Costo");
-            lista.add("Razón Social");
-        }
-
-        for (String columna : lista) {
-            modelo.addColumn(columna);
-        }
-        TBL_AREA.setModel(modelo);
-
-        if(null != tipo)switch (tipo) {
-            case "Reset":{
-                modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                my_dict=Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
-                my_dict=Clases.data.setFormatList(my_dict);//A LOS ELEMENTOS DE LA BASE DE DATOS LE DA AL CÓDIGO EL FORMATO
-                break;
-            }
-            case "Busqueda Binaria":{
-                int index = Clases.data.Busqueda_binaria(Integer.parseInt(buscar));
-                if(index >=0){
-                    modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                    my_dict.clear();//ELIMINA EL CONTENIDO DE LA ARRAYLIST
-                    my_dict.add(Clases.data.Quick_sort(0).get(index));//LLAMA AL METODO DE ORDENACIÓN Y PIDE UN ELEMENTO ESPECIFICO CON EL INDEX
-                    my_dict=Clases.data.setFormatList(my_dict);//LE DA EL FORMATO CORRECTO AL CÓDIGO
-                }else{
-                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra en la Base de Datos.");
-                    modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                    my_dict.clear();//ELIMINA LOS DATOS DE LA ARRAYLIST
-                    my_dict=Clases.data.getElements();
-                    my_dict=Clases.data.setFormatList(my_dict);
-                    CBO_BUSQUEDA.setSelectedIndex(0);
-                    TXT_BUSCAR.setText(null);
-                }   break;
-            }
-            case "Busqueda Secuencial":{
-                int index = Clases.data.Busqueda_secuencial(Integer.parseInt(buscar));//ENTREGA AL METODO BUSQ SECUENCIAL EL ARRAYLIST SIN LAS LETRAS DE CODIGO Y EL ELEMENTO A BUSCAR
-                if(index>=0){
-                    modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                    my_dict.clear();//ELIMINA LOS DATOS DE LA ARRAYLIST
-                    my_dict.add(Clases.data.Quick_sort(0).get(index));//LLAMA AL METODO DE ORDENACIÓN Y PIDE UN ELEMENTO ESPECIFICO CON EL INDEX
-                    my_dict=Clases.data.setFormatList(my_dict);
-                }else{
-                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra en la Base de Datos.");
-                    modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                    my_dict.clear();//ELIMINA LOS DATOS DE LA ARRAYLIST
-                    my_dict=Clases.data.getElements();
-                    my_dict=Clases.data.setFormatList(my_dict);
-                    CBO_BUSQUEDA.setSelectedIndex(0);
-                    TXT_BUSCAR.setText(null);
-                }   
-                break;
-            }
-            default:
-                break;
-        }
-        
-        for (String []Datos : my_dict){
-            modelo.addRow(Datos);//AGREGA LAS FILAS AL MODELO
-        }
-        TBL_AREA.setModel(modelo);//AGREGA EL MODELO A LA TABLA
-    }
+public class Buscar extends javax.swing.JFrame {  
     
+    public Buscar() throws SQLException, CloneNotSupportedException {
+        initComponents();       
+    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,28 +33,28 @@ int init = 1;
         setTitle("Buscar en Base de Datos");
         setBackground(new java.awt.Color(204, 255, 204));
 
-        BTN_BACK.setBackground(new java.awt.Color(255, 204, 204));
-        BTN_BACK.setForeground(new java.awt.Color(0, 0, 0));
-        BTN_BACK.setText("Volver");
+        BTN_BACK.setBackground(new java.awt.Color(0, 102, 102));
+        BTN_BACK.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_BACK.setText("VOLVER");
         BTN_BACK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTN_BACKActionPerformed(evt);
             }
         });
 
-        TXT_BUSCAR.setBackground(new java.awt.Color(255, 204, 204));
-        TXT_BUSCAR.setForeground(new java.awt.Color(0, 0, 0));
+        TXT_BUSCAR.setBackground(new java.awt.Color(0, 102, 102));
+        TXT_BUSCAR.setForeground(new java.awt.Color(255, 255, 255));
 
-        BTN_BUSCAR.setBackground(new java.awt.Color(255, 204, 204));
-        BTN_BUSCAR.setForeground(new java.awt.Color(0, 0, 0));
-        BTN_BUSCAR.setText("Buscar");
+        BTN_BUSCAR.setBackground(new java.awt.Color(0, 102, 102));
+        BTN_BUSCAR.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_BUSCAR.setText("BUSCAR");
         BTN_BUSCAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTN_BUSCARActionPerformed(evt);
             }
         });
 
-        TBL_AREA.setBackground(new java.awt.Color(102, 204, 255));
+        TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
         TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
         TBL_AREA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,16 +66,16 @@ int init = 1;
         ));
         jScrollPane2.setViewportView(TBL_AREA);
 
-        CBO_BUSQUEDA.setBackground(new java.awt.Color(255, 204, 204));
-        CBO_BUSQUEDA.setForeground(new java.awt.Color(0, 0, 0));
+        CBO_BUSQUEDA.setBackground(new java.awt.Color(0, 102, 102));
+        CBO_BUSQUEDA.setForeground(new java.awt.Color(255, 255, 255));
         CBO_BUSQUEDA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Busqueda Binaria", "Busqueda Secuencial" }));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Método de busqueda:");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("MÉTODO DE BÚSQUEDA:");
 
-        jSeparator1.setBackground(new java.awt.Color(255, 153, 153));
-        jSeparator1.setForeground(new java.awt.Color(255, 153, 153));
+        jSeparator1.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator1.setForeground(new java.awt.Color(0, 153, 153));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,41 +130,11 @@ int init = 1;
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTN_BACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BACKActionPerformed
-        Main ma= new Main();
-        ma.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_BTN_BACKActionPerformed
 
     private void BTN_BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BUSCARActionPerformed
-        try{
-            if(TXT_BUSCAR.getText() == null || TXT_BUSCAR.getText().equals(" ")){
-                JOptionPane.showMessageDialog(null, "No puede buscar elementos vacios");
-            }else if(CBO_BUSQUEDA.getSelectedItem().equals("Ninguno")){
-                /*TableRowSorter<TableModel> fil = new TableRowSorter<>(TBL_AREA.getModel());
-                TBL_AREA.setRowSorter(fil);
-                fil.setRowFilter(RowFilter.regexFilter(TXT_BUSCAR.getText()));*/
-                JOptionPane.showMessageDialog(null, "Debe escoger un método de busqueda.");
-            }else if(CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Binaria")){
-                try {
-                    Table("Busqueda Binaria", TXT_BUSCAR.getText());
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                } catch (CloneNotSupportedException ex) {
-                    Logger.getLogger(Buscar.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }else if(CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Secuencial")){
-                try {
-                    Table("Busqueda Secuencial", TXT_BUSCAR.getText());
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                } catch (CloneNotSupportedException ex) {
-                    Logger.getLogger(Buscar.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }catch(HeadlessException | NumberFormatException ex ){
-            JOptionPane.showMessageDialog(null, "Se generó un problema, intente ingresar datos adecuados.");
-        }
-
+        
     }//GEN-LAST:event_BTN_BUSCARActionPerformed
 
     /**
@@ -298,11 +175,11 @@ int init = 1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTN_BACK;
-    private javax.swing.JButton BTN_BUSCAR;
-    private javax.swing.JComboBox<String> CBO_BUSQUEDA;
-    private javax.swing.JTable TBL_AREA;
-    private javax.swing.JTextField TXT_BUSCAR;
+    public javax.swing.JButton BTN_BACK;
+    public javax.swing.JButton BTN_BUSCAR;
+    public javax.swing.JComboBox<String> CBO_BUSQUEDA;
+    public javax.swing.JTable TBL_AREA;
+    public javax.swing.JTextField TXT_BUSCAR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;

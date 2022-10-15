@@ -1,5 +1,6 @@
-package FRAMES;
+package VISTAS;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -10,21 +11,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-/**
- *
- * @author jlmm
- */
 public class Test extends javax.swing.JFrame {
 ArrayList<String[]> my_dict = new ArrayList<>();  
 DefaultTableModel modelo= new DefaultTableModel();
-    /**
-     * Creates new form Main
-     * @throws java.sql.SQLException
-     * @throws java.lang.CloneNotSupportedException
-     */
+    
     public Test() throws SQLException, CloneNotSupportedException {
         initComponents();
         this.setTitle("Gestión de Datos");
+        this.getContentPane().setBackground(new Color(0, 102, 102));
         this.setLocationRelativeTo(this);
         Clases.data.setElements();
         Table("Reset", -1, null);
@@ -134,6 +128,7 @@ DefaultTableModel modelo= new DefaultTableModel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 102, 102));
 
         TXT_BUSCAR.setBackground(new java.awt.Color(255, 204, 204));
         TXT_BUSCAR.setForeground(new java.awt.Color(0, 0, 0));

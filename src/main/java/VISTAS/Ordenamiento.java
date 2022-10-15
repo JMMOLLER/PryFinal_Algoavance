@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package FRAMES;
+
+package VISTAS;
 
 import java.awt.Color;
 import java.sql.SQLException;
@@ -12,22 +9,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jlmmj
- */
 public class Ordenamiento extends javax.swing.JFrame {
 ArrayList<String[]> my_dict = new ArrayList<>();  
 DefaultTableModel modelo= new DefaultTableModel();
-    /**
-     * Creates new form Ordenamiento
-     * @throws java.sql.SQLException
-     * @throws java.lang.CloneNotSupportedException
-     */
+    
     public Ordenamiento() throws SQLException, CloneNotSupportedException {
         initComponents();
         this.setLocationRelativeTo(this);
-        this.getContentPane().setBackground(new Color(204, 255, 255));
+        this.getContentPane().setBackground(new Color(0, 102, 102));
         Clases.data.setElements();
         Table("Reset", -1);
     }
@@ -111,29 +100,31 @@ DefaultTableModel modelo= new DefaultTableModel();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ordernar Base de Datos");
 
-        BTN_ORDENAR.setBackground(new java.awt.Color(255, 204, 204));
-        BTN_ORDENAR.setForeground(new java.awt.Color(0, 0, 0));
-        BTN_ORDENAR.setText("Ordenar");
+        BTN_ORDENAR.setBackground(new java.awt.Color(0, 102, 102));
+        BTN_ORDENAR.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_ORDENAR.setText("ORDENAR");
         BTN_ORDENAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTN_ORDENARActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Ordenar");
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("ORDENAR ");
 
-        BTN_RESET.setBackground(new java.awt.Color(255, 204, 204));
-        BTN_RESET.setForeground(new java.awt.Color(0, 0, 0));
-        BTN_RESET.setText("Reset");
+        BTN_RESET.setBackground(new java.awt.Color(0, 102, 102));
+        BTN_RESET.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        BTN_RESET.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_RESET.setText("RESET");
         BTN_RESET.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTN_RESETActionPerformed(evt);
             }
         });
 
-        TBL_AREA.setBackground(new java.awt.Color(102, 204, 255));
+        TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
         TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
         TBL_AREA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,27 +136,28 @@ DefaultTableModel modelo= new DefaultTableModel();
         ));
         jScrollPane2.setViewportView(TBL_AREA);
 
-        CBO_ORDENAR.setBackground(new java.awt.Color(255, 204, 204));
-        CBO_ORDENAR.setForeground(new java.awt.Color(0, 0, 0));
+        CBO_ORDENAR.setBackground(new java.awt.Color(0, 102, 102));
+        CBO_ORDENAR.setForeground(new java.awt.Color(255, 255, 255));
         CBO_ORDENAR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Shell Sort", "Quick Sort", "Selección", "Burbúja", "Inserción" }));
 
-        CBO_COLUMNA.setBackground(new java.awt.Color(255, 204, 204));
-        CBO_COLUMNA.setForeground(new java.awt.Color(0, 0, 0));
+        CBO_COLUMNA.setBackground(new java.awt.Color(0, 102, 102));
+        CBO_COLUMNA.setForeground(new java.awt.Color(255, 255, 255));
         CBO_COLUMNA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Prioridad", "Costo" }));
         CBO_COLUMNA.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Buscar por:");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("BUSCAR POR:");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Usar método:");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("USAR MÉTODO:");
 
-        jSeparator1.setBackground(new java.awt.Color(255, 153, 153));
-        jSeparator1.setForeground(new java.awt.Color(255, 153, 153));
+        jSeparator1.setBackground(new java.awt.Color(0, 153, 153));
+        jSeparator1.setForeground(new java.awt.Color(0, 153, 153));
 
-        jButton2.setBackground(new java.awt.Color(255, 204, 204));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Volver");
+        jButton2.setBackground(new java.awt.Color(0, 102, 102));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("VOLVER");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -196,7 +188,7 @@ DefaultTableModel modelo= new DefaultTableModel();
                                 .addComponent(CBO_COLUMNA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(118, 118, 118)
                                 .addComponent(BTN_ORDENAR)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +221,7 @@ DefaultTableModel modelo= new DefaultTableModel();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTN_RESET)
                     .addComponent(jButton2))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -321,7 +313,7 @@ DefaultTableModel modelo= new DefaultTableModel();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Main ma= new Main();
+        Inicio ma= new Inicio();
         ma.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
