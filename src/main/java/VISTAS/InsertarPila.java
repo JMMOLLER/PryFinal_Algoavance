@@ -1,16 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package VISTAS;
 
 /**
  *
- * @author Roxana
+ * @author jlmmj
  */
+public class InsertarPila extends javax.swing.JFrame {
 
-public class Pila extends javax.swing.JFrame {
-
-    public Pila() {
+    /**
+     * Creates new form Insertar_Pila
+     */
+    public InsertarPila() {
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,17 +33,14 @@ public class Pila extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TBL_AREA = new javax.swing.JTable();
         btnVolver = new javax.swing.JToggleButton();
-        btnActualizar = new javax.swing.JToggleButton();
-        btnBuscar = new javax.swing.JToggleButton();
-        btnReset = new javax.swing.JToggleButton();
+        btnMostrar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Pila");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ID DEL DATO A BUSCAR:");
+        jLabel1.setText("ID DEL DATO A AÑADIR:");
 
         txtDato.setBackground(new java.awt.Color(0, 102, 102));
         txtDato.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,33 +88,13 @@ public class Pila extends javax.swing.JFrame {
             }
         });
 
-        btnActualizar.setBackground(new java.awt.Color(0, 102, 102));
-        btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("ACTUALIZAR");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.setBackground(new java.awt.Color(0, 102, 102));
+        btnMostrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrar.setText("MOSTRAR");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-
-        btnBuscar.setBackground(new java.awt.Color(0, 102, 102));
-        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("BUSCAR");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
-        btnReset.setBackground(new java.awt.Color(0, 102, 102));
-        btnReset.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnReset.setForeground(new java.awt.Color(255, 255, 255));
-        btnReset.setText("REINICIAR");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
             }
         });
 
@@ -120,34 +102,28 @@ public class Pila extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar)
-                        .addGap(167, 167, 167))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnInsertar)
-                        .addGap(90, 90, 90)
-                        .addComponent(btnEliminar)
-                        .addGap(90, 90, 90)
-                        .addComponent(btnActualizar)
-                        .addGap(173, 173, 173))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnInsertar)
+                                .addGap(90, 90, 90)
+                                .addComponent(btnEliminar)
+                                .addGap(90, 90, 90)
+                                .addComponent(btnMostrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(169, 169, 169))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnReset)
-                        .addGap(18, 18, 18)
                         .addComponent(btnVolver)
-                        .addGap(390, 390, 390))))
+                        .addGap(381, 381, 381)))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,20 +131,17 @@ public class Pila extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsertar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnActualizar))
+                    .addComponent(btnMostrar))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnReset))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(btnVolver)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,28 +151,20 @@ public class Pila extends javax.swing.JFrame {
         // Insertar a la Pila
     }//GEN-LAST:event_btnInsertarActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_btnVolverActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // Eliminar de la Pila
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         //Mostrar los datos de la Pila
         ActualizarPila mostrar = new ActualizarPila();
         mostrar.setVisible(true);
-        
-    }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetActionPerformed
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,32 +183,33 @@ public class Pila extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Pila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InsertarPila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Pila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InsertarPila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Pila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InsertarPila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Pila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InsertarPila.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Pila().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InsertarPila().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TBL_AREA;
-    public javax.swing.JToggleButton btnActualizar;
-    public javax.swing.JToggleButton btnBuscar;
-    public javax.swing.JToggleButton btnEliminar;
-    public javax.swing.JToggleButton btnInsertar;
-    public javax.swing.JToggleButton btnReset;
-    public javax.swing.JToggleButton btnVolver;
+    private javax.swing.JTable TBL_AREA;
+    private javax.swing.JToggleButton btnEliminar;
+    private javax.swing.JToggleButton btnInsertar;
+    private javax.swing.JToggleButton btnMostrar;
+    private javax.swing.JToggleButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTextField txtDato;
+    private javax.swing.JTextField txtDato;
     // End of variables declaration//GEN-END:variables
 }

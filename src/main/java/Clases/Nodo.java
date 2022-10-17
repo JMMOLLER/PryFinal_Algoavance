@@ -1,4 +1,4 @@
-package LISTA_ENLAZADA;
+package Clases;
 
 public class Nodo {
     //DECLARACION DE VARAIBLES

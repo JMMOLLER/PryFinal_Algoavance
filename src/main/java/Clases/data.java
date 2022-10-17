@@ -36,6 +36,10 @@ indice  valor
         Collections.shuffle(data.elements);
     }
     
+    public static void updateElements(ArrayList<String[]> datos){
+        elements = datos;
+    }
+    
     public static ArrayList<String[]> setFormatList(ArrayList<String[]> datos){//SU FUNCION ES DARLE EL FORMATO CORRECTO AL CODIGO
         ArrayList<String[]> temp = new ArrayList<>();//CREA UN ARRAYLIST
         for(String[] Datos : datos){//RECORRE LA LISTA Y POR CADA ELEMENTO LO ASIGNA AL ARRAY Datos
