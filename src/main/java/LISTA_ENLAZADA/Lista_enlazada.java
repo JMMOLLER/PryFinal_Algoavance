@@ -1,9 +1,11 @@
 package LISTA_ENLAZADA;
 
+import Clases.Nodo;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Lista_enlazada {
-    private Nodo inicio, fin;
+    private static Nodo inicio, fin;
     
     public Lista_enlazada(){
         inicio = null;
@@ -112,5 +114,16 @@ public class Lista_enlazada {
     public void getSiguiente(){
         Nodo tem = inicio;
         inicio = tem.getSiguienteNodo();
+    }
+    
+    public void exportNodo(){
+        ArrayList<String[]> Datos= new ArrayList<>();
+        Nodo bus = inicio;
+        boolean x = false;
+        while(bus != null){
+            Datos.add(bus.getDato());
+            bus = bus.getSiguienteNodo();          
+        }
+        Clases.data.updateElements(Datos);
     }
 }

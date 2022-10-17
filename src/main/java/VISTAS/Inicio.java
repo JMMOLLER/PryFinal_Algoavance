@@ -1,6 +1,8 @@
 
 package VISTAS;
 
+import CONTROLADORES.C_Pila;
+import MODELOS.M_Pila;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -178,8 +180,16 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_BTN_ORDENAMIENTOActionPerformed
 
     private void BTN_PILAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_PILAActionPerformed
-        Pila pila = new Pila();
-        pila.setVisible(true);
+        try {
+            Pila vista= new Pila();
+            M_Pila modelo= new M_Pila();
+            C_Pila ctrl= new C_Pila(vista, modelo);
+            ctrl.Iniciar();
+            vista.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException | CloneNotSupportedException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BTN_PILAActionPerformed
 
     private void BTN_COLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_COLAActionPerformed

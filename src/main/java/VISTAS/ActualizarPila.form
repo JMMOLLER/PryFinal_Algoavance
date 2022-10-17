@@ -101,7 +101,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="LA PILA CREADA ES LA SIGUIENTE:"/>
+        <Property name="text" type="java.lang.String" value="ACTUALIZAR INFORMACI&#xd3;N DE LA PILA:"/>
       </Properties>
     </Component>
   </SubComponents>
