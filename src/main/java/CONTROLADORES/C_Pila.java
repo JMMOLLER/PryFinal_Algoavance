@@ -6,6 +6,8 @@ package CONTROLADORES;
 
 import MODELOS.M_Pila;
 import PILA_ENLAZADA.Pila_enlazada;
+import VISTAS.ActualizarPila;
+import VISTAS.Inicio;
 import VISTAS.Pila;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -71,9 +73,17 @@ public class C_Pila implements ActionListener {
                 Logger.getLogger(C_Pila.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(e.getSource().equals(vista.btnActualizar)){
-            
+            ActualizarPila ip = new ActualizarPila();
+            C_ActualizarPila ctrl= new C_ActualizarPila(ip);
+            ctrl.Iniciar();
+            ip.setVisible(true);
+            this.vista.setVisible(false);
         }else if(e.getSource().equals(vista.btnVolver)){
-            
+            Inicio view= new Inicio();
+            C_Inicio ctrl= new C_Inicio(view);
+            ctrl.Iniciar();
+            view.setVisible(true);
+            this.vista.setVisible(false);
         }else if(e.getSource().equals(vista.btnReset)){
             try {
                 Table("Reset", null);

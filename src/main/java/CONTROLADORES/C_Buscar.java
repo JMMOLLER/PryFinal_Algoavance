@@ -30,8 +30,6 @@ public class C_Buscar implements ActionListener {
         this.vista = vista;
         this.vista.BTN_BACK.addActionListener(this);
         this.vista.BTN_BUSCAR.addActionListener(this);
-        //this.vista.TBL_AREA.
-        //this.vista.TXT_BUSCAR.addActionListener(this);
     }
     
     public void iniciar() throws SQLException, CloneNotSupportedException{
@@ -76,7 +74,7 @@ public class C_Buscar implements ActionListener {
             //M_Inicio model = new M_Inicio();
             Inicio view = new Inicio();
             C_Inicio ctrl = new C_Inicio(view);
-            ctrl.iniciar();
+            ctrl.Iniciar();
             view.setVisible(true);
             vista.setVisible(false);
         }else{

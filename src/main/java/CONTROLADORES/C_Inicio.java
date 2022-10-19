@@ -1,8 +1,16 @@
 package CONTROLADORES;
 
 import MODELOS.M_Buscar;
+import MODELOS.M_Listar;
+import MODELOS.M_Ordenamiento;
+import MODELOS.M_Pila;
 import VISTAS.Buscar;
+import VISTAS.Cola;
+import VISTAS.IniciarSesion;
 import VISTAS.Inicio;
+import VISTAS.Listar;
+import VISTAS.Ordenamiento;
+import VISTAS.Pila;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +36,7 @@ public class C_Inicio implements ActionListener {
         this.vista.BTN_LOGOUT.addActionListener(this);
     }
     
-    public void iniciar(){
+    public void Iniciar(){
         vista.setLocationRelativeTo(vista);
         vista.getContentPane().setBackground(new Color(0, 102, 102));
     }
@@ -47,15 +55,47 @@ public class C_Inicio implements ActionListener {
                 Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(e.getSource().equals(vista.BTN_COLA)){
-            
+            Cola cola = new Cola();
+            cola.setVisible(true);
         }else if(e.getSource().equals(vista.BTN_LISTAR)){
-            
+            try {
+                Listar view= new Listar();
+                M_Listar model= new M_Listar();
+                C_Listar ctrl= new C_Listar(view, model);
+                ctrl.Iniciar();
+                view.setVisible(true);
+                this.vista.setVisible(false);
+            } catch (SQLException | CloneNotSupportedException ex) {
+                Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if(e.getSource().equals(vista.BTN_LOGOUT)){
-            
+            IniciarSesion view= new IniciarSesion();
+            C_Login ctrl= new C_Login(view);
+            ctrl.Iniciar();
+            view.setVisible(true);
+            this.vista.setVisible(false);
         }else if(e.getSource().equals(vista.BTN_ORDENAMIENTO)){
-            
+            try {
+                Ordenamiento view= new Ordenamiento();
+                M_Ordenamiento model= new M_Ordenamiento();
+                C_Ordenamiento ctrl= new C_Ordenamiento(view, model);
+                ctrl.Iniciar();
+                view.setVisible(true);
+                this.vista.setVisible(false);
+            } catch (SQLException | CloneNotSupportedException ex) {
+                Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if(e.getSource().equals(vista.BTN_PILA)){
-            
+            try {
+                Pila view = new Pila();
+                M_Pila modelo = new M_Pila();
+                C_Pila ctrl = new C_Pila( view, modelo);
+                ctrl.Iniciar();
+                view.setVisible(true);
+                vista.setVisible(false);
+            } catch (SQLException | CloneNotSupportedException ex) {
+                Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
         }

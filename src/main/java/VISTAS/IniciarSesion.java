@@ -1,21 +1,11 @@
 
 package VISTAS;
 
-import CONTROLADORES.C_Inicio;
-import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class IniciarSesion extends javax.swing.JFrame {
 
     public IniciarSesion() {
         initComponents();
-        setLocationRelativeTo(null);
-        this.getContentPane().setBackground(new Color(0, 102, 102));
-        ImageIcon icon = new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\ico\\login-ico-48x48.png");   
-        JLabel userLabel = new JLabel("Full Name :", icon, JLabel.LEFT);
-        getContentPane().add(userLabel);
     }
 
     /**
@@ -31,7 +21,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnLogout = new javax.swing.JToggleButton();
+        btnExit = new javax.swing.JToggleButton();
         btnLogin = new javax.swing.JToggleButton();
         txtUser = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
@@ -57,14 +47,14 @@ public class IniciarSesion extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("CONTRASEÑA:");
 
-        btnLogout.setBackground(new java.awt.Color(0, 102, 102));
-        btnLogout.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setText("SALIR");
-        btnLogout.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 51)));
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setBackground(new java.awt.Color(0, 102, 102));
+        btnExit.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setText("SALIR");
+        btnExit.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 51)));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
 
@@ -85,7 +75,7 @@ public class IniciarSesion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
@@ -113,7 +103,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                     .addComponent(txtPass))
                 .addGap(63, 63, 63)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -155,25 +145,12 @@ public class IniciarSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        System.exit(WIDTH);
-    }//GEN-LAST:event_btnLogoutActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        
+    }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String user, pass;
-        user = txtUser.getText();
-        pass = txtPass.getText();
         
-        if(user.equals("admin23") && pass.equals("12345")){
-            Inicio vista = new Inicio();
-            C_Inicio ctrl = new C_Inicio(vista);
-            ctrl.iniciar();
-            vista.setVisible(true);
-            this.setVisible(false);//ESTO SE DEBE ELIMINAR CUANDO SE HAGA MVC CON ESTA VISTA
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta");
-        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -212,13 +189,13 @@ public class IniciarSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImageIcon;
     private javax.swing.JLabel TXT_TITTLE;
-    private javax.swing.JToggleButton btnLogin;
-    private javax.swing.JToggleButton btnLogout;
+    public javax.swing.JToggleButton btnExit;
+    public javax.swing.JToggleButton btnLogin;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField txtPass;
-    private javax.swing.JTextField txtUser;
+    public javax.swing.JPasswordField txtPass;
+    public javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,72 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Ordenamiento extends javax.swing.JFrame {
-ArrayList<String[]> my_dict = new ArrayList<>();  
-DefaultTableModel modelo= new DefaultTableModel();
     
     public Ordenamiento() throws SQLException, CloneNotSupportedException {
         initComponents();
-        this.setLocationRelativeTo(this);
-        this.getContentPane().setBackground(new Color(0, 102, 102));
-        Clases.data.setElements();
-        Table("Reset", -1);
     }
 
-    
-    public void Table(String tipo, int column) throws SQLException, CloneNotSupportedException{
-        ArrayList<String> lista = new ArrayList<>();
-        if(column == -1){
-            lista.add("ID");
-            lista.add("Descripción");
-            lista.add("Prioridad");
-            lista.add("Proveedor");
-            lista.add("Costo");
-            lista.add("Razón Social");
-
-            for (String columna : lista) {
-                modelo.addColumn(columna);
-            }
-            TBL_AREA.setModel(modelo);
-        }
-
-        if(null != tipo)switch (tipo) {
-            case "Reset":
-                modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                my_dict=Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
-                my_dict=Clases.data.setFormatList(my_dict);//A LOS ELEMENTOS DE LA BASE DE DATOS LE DA AL CÓDIGO EL FORMATO
-                break;
-            case "Burbúja":
-                modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                my_dict= Clases.data.Burbuja(0);
-            case "Selección":
-                modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                my_dict= Clases.data.Seleccion(0);
-            case "Shell Sort":
-                modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                my_dict= Clases.data.Shell_sort(column);//LLAMA AL METODO SHELL SORT
-                break;
-            case "Quick Sort":
-                modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                my_dict= Clases.data.Quick_sort(column);//LLAMA AL METODO QUICK SORT
-                /*for (int l = 0; l < my_dict.size(); l++) {//AGREGA SIMBOLO DE CODIGO
-                String ID="P"+my_dict.get(l)[0];
-                my_dict.get(l)[0] = ID;
-                }*/
-                break;
-            case "Inserción":
-                modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                my_dict= Clases.data.Insercion(column);//LLAMA AL METODO QUICK SORT
-                break;
-            default:
-                break;
-        }
-        
-        for (String []Datos : my_dict){
-            modelo.addRow(Datos);//AGREGA LAS FILAS AL MODELO
-        }
-        TBL_AREA.setModel(modelo);//AGREGA EL MODELO A LA TABLA
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,7 +34,7 @@ DefaultTableModel modelo= new DefaultTableModel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ordernar Base de Datos");
@@ -154,13 +93,13 @@ DefaultTableModel modelo= new DefaultTableModel();
         jSeparator1.setBackground(new java.awt.Color(0, 153, 153));
         jSeparator1.setForeground(new java.awt.Color(0, 153, 153));
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("VOLVER");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(0, 102, 102));
+        btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver.setText("VOLVER");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -196,7 +135,7 @@ DefaultTableModel modelo= new DefaultTableModel();
                         .addComponent(jLabel2)
                         .addGap(396, 396, 396))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnVolver)
                         .addGap(269, 269, 269)
                         .addComponent(BTN_RESET)
                         .addGap(56, 56, 56))))
@@ -220,7 +159,7 @@ DefaultTableModel modelo= new DefaultTableModel();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTN_RESET)
-                    .addComponent(jButton2))
+                    .addComponent(btnVolver))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -229,94 +168,15 @@ DefaultTableModel modelo= new DefaultTableModel();
 
     private void BTN_ORDENARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ORDENARActionPerformed
         // TODO add your handling code here:
-        if(CBO_ORDENAR.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(null, "Sebe escocger un método de ordenación.");
-        }else if(CBO_ORDENAR.getSelectedItem()=="Shell Sort"){
-            int column=0;//ORDENA POR DEFECTO POR ID
-            if(CBO_COLUMNA.getSelectedItem().equals("Prioridad")){
-                column = 2;
-            }else if(CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                column = 4;
-            }
-            try {
-                Table("Shell Sort", column);
-            } catch (SQLException | CloneNotSupportedException ex) {
-                JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-            }
-        }else if(CBO_ORDENAR.getSelectedItem()=="Quick Sort"){
-            int column=0;//ORDENA POR DEFECTO POR ID
-            if(CBO_COLUMNA.getSelectedItem().equals("ID") || CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                if(CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                    column = 4;
-                }
-                try {
-                    Table("Quick Sort", column);
-                } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "De momento no se ordenar por la categoría seleccionada usando este método.");
-            }
-            
-        }else if(CBO_ORDENAR.getSelectedItem().equals("Burbúja")){
-            int column=0;//ORDENA POR DEFECTO POR ID
-            if(CBO_COLUMNA.getSelectedItem().equals("Prioridad")){
-                column = 2;
-            }else if(CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                column = 4;
-            }
-            try {
-                Table("Burbúja", column);
-            } catch (SQLException | CloneNotSupportedException ex) {
-                JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-            }
-        }else if(CBO_ORDENAR.getSelectedItem().equals("Selección")){
-            int column=0;//ORDENA POR DEFECTO POR ID
-            if(CBO_COLUMNA.getSelectedItem().equals("Prioridad")){
-                column = 2;
-            }else if(CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                column = 4;
-            }
-            try {
-                Table("Selección", column);
-            } catch (SQLException | CloneNotSupportedException ex) {
-                JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-            }
-        }else if(CBO_ORDENAR.getSelectedItem().equals("Inserción")){
-            int column=0;//ORDENA POR DEFECTO POR ID
-            if(CBO_COLUMNA.getSelectedItem().equals("ID") || CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                if(CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                    column = 4;
-                }
-                try {
-                    Table("Inserción", column);
-                } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "De momento no se puede ordenar por la categoría seleccionada usando este método.");
-            }
-
-        }
     }//GEN-LAST:event_BTN_ORDENARActionPerformed
 
     private void BTN_RESETActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_RESETActionPerformed
-        try {
-            // TODO add your handling code here:
-            Table("Reset",0);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Se ha generado un error en la soliitud de los datos internos.");
-        } catch (CloneNotSupportedException ex) {
-            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_BTN_RESETActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-        Inicio ma= new Inicio();
-        ma.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,12 +216,12 @@ DefaultTableModel modelo= new DefaultTableModel();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTN_ORDENAR;
-    private javax.swing.JButton BTN_RESET;
-    private javax.swing.JComboBox<String> CBO_COLUMNA;
-    private javax.swing.JComboBox<String> CBO_ORDENAR;
-    private javax.swing.JTable TBL_AREA;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton BTN_ORDENAR;
+    public javax.swing.JButton BTN_RESET;
+    public javax.swing.JComboBox<String> CBO_COLUMNA;
+    public javax.swing.JComboBox<String> CBO_ORDENAR;
+    public javax.swing.JTable TBL_AREA;
+    public javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

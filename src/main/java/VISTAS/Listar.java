@@ -1,48 +1,17 @@
 
 package VISTAS;
 
-import java.awt.Color;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
-public class Listar extends javax.swing.JFrame {
-DefaultTableModel modelo= new DefaultTableModel();
-ArrayList<String[]> my_dict = new ArrayList<>();  
+
+public class Listar extends javax.swing.JFrame { 
     
     public Listar() throws SQLException, CloneNotSupportedException {
         initComponents();
-        this.setLocationRelativeTo(this);
-        this.getContentPane().setBackground(new Color(0, 102, 102));
-        Clases.data.setElements();
-        Table("Reset");
     }
 
-    public void Table(String tipo) throws SQLException, CloneNotSupportedException{
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("ID");
-        lista.add("Descripción");
-        lista.add("Prioridad");
-        lista.add("Proveedor");
-        lista.add("Costo");
-        lista.add("Razón Social");
-
-        for (String columna : lista) {
-            modelo.addColumn(columna);
-        }
-        TBL_AREA.setModel(modelo);
-
-        modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-        my_dict=Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
-        my_dict=Clases.data.setFormatList(my_dict);//A LOS ELEMENTOS DE LA BASE DE DATOS LE DA AL CÓDIGO EL FORMATO
-        
-        for (String []Datos : my_dict){
-            modelo.addRow(Datos);//AGREGA LAS FILAS AL MODELO
-        }
-        TBL_AREA.setModel(modelo);//AGREGA EL MODELO A LA TABLA
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,9 +77,7 @@ ArrayList<String[]> my_dict = new ArrayList<>();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTN_BACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BACKActionPerformed
-        Inicio ma= new Inicio();
-        ma.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_BTN_BACKActionPerformed
 
     /**
@@ -151,8 +118,8 @@ ArrayList<String[]> my_dict = new ArrayList<>();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTN_BACK;
-    private javax.swing.JTable TBL_AREA;
+    public javax.swing.JButton BTN_BACK;
+    public javax.swing.JTable TBL_AREA;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
