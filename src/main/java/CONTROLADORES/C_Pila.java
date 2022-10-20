@@ -5,9 +5,9 @@
 package CONTROLADORES;
 
 import MODELOS.M_Pila;
-import PILA_ENLAZADA.Pila_enlazada;
 import VISTAS.ActualizarPila;
 import VISTAS.Inicio;
+import VISTAS.InsertarPila;
 import VISTAS.Pila;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class C_Pila implements ActionListener {
-    Pila_enlazada Pila=new Pila_enlazada();
     private final Pila vista;
     private final M_Pila modelo;
 
@@ -41,15 +40,18 @@ public class C_Pila implements ActionListener {
     public void Iniciar() throws SQLException, CloneNotSupportedException{
         this.vista.setLocationRelativeTo(this.vista);
         this.vista.getContentPane().setBackground(new Color(0, 102, 102));
-        Clases.data.setElements();
-        Pila.cargar_datos();
         Table("Reset", null);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(vista.btnInsertar)){
-            
+            InsertarPila view= new InsertarPila();
+            M_Pila model= new M_Pila();
+            C_InsertarPila ctrl= new C_InsertarPila(view, model);
+            ctrl.Iniciar();
+            view.setVisible(true);
+            this.vista.setVisible(false);
         }else if(e.getSource().equals(vista.btnBuscar)){
             try {
                 Table("Busqueda", vista.txtDato.getText());
@@ -62,7 +64,7 @@ public class C_Pila implements ActionListener {
                 if(index!=-1){
                     int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar el elemento: " + index);
                     if(confirm==0){
-                        Pila.Eliminar(index);
+                        modelo.getPila().Eliminar(index);
                         Table("Reset", null);
                         JOptionPane.showMessageDialog(null, "Se eliminó el elemento seleccionado.");
                     }
@@ -86,9 +88,11 @@ public class C_Pila implements ActionListener {
             this.vista.setVisible(false);
         }else if(e.getSource().equals(vista.btnReset)){
             try {
+                vista.txtDato.setText(null);
                 Table("Reset", null);
+                JOptionPane.showMessageDialog(null, "Se reinició la tabla correctamente.");
             } catch (SQLException | CloneNotSupportedException ex) {
-                Logger.getLogger(C_Pila.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Se generó un problema al intentar reiniciar la tabla.");
             }
         }else{
             JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
@@ -116,11 +120,11 @@ public class C_Pila implements ActionListener {
         if(null != tipo)switch (tipo) {
             case "Reset":{
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                modelo.setMy_dict(Pila.getDatos());//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
+                modelo.setMy_dict(modelo.getPila().getDatos());//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
                 modelo.setMy_dict(Clases.data.setFormatList(modelo.getMy_dict()));//A LOS ELEMENTOS DE LA BASE DE DATOS LE DA AL CÓDIGO EL FORMATO
                 break;
             }case "Busqueda":{
-                String[] result = Pila.Buscar(buscar);
+                String[] result = modelo.getPila().Buscar(buscar);
                 if(result!=null){
                     modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                     modelo.clearArrayList();//ELIMINA EL CONTENIDO DE LA ARRAYLIST
@@ -130,7 +134,7 @@ public class C_Pila implements ActionListener {
                     JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra en la Base de Datos.");
                     modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                     modelo.clearArrayList();//ELIMINA LOS DATOS DE LA ARRAYLIST
-                    modelo.setMy_dict(Pila.getDatos());
+                    modelo.setMy_dict(modelo.getPila().getDatos());
                     modelo.setMy_dict(Clases.data.setFormatList(modelo.getMy_dict()));
                     vista.txtDato.setText(null);
                 }   break;

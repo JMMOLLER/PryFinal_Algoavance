@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,7 +49,7 @@ public class C_ActualizarPila implements ActionListener {
         }if(e.getSource().equals(vista.btnGuardar)){
             
         }else{
-            
+            JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
         }
     }
     

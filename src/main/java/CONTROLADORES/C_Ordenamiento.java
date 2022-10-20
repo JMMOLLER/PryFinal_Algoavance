@@ -35,7 +35,6 @@ public class C_Ordenamiento implements ActionListener {
     public void Iniciar() throws SQLException, CloneNotSupportedException{
         this.vista.setLocationRelativeTo(this.vista);
         this.vista.getContentPane().setBackground(new Color(0, 102, 102));
-        Clases.data.setElements();
         Table("Reset", -1);
     }
     

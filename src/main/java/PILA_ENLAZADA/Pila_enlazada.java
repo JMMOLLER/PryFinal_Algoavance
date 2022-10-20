@@ -1,8 +1,7 @@
 package PILA_ENLAZADA;
 
 import Clases.Nodo;
-import static Clases.data.im;
-import LISTA_ENLAZADA.Lista_enlazada;
+import Clases.data;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +15,7 @@ public class Pila_enlazada {
     public Pila_enlazada() {
         this.inicio = null;
         this.nElementos = 0;
+        this.cargar_datos();
     }
 
     public Nodo getInicio() {
@@ -31,6 +31,7 @@ public class Pila_enlazada {
     }
 
     public String[] getDato() {
+        this.cargar_datos();
         return this.inicio.getDato();
     }
 
@@ -60,11 +61,19 @@ public class Pila_enlazada {
     }
     
     public void cargar_datos(){
-        Lista_enlazada lista = im.cargar_datos_locales();
-        while(!lista.estaVacio()){
-            this.Insertar(lista.getDato());
-            lista.getSiguiente();
+        for(String[] datos : Clases.data.getElements()){
+            this.Insertar(datos);
         }
+    }
+    
+    public void EnviarDatos(){
+        ArrayList<String[]> lista= new ArrayList<>();
+        Nodo temp= inicio;
+        while(temp!=null){
+            lista.add(temp.getDato());
+            temp=temp.getSiguienteNodo();
+        }
+        data.updateElements(lista);
     }
     
     public String[] Buscar(String ID){

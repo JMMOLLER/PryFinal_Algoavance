@@ -35,7 +35,6 @@ public class C_Buscar implements ActionListener {
     public void iniciar() throws SQLException, CloneNotSupportedException{
         vista.setLocationRelativeTo(vista);
         vista.getContentPane().setBackground(new Color(0, 102, 102));
-        Clases.data.setElements();
         Table("Reset", null);
     }
 

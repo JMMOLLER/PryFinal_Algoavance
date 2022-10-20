@@ -29,15 +29,21 @@ indice  valor
     
     public static void setElements() {
         Lista_enlazada lista = im.cargar_datos_locales();
-        while(!lista.estaVacio()){
-            data.elements.add(lista.getDato());
-            lista.getSiguiente();
+        if(elements.isEmpty()){
+            while(!lista.estaVacio()){
+                data.elements.add(lista.getDato());
+                lista.getSiguiente();
+            }
+            Collections.shuffle(data.elements);
         }
-        Collections.shuffle(data.elements);
     }
     
     public static void updateElements(ArrayList<String[]> datos){
         elements = datos;
+    }
+    
+    public static void insertElement(String[] dato){
+        elements.add(dato);
     }
     
     public static ArrayList<String[]> setFormatList(ArrayList<String[]> datos){//SU FUNCION ES DARLE EL FORMATO CORRECTO AL CODIGO

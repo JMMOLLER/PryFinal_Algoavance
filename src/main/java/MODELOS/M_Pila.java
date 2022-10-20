@@ -4,6 +4,7 @@
  */
 package MODELOS;
 
+import PILA_ENLAZADA.Pila_enlazada;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,9 +13,14 @@ import javax.swing.table.DefaultTableModel;
  * @author jlmmj
  */
 public class M_Pila {
-    ArrayList<String[]> my_dict = new ArrayList<>();  
-    DefaultTableModel table_model= new DefaultTableModel();
+    private final Pila_enlazada Pila=new Pila_enlazada();
+    private ArrayList<String[]> my_dict = new ArrayList<>();  
+    private DefaultTableModel table_model= new DefaultTableModel();
     int init = 1;
+
+    public Pila_enlazada getPila() {
+        return Pila;
+    }
 
     public ArrayList<String[]> getMy_dict() {
         return my_dict;

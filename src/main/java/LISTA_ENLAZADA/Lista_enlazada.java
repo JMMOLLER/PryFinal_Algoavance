@@ -115,15 +115,4 @@ public class Lista_enlazada {
         Nodo tem = inicio;
         inicio = tem.getSiguienteNodo();
     }
-    
-    public void exportNodo(){
-        ArrayList<String[]> Datos= new ArrayList<>();
-        Nodo bus = inicio;
-        boolean x = false;
-        while(bus != null){
-            Datos.add(bus.getDato());
-            bus = bus.getSiguienteNodo();          
-        }
-        Clases.data.updateElements(Datos);
-    }
 }
