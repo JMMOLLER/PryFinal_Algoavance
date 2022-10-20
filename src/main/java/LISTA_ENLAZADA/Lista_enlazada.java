@@ -82,8 +82,7 @@ public class Lista_enlazada {
         else {
             inicio = tem.getSiguienteNodo();
             System.out.println("<--- " + Arrays.toString(eli) + " fue eliminado con éxito");
-        }
-        
+        }  
     }
     
     //Método para eliminar un elemento del final

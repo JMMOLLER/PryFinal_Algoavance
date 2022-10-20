@@ -81,7 +81,7 @@ public class Pila_enlazada {
         Nodo temp= inicio;
         String[] dato=null;
         while(temp!=null){
-            if(temp.getDato()[0].equals(ID)){
+            if(Integer.parseInt(temp.getDato()[0])==Integer.parseInt(ID)){
                 dato=temp.getDato();
                 break;
             }
@@ -90,20 +90,19 @@ public class Pila_enlazada {
         return dato;
     }
     
-    public void Eliminar(int datos){
+    public void Eliminar(String ID){
         Nodo temp= inicio;
         ArrayList<String[]> nuevo= new ArrayList<>();
-        int count=0;
         while(temp!=null){
-            if(count!=datos){
+            if(!temp.getDato()[0].equals(ID) ){
                 nuevo.add(temp.getDato());
             }
             temp=temp.getSiguienteNodo();
-            count++;
         }
         inicio=null;
         for(String[] dato: nuevo){
             this.Insertar(dato);
         }
+        this.EnviarDatos();
     }
 }

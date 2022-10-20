@@ -27,6 +27,9 @@ indice  valor
         return elements;
     }
     
+    /**
+     * Carga los datos de la base de datos local y los baraja
+     */
     public static void setElements() {
         Lista_enlazada lista = im.cargar_datos_locales();
         if(elements.isEmpty()){
@@ -38,12 +41,13 @@ indice  valor
         }
     }
     
+    /**
+     * Toma una ArrayList String array y la establece en la variable de elements ArrayList
+     * 
+     * @param datos ArrayList<String[]>
+     */
     public static void updateElements(ArrayList<String[]> datos){
         elements = datos;
-    }
-    
-    public static void insertElement(String[] dato){
-        elements.add(dato);
     }
     
     public static ArrayList<String[]> setFormatList(ArrayList<String[]> datos){//SU FUNCION ES DARLE EL FORMATO CORRECTO AL CODIGO

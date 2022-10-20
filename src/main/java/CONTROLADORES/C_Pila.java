@@ -64,7 +64,7 @@ public class C_Pila implements ActionListener {
                 if(index!=-1){
                     int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar el elemento: " + index);
                     if(confirm==0){
-                        modelo.getPila().Eliminar(index);
+                        modelo.getPila().Eliminar(vista.TBL_AREA.getValueAt(index, 0).toString().replace("P", ""));
                         Table("Reset", null);
                         JOptionPane.showMessageDialog(null, "Se eliminó el elemento seleccionado.");
                     }

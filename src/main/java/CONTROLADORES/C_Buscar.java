@@ -41,36 +41,24 @@ public class C_Buscar implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(vista.BTN_BUSCAR)){
-            try{
-                if(vista.TXT_BUSCAR.getText() == null || vista.TXT_BUSCAR.getText().equals(" ")){
-                    JOptionPane.showMessageDialog(null, "No puede buscar elementos vacios");
-                }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Ninguno")){
-                    /*TableRowSorter<TableModel> fil = new TableRowSorter<>(TBL_AREA.getModel());
-                    TBL_AREA.setRowSorter(fil);
-                    fil.setRowFilter(RowFilter.regexFilter(TXT_BUSCAR.getText()));*/
-                    JOptionPane.showMessageDialog(null, "Debe escoger un método de busqueda.");
-                }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Binaria")){
-                    try {
-                        Table("Busqueda Binaria", vista.TXT_BUSCAR.getText());
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                    } catch (CloneNotSupportedException ex) {
-                        Logger.getLogger(Buscar.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Secuencial")){
-                    try {
-                        Table("Busqueda Secuencial", vista.TXT_BUSCAR.getText());
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                    } catch (CloneNotSupportedException ex) {
-                        Logger.getLogger(Buscar.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            if(vista.TXT_BUSCAR.getText() == null || vista.TXT_BUSCAR.getText().equals(" ")){
+                JOptionPane.showMessageDialog(null, "No puede buscar elementos vacios");
+            }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Ninguno")){
+                JOptionPane.showMessageDialog(null, "Debe escoger un método de busqueda.");
+            }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Binaria")){
+                try {
+                    Table("Busqueda Binaria", vista.TXT_BUSCAR.getText());
+                } catch (SQLException | CloneNotSupportedException ex) {
+                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
                 }
-            }catch(HeadlessException | NumberFormatException ex ){
-                JOptionPane.showMessageDialog(null, "Se generó un problema, intente ingresar datos adecuados.");
+            }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Secuencial")){
+                try {
+                    Table("Busqueda Secuencial", vista.TXT_BUSCAR.getText());
+                } catch (SQLException | CloneNotSupportedException ex) {
+                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
+                }
             }
         }else if(e.getSource().equals(vista.BTN_BACK)){
-            //M_Inicio model = new M_Inicio();
             Inicio view = new Inicio();
             C_Inicio ctrl = new C_Inicio(view);
             ctrl.Iniciar();
@@ -83,6 +71,8 @@ public class C_Buscar implements ActionListener {
     
     public void Table(String tipo, String buscar) throws SQLException, CloneNotSupportedException{
         ArrayList<String> lista = new ArrayList<>();
+        if(buscar!=null)
+            buscar = buscar.replace("P", "");
         
         if(modelo.getInit()==1){
             modelo.setInit(0);
