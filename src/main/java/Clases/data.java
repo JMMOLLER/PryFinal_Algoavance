@@ -81,11 +81,11 @@ indice  valor
     }
     
     public static ArrayList<String[]> Burbuja(int column) {//JORGE
-        ArrayList<String[]> datos=new ArrayList<>();
-        String[][] todo_dato = Hash.getData();
-        for (String[] dato : todo_dato) {
-            if(dato!=null){
-                datos.add(dato);
+        ArrayList<String[]> datos=new ArrayList<>();//CREA UNA ARRAYLIST
+        String[][] todo_dato = Hash.getData();//OBTENEMOS TODOS LOS DATOS DE LA TABLA HASH
+        for (String[] dato : todo_dato) {//POR CADA ELEMENTO DE LA TABLA HASH...
+            if(dato!=null){//SI EL ELEMENTO ES DIFERENTE DE NADA
+                datos.add(dato);//AÑADE EL ELEMENTO A LA ARRAYLIST
             }
         }
         //ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
