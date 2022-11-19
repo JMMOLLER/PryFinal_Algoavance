@@ -3,6 +3,7 @@ package Clases;
 import LISTA_ENLAZADA.Lista_enlazada;
 import java.util.ArrayList;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Collections;
 /**
  *
@@ -10,6 +11,7 @@ import java.util.Collections;
  */
 public class data {
 public static DAO.Implement im = new DAO.Implement();
+private static TablaHash Hash = new TablaHash(100);
 protected static ArrayList<String[]> elements= new ArrayList<>();
 
 /*
@@ -35,10 +37,18 @@ indice  valor
         if(elements.isEmpty()){
             while(!lista.estaVacio()){
                 data.elements.add(lista.getDato());
+                Hash.agregar(lista.getDato());
                 lista.getSiguiente();
             }
-            Collections.shuffle(data.elements);
+            Collections.shuffle(data.elements);//baraja los elementos
         }
+//        if(Hash.getIsInitialized()){
+//            while(!lista.estaVacio()){
+//                Hash.agregar(lista.getDato());
+//                lista.getSiguiente();
+//            }
+//        }
+        Hash.Mostrar();
     }
     
     /**
@@ -70,16 +80,21 @@ indice  valor
         return temp;//DEVOLVEMOS EL ARRAYLIST MODIFICADO EN EL CÓDIGO
     }
     
-    public static ArrayList<String[]> Burbuja(int column) {//LUCERO
-        ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
-        for (String[] dato : datos) {//RECORRE DE FORMA EFICIENTE UN ARRAY A DIFERENCIA DE UN FOR
-            for(int j=0; j < datos.size()-1; j++){//RECORREMOS EL ARRAYLIST
-                String[] numAct= datos.get(j);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
-                String[] numSig= datos.get(j+1);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
-                if(Integer.parseInt(numAct[0])>Integer.parseInt(numSig[0])){ //COMPRUEBA QUE EL CODIGO  DE numAct SEA MAYOR AL CODIGO DE numSig
-                    datos.set(j, numSig);//ASIGNA EL ARRAY STRING numSig EN LA POSICION J
-                    datos.set(j+1, numAct);//ASIGNA EL ARRAY STRING numAct EN LA POSICION J+1
-                }
+    public static ArrayList<String[]> Burbuja(int column) {//JORGE
+        ArrayList<String[]> datos=new ArrayList<>();
+        String[][] todo_dato = Hash.getData();
+        for (String[] dato : todo_dato) {
+            if(dato!=null){
+                datos.add(dato);
+            }
+        }
+        //ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
+        for(int j=0; j < datos.size()-1; j++){//RECORREMOS EL ARRAYLIST
+            String[] numAct= datos.get(j);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
+            String[] numSig= datos.get(j+1);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
+            if(Integer.parseInt(numAct[0])>Integer.parseInt(numSig[0])){ //COMPRUEBA QUE EL CODIGO  DE numAct SEA MAYOR AL CODIGO DE numSig
+                datos.set(j, numSig);//ASIGNA EL ARRAY STRING numSig EN LA POSICION J
+                datos.set(j+1, numAct);//ASIGNA EL ARRAY STRING numAct EN LA POSICION J+1
             }
         }
         datos = data.setFormatList(datos);//METODO PARA DAR FORMATO CORRECTO AL CODIGO
