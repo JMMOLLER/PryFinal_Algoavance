@@ -8,7 +8,8 @@ import java.util.logging.Logger;
 public class Buscar extends javax.swing.JFrame {  
     
     public Buscar() throws SQLException, CloneNotSupportedException {
-        initComponents();       
+        initComponents();    
+        
     }
  
     /**
@@ -30,8 +31,8 @@ public class Buscar extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Buscar en Base de Datos");
-        setBackground(new java.awt.Color(204, 255, 204));
+        setTitle("Buscar en Registros");
+        setBackground(new java.awt.Color(0, 102, 102));
 
         BTN_BACK.setBackground(new java.awt.Color(0, 102, 102));
         BTN_BACK.setForeground(new java.awt.Color(255, 255, 255));

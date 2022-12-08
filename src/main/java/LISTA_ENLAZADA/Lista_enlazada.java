@@ -1,7 +1,6 @@
 package LISTA_ENLAZADA;
 
 import Clases.Nodo;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Lista_enlazada {

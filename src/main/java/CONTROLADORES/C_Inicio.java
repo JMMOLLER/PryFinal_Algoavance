@@ -58,6 +58,7 @@ public class C_Inicio implements ActionListener {
         }else if(e.getSource().equals(vista.BTN_COLA)){
             Cola cola = new Cola();
             cola.setVisible(true);
+            this.vista.setVisible(false);
         }else if(e.getSource().equals(vista.BTN_LISTAR)){
             try {
                 Listar view= new Listar();

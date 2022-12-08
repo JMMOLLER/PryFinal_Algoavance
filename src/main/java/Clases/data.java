@@ -3,14 +3,13 @@ package Clases;
 import LISTA_ENLAZADA.Lista_enlazada;
 import java.util.ArrayList;
 import java.sql.SQLException;
-import java.util.Collections;
+import java.util.Arrays;
 /**
  *
  * @author jlmmj
  */
 public class data {
-public static DAO.Implement im = new DAO.Implement();
-protected static ArrayList<String[]> elements= new ArrayList<>();
+private static TablaHash Hash = new TablaHash(100);
 
 /*
 ORDEN DEL ARRAY EN EL ARRAYLIST:
@@ -24,20 +23,22 @@ indice  valor
 */
 
     public static ArrayList<String[]> getElements() {
-        return elements;
+        ArrayList<String[]> temp=new ArrayList<>();
+        temp.addAll(Arrays.asList(Hash.getData()));
+        return temp;
     }
     
     /**
      * Carga los datos de la base de datos local y los baraja
      */
     public static void setElements() {
-        Lista_enlazada lista = im.cargar_datos_locales();
-        if(elements.isEmpty()){
+        DAO.Implement im = new DAO.Implement();
+        if(!Hash.getIsInitialized()){
+            Lista_enlazada lista = im.cargar_datos_locales();
             while(!lista.estaVacio()){
-                data.elements.add(lista.getDato());
+                Hash.agregar(lista.getDato());
                 lista.getSiguiente();
             }
-            Collections.shuffle(data.elements);
         }
     }
     
@@ -47,14 +48,18 @@ indice  valor
      * @param datos ArrayList<String[]>
      */
     public static void updateElements(ArrayList<String[]> datos){
-        elements = datos;
+        for(String[] elemento: datos){
+            Hash.agregar(elemento);
+        }
     }
     
     public static ArrayList<String[]> setFormatList(ArrayList<String[]> datos){//SU FUNCION ES DARLE EL FORMATO CORRECTO AL CODIGO
         ArrayList<String[]> temp = new ArrayList<>();//CREA UN ARRAYLIST
         for(String[] Datos : datos){//RECORRE LA LISTA Y POR CADA ELEMENTO LO ASIGNA AL ARRAY Datos
-            String[] temp_element = Datos.clone();//CLONAMOS EL ARRAY A UNA ARRAY TEMPORAL
-            temp.add(temp_element);//EL ARRAY TEMPORAL LO AÑADIMOS A LA ARRAYLIST CREADA
+            if(Datos!=null){
+                String[] temp_element = Datos.clone();//CLONAMOS EL ARRAY A UNA ARRAY TEMPORAL
+                temp.add(temp_element);//EL ARRAY TEMPORAL LO AÑADIMOS A LA ARRAYLIST CREADA
+            }
         }/*
         esto se hace porque de copiar directamente el arraylist solo copiamos la arraylist en sí mas no sus elementos(los array string) entonces, si modificamos un elemento 
         de los elementos del array string se modificará globalmente, es decir, se modificará los array string que contiene el arraylist llamado elements
@@ -70,16 +75,20 @@ indice  valor
         return temp;//DEVOLVEMOS EL ARRAYLIST MODIFICADO EN EL CÓDIGO
     }
     
-    public static ArrayList<String[]> Burbuja(int column) {//LUCERO
-        ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
-        for (String[] dato : datos) {//RECORRE DE FORMA EFICIENTE UN ARRAY A DIFERENCIA DE UN FOR
-            for(int j=0; j < datos.size()-1; j++){//RECORREMOS EL ARRAYLIST
-                String[] numAct= datos.get(j);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
-                String[] numSig= datos.get(j+1);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
-                if(Integer.parseInt(numAct[0])>Integer.parseInt(numSig[0])){ //COMPRUEBA QUE EL CODIGO  DE numAct SEA MAYOR AL CODIGO DE numSig
-                    datos.set(j, numSig);//ASIGNA EL ARRAY STRING numSig EN LA POSICION J
-                    datos.set(j+1, numAct);//ASIGNA EL ARRAY STRING numAct EN LA POSICION J+1
-                }
+    public static ArrayList<String[]> Burbuja(int column) {//JORGE
+        ArrayList<String[]> datos=new ArrayList<>();
+        String[][] todo_dato = Hash.getData();
+        for (String[] dato : todo_dato) {
+            if(dato!=null){
+                datos.add(dato);
+            }
+        }
+        for(int j=0; j < datos.size()-1; j++){//RECORREMOS EL ARRAYLIST
+            String[] numAct= datos.get(j);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
+            String[] numSig= datos.get(j+1);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
+            if(Integer.parseInt(numAct[0])>Integer.parseInt(numSig[0])){ //COMPRUEBA QUE EL CODIGO  DE numAct SEA MAYOR AL CODIGO DE numSig
+                datos.set(j, numSig);//ASIGNA EL ARRAY STRING numSig EN LA POSICION J
+                datos.set(j+1, numAct);//ASIGNA EL ARRAY STRING numAct EN LA POSICION J+1
             }
         }
         datos = data.setFormatList(datos);//METODO PARA DAR FORMATO CORRECTO AL CODIGO
@@ -87,8 +96,14 @@ indice  valor
         return datos;//DEVUELVE EL ARRAYLIST MODIFICADO
     }
     
-    public static ArrayList<String[]> Seleccion(int column){//LUCERO
-        ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
+    public static ArrayList<String[]> Seleccion(int column){
+        ArrayList<String[]> datos=new ArrayList<>();
+        String[][] todo_dato = Hash.getData();
+        for (String[] dato : todo_dato) {
+            if(dato!=null){
+                datos.add(dato);
+            }
+        }
         for(int i=1; i<datos.size(); i++){//RECORRE EL ARRAYLIST
             int k=i;
             String[] Menor = datos.get(i);//ASIGNAMOS UN ARRAY STRING DEL ARRAYLIST AL ARRAY STRING Menor
@@ -107,7 +122,15 @@ indice  valor
     }
     
     public static ArrayList<String[]> Insercion(int column){//KEVIN
-        ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
+    ArrayList<String[]> datos=new ArrayList<>();
+        String[][] todo_dato = Hash.getData();
+        for (String[] dato : todo_dato) {
+            if(dato!=null){
+                datos.add(dato);
+            }
+        }
+       
+//  ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
         
         for(int i=1; i < datos.size(); i++ ){//RECORREMOS EL ARRAYLIST
             String[] Tem = datos.get(i);//ASIGNAMOS UN ELEMENTO ESPECIFICO DEL ARRAYLIST AL ARRAY STRING Tem
@@ -125,7 +148,15 @@ indice  valor
     }
     
     public static ArrayList<String[]> Shell_sort(int column) throws SQLException, CloneNotSupportedException{//ROXANA
-        ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
+        ArrayList<String[]> datos=new ArrayList<>();
+        String[][] todo_dato = Hash.getData();
+        for (String[] dato : todo_dato) {
+            if(dato!=null){
+                datos.add(dato);
+            }
+        }
+       
+//  ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
         String[] tem;//CREAMOS UN ARREGLO QUE ALMACENE LOS DATOS TEMPORALMENTE
         int i, j, k, salto;//CREAMOS VARIABLES
         salto= datos.size()/2;//DEFINIMOS LOS SALTOS
@@ -177,7 +208,13 @@ indice  valor
     }
     
     public static ArrayList<String[]> Quick_sort(int column){//KEVIN
-        ArrayList<String[]> numeros= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
+        ArrayList<String[]> numeros=new ArrayList<>();
+        String[][] todo_dato = Hash.getData();
+        for (String[] dato : todo_dato) {
+            if(dato!=null){
+                numeros.add(dato);
+            }
+        }
         if(numeros.get(0)[0].contains("P")){/*es lo mismo que de la linea 41 a la 48*/
             for (int i = 0; i < numeros.size(); i++) {
                 numeros.get(i)[0]= numeros.get(i)[0].replace("P", "");

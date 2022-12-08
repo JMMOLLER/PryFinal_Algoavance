@@ -62,7 +62,7 @@ public class Pila_enlazada {
     
     public void cargar_datos(){
         for(String[] datos : Clases.data.getElements()){
-            this.Insertar(datos);
+            if(datos!=null)this.Insertar(datos);
         }
     }
     
