@@ -39,7 +39,6 @@ private final ArbolBinario ab = new ArbolBinario();
         Table_model.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
         my_dict = Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
         Collections.shuffle(my_dict);
-        Lista_enlazada orig = im.cargar_datos_locales();
         int count = 0;
         while(my_dict.size()!=count){
             if(count==0){
