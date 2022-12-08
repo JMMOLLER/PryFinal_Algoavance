@@ -41,15 +41,21 @@ public class InsertarCola extends javax.swing.JFrame {
     }
     
     public String[] getNewPendiente(){
-        return new String[]{
-            generateNewID(),
-            txtDescrip.getText(),
-            CBO_PRIORIDAD.getSelectedItem().toString(),
-            txtProveedor.getText(),
-            txtCosto.getText(),
-            txtRazsocial.getText(),
-            txtEstado.getText()
-        };
+        try{
+            final float costo = Float.parseFloat(txtCosto.getText());
+            return new String[]{
+                generateNewID(),
+                txtDescrip.getText(),
+                CBO_PRIORIDAD.getSelectedItem().toString(),
+                txtProveedor.getText().toUpperCase(),
+                String. format("%.2f", costo),
+                txtRazsocial.getText().toUpperCase(),
+                txtEstado.getText()
+            };
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El costo debe se un número");
+            return null;
+        }
     }
 
     /**
@@ -305,7 +311,11 @@ public class InsertarCola extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!Clases.Cola_Pendientes.isFull()){
             if(checkInputs()){
-                Clases.Cola_Pendientes.add(getNewPendiente());
+                String[] Pendiente = getNewPendiente();
+                if(Pendiente==null){
+                    return;
+                }
+                Clases.Cola_Pendientes.add(Pendiente);
                 System.out.println(Arrays.toString(Clases.Cola_Pendientes.getLastData(Clases.Cola_Pendientes.getLastID())));
                 int response = JOptionPane.showConfirmDialog(null, "Se agregó correctamente a la cola.\n"
                         + "¿Desea ingresar un nuevo dato?");

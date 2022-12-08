@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -34,7 +36,14 @@ public class Cola_Pendientes {
     }
 
     public static void remove(int index) {
+        fin--;
         pendientes[index]=null;
+        for (int i = 0; i < MAX-1; i++) {
+            if(pendientes[i] ==null && pendientes[i+1] !=null){
+                pendientes[i]=pendientes[i+1];
+                pendientes[i+1]=null;
+            }
+        }
     }
 
     public static void clear() {
@@ -60,4 +69,35 @@ public class Cola_Pendientes {
     public static String[] getData(int index){
         return pendientes[index];
     }
+    
+    public static void setData(int index, String[] dato){
+        pendientes[index]=dato;
+    }
+    
+    public static ArrayList<String[]> getTerminados(){
+        ArrayList<String[]> temp = new ArrayList<>();
+        for (int i = 0; i < MAX; i++) {
+            if(pendientes[i]!=null){
+                if(pendientes[i][6].equals("TERMINADO")){
+                    final String[] dato = pendientes[i];
+                    dato[0]=Clases.TablaHash.getLastID();
+                    dato[6]=null;
+                    temp.add(dato);
+                    Cola_Pendientes.remove(i);
+                }
+            }
+        }
+        return temp;
+    }
+    
+    public static void removeCancelados(){
+        for (int i = 0; i < MAX; i++) {
+            if(pendientes[i]!=null){
+                if(pendientes[i][6].equals("CANCELADO")){
+                    Cola_Pendientes.remove(i);
+                }
+            }
+        }
+    }
+    
 }

@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @author jlmmj
  */
 public class TablaHash {
-    String[][] arreglo;
+    static String[][] arreglo;
     int tamanio, contador;
     private boolean isInitialized = false;
     
@@ -59,6 +59,26 @@ public class TablaHash {
             }
         }
         return null;
+    }
+    
+    public static String getLastID(){
+        int ID=0;
+        final String LastID;
+        for (String[] arreglo1 : arreglo) {
+            if(arreglo1!=null){
+                final int arregloID = Integer.parseInt(arreglo1[0]);
+                if(ID<arregloID)
+                    ID=arregloID;
+            }
+        }
+        ID++;
+        if(ID>99)
+            return Integer.toString(ID);
+        else if(ID>9){
+            return "0"+ID;
+        }else{
+            return "00"+ID;
+        }
     }
     
     public String[][] getData(){

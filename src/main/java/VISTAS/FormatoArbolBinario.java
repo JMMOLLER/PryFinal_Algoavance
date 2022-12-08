@@ -2,7 +2,6 @@ package VISTAS;
 
 import CONTROLADORES.C_Inicio;
 import Clases.ArbolBinario;
-import LISTA_ENLAZADA.Lista_enlazada;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;

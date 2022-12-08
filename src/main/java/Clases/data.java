@@ -9,7 +9,6 @@ import java.util.Arrays;
  * @author jlmmj
  */
 public class data {
-public static DAO.Implement im = new DAO.Implement();
 private static TablaHash Hash = new TablaHash(100);
 
 /*
@@ -33,8 +32,9 @@ indice  valor
      * Carga los datos de la base de datos local y los baraja
      */
     public static void setElements() {
-        Lista_enlazada lista = im.cargar_datos_locales();
+        DAO.Implement im = new DAO.Implement();
         if(!Hash.getIsInitialized()){
+            Lista_enlazada lista = im.cargar_datos_locales();
             while(!lista.estaVacio()){
                 Hash.agregar(lista.getDato());
                 lista.getSiguiente();
@@ -48,12 +48,9 @@ indice  valor
      * @param datos ArrayList<String[]>
      */
     public static void updateElements(ArrayList<String[]> datos){
-        //elements = datos;
-        TablaHash temp = new TablaHash(100);
         for(String[] elemento: datos){
-            temp.agregar(elemento);
+            Hash.agregar(elemento);
         }
-        Hash = temp;
     }
     
     public static ArrayList<String[]> setFormatList(ArrayList<String[]> datos){//SU FUNCION ES DARLE EL FORMATO CORRECTO AL CODIGO
