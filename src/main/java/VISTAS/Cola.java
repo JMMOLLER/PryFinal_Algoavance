@@ -1,18 +1,26 @@
 
 package VISTAS;
 
+import CONTROLADORES.C_Inicio;
 import java.awt.Color;
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Cola extends javax.swing.JFrame {
-
+    
     public Cola() {
         initComponents();
         this.setLocationRelativeTo(this);
+        this.RenderTable();
         this.getContentPane().setBackground(new Color(0, 102, 102));
     }
     
+    private void RenderTable(){
+       DefaultTableModel tb1 = (DefaultTableModel)TBL_AREA.getModel();
+        for (int i = 0; i <= Clases.Cola_Pendientes.size(); i++) {
+            tb1.addRow(Clases.Cola_Pendientes.getData(i));
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,9 +79,17 @@ public class Cola extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Zona", "Local", "Sistema", "Descripción", "Prioridad", "Tipo", "Proveedor", "Costo", "Razon Social", "Encargado"
+                "Código", "Descripción", "Prioridad", "Proveedor", "Costo", "Razon Social", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(TBL_AREA);
 
         btnVolver.setBackground(new java.awt.Color(0, 102, 102));
@@ -89,7 +105,7 @@ public class Cola extends javax.swing.JFrame {
         btnMostrar.setBackground(new java.awt.Color(0, 102, 102));
         btnMostrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnMostrar.setText("MOSTRAR");
+        btnMostrar.setText("CAMBIAR ESTADO");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarActionPerformed(evt);
@@ -148,10 +164,21 @@ public class Cola extends javax.swing.JFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // Insertar a la Pila
+        if(Clases.Cola_Pendientes.isFull())
+            JOptionPane.showMessageDialog(null, "Ya se alcanzó el número máximo de pendientes...");
+        else{
+            InsertarCola IC= new InsertarCola();
+            IC.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.setVisible(false);
+        Inicio view = new Inicio();
+        C_Inicio ctrl = new C_Inicio(view);
+        ctrl.Iniciar();
+        view.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -160,9 +187,6 @@ public class Cola extends javax.swing.JFrame {
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         //Mostrar los datos de la Pila
-        MostrarCola mostrar = new MostrarCola();
-        mostrar.setVisible(true);
-        
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**

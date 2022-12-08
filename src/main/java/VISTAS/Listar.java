@@ -27,7 +27,7 @@ public class Listar extends javax.swing.JFrame {
         TBL_AREA = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Elementos de la Base de Datos");
+        setTitle("Lista de Mantenimientos");
 
         BTN_BACK.setBackground(new java.awt.Color(0, 102, 102));
         BTN_BACK.setForeground(new java.awt.Color(255, 255, 255));

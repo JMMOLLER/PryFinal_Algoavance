@@ -37,7 +37,7 @@ public class Ordenamiento extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ordernar Base de Datos");
+        setTitle("Ordernar Registros");
 
         BTN_ORDENAR.setBackground(new java.awt.Color(0, 102, 102));
         BTN_ORDENAR.setForeground(new java.awt.Color(255, 255, 255));
@@ -78,6 +78,11 @@ public class Ordenamiento extends javax.swing.JFrame {
         CBO_ORDENAR.setBackground(new java.awt.Color(0, 102, 102));
         CBO_ORDENAR.setForeground(new java.awt.Color(255, 255, 255));
         CBO_ORDENAR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Shell Sort", "Quick Sort", "Selección", "Burbúja", "Inserción" }));
+        CBO_ORDENAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBO_ORDENARActionPerformed(evt);
+            }
+        });
 
         CBO_COLUMNA.setBackground(new java.awt.Color(0, 102, 102));
         CBO_COLUMNA.setForeground(new java.awt.Color(255, 255, 255));
@@ -177,6 +182,10 @@ public class Ordenamiento extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void CBO_ORDENARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBO_ORDENARActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBO_ORDENARActionPerformed
 
     /**
      * @param args the command line arguments
