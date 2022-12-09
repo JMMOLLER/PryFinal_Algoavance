@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -20,6 +21,7 @@ public class TablaHash {
     public TablaHash(int tam) {
         tamanio = tam; //Estamos inicializando el tamaño
         arreglo = new String[tam][];
+        contador=0;
     }
     
     public boolean getIsInitialized(){
@@ -38,6 +40,7 @@ public class TablaHash {
             indiceArreglo%=tamanio;
         }
         arreglo[indiceArreglo]=elemento;
+        contador++;
     }
     
     //Método para buscar Clave
@@ -82,7 +85,20 @@ public class TablaHash {
     }
     
     public String[][] getData(){
-        return this.arreglo;
+        return TablaHash.arreglo;
+    }
+    
+    public String[][] getNotNullData(){
+        final ArrayList<String[]> temp = new ArrayList<>();
+        for (String[] array:arreglo) {
+            if(array!=null)
+                temp.add(array);
+        }
+        final String[][] result =new String[temp.toArray().length][];
+        for (int i = 0; i < temp.toArray().length-1; i++) {
+            result[i]=temp.get(i);
+        }
+        return result;
     }
     
     public void printIndice(int index){

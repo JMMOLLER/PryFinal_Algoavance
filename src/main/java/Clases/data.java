@@ -9,10 +9,10 @@ import java.util.Arrays;
  * @author jlmmj
  */
 public class data {
-private static TablaHash Hash = new TablaHash(100);
+private static final TablaHash Hash = new TablaHash(100);
 
 /*
-ORDEN DEL ARRAY EN EL ARRAYLIST:
+ORDEN DEL ARRAY EN LA TABLA HASH:
 indice  valor
 0   :   Codigo - ID
 1   :   Descripción
@@ -77,20 +77,23 @@ indice  valor
     
     public static ArrayList<String[]> Burbuja(int column) {//JORGE
         ArrayList<String[]> datos=new ArrayList<>();
-        String[][] todo_dato = Hash.getData();
+        String[][] todo_dato = Hash.getNotNullData();
         for (String[] dato : todo_dato) {
             if(dato!=null){
                 datos.add(dato);
             }
         }
-        for(int j=0; j < datos.size()-1; j++){//RECORREMOS EL ARRAYLIST
-            String[] numAct= datos.get(j);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
-            String[] numSig= datos.get(j+1);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
-            if(Integer.parseInt(numAct[0])>Integer.parseInt(numSig[0])){ //COMPRUEBA QUE EL CODIGO  DE numAct SEA MAYOR AL CODIGO DE numSig
-                datos.set(j, numSig);//ASIGNA EL ARRAY STRING numSig EN LA POSICION J
-                datos.set(j+1, numAct);//ASIGNA EL ARRAY STRING numAct EN LA POSICION J+1
+        for (String[] dato : datos) {
+            for(int j=0; j < datos.size()-1; j++){//RECORREMOS EL ARRAYLIST
+                String[] numAct= datos.get(j);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
+                String[] numSig= datos.get(j+1);//ASIGNAMOS UN ELEMENTO DEL ARRAYLIST AL ARRAY
+                if(numSig[2].equals("ALTA")&&(numAct[2].equals("MEDIA")||numAct[2].equals("BAJA"))){ //COMPRUEBA QUE EL CODIGO  DE numAct SEA MAYOR AL CODIGO DE numSig
+                    datos.set(j, numSig);//ASIGNA EL ARRAY STRING numSig EN LA POSICION J
+                    datos.set(j+1, numAct);//ASIGNA EL ARRAY STRING numAct EN LA POSICION J+1
+                }
             }
         }
+        
         datos = data.setFormatList(datos);//METODO PARA DAR FORMATO CORRECTO AL CODIGO
         System.out.println("--Ordenamiento Burbúja---\n"+"SUCESS");//AVISO POR CONSOLA
         return datos;//DEVUELVE EL ARRAYLIST MODIFICADO
@@ -98,17 +101,17 @@ indice  valor
     
     public static ArrayList<String[]> Seleccion(int column){
         ArrayList<String[]> datos=new ArrayList<>();
-        String[][] todo_dato = Hash.getData();
+        String[][] todo_dato = Hash.getNotNullData();
         for (String[] dato : todo_dato) {
             if(dato!=null){
                 datos.add(dato);
             }
         }
-        for(int i=1; i<datos.size(); i++){//RECORRE EL ARRAYLIST
+        for(int i=0; i<datos.size(); i++){//RECORRE EL ARRAYLIST
             int k=i;
             String[] Menor = datos.get(i);//ASIGNAMOS UN ARRAY STRING DEL ARRAYLIST AL ARRAY STRING Menor
             for(int j=i+1; j < datos.size(); j++){//RECORRE EL ARRAYLIST
-                if(Integer.parseInt(Menor[0]) > Integer.parseInt(datos.get(j)[0])){//COMPRRUEBA QUE EL CODIGO DE EL ARRAY STRING Menor SEA MENOR AL CODIGO DEL ARRAY STRING ACTUAL DEL ARRAYLIST
+                if(Menor[3].compareTo(datos.get(j)[3])>0){//COMPRRUEBA QUE EL CODIGO DE EL ARRAY STRING Menor SEA MENOR AL CODIGO DEL ARRAY STRING ACTUAL DEL ARRAYLIST
                     k = j;
                     Menor = datos.get(j);//ASIGNA EL ELEMENTO EN EL INDICE J DE LA ARRAYLIST AL ARRAY STRING Menor
                 }
@@ -122,8 +125,8 @@ indice  valor
     }
     
     public static ArrayList<String[]> Insercion(int column){//KEVIN
-    ArrayList<String[]> datos=new ArrayList<>();
-        String[][] todo_dato = Hash.getData();
+        ArrayList<String[]> datos=new ArrayList<>();
+        String[][] todo_dato = Hash.getNotNullData();
         for (String[] dato : todo_dato) {
             if(dato!=null){
                 datos.add(dato);
@@ -149,58 +152,29 @@ indice  valor
     
     public static ArrayList<String[]> Shell_sort(int column) throws SQLException, CloneNotSupportedException{//ROXANA
         ArrayList<String[]> datos=new ArrayList<>();
-        String[][] todo_dato = Hash.getData();
+        String[][] todo_dato = Hash.getNotNullData();
         for (String[] dato : todo_dato) {
             if(dato!=null){
                 datos.add(dato);
             }
         }
-       
-//  ArrayList<String[]> datos= (ArrayList<String[]>) ((ArrayList<String[]>)getElements()).clone();//CLONA EL ARRAYLIST A DATOS
         String[] tem;//CREAMOS UN ARREGLO QUE ALMACENE LOS DATOS TEMPORALMENTE
         int i, j, k, salto;//CREAMOS VARIABLES
         salto= datos.size()/2;//DEFINIMOS LOS SALTOS
-        if(column != 2){//BUSCA EN CALUMNA COSTO O ID
-            while(salto > 0){//COMPRUEBA QUE SALTO SEA MEYOR A 0
-                for(i= salto; i< datos.size(); i++){//RECORREMOS EL ARRAYLIST
-                    j= i - salto;
-                    while(j >= 0){
-                        k= j+ salto;
-                        if(Float.parseFloat(datos.get(j)[column]) >= Float.parseFloat(datos.get(k)[column])){//SELECCIONAMOS UN ARREGLO ESPECIFICO DENTRO DE LA ARREGLO
-                            tem= datos.get(j);//ASIGNAMOS UN ELEMENTO ESPECIFICO DEL ARRAYLIST A tem
-                            datos.set(j, datos.get(k));//ASIGNAMOS AL INDICE j EL ELEMENTO DEL INDICE j DEL ARRAYLIST
-                            datos.set(k, tem);//ASIGNAMOS EN EL INDICE k DEL ARRAYLIST EL ARRAY STRING tem
-                            j -= salto;
-                        }else{j=-1;}
-                    }
-                }
-                salto= salto/2;
-            }
-        }else{//BUSCA EN COLUMNA PRIORIDAD
-            for(int l=0; l<2;l++){
-                while(salto > 0){/*se hace el mismo proceso solo que con cadenas de texto*/
-                    for(i= salto; i< datos.size(); i++){
-                        j= i - salto;
-                        while(j >= 0){
-                            k= j+ salto;
-                            if(datos.get(j)[column].equals("MEDIA") && !datos.get(k)[column].equals("MEDIA")){
-                                tem= datos.get(j);
-                                datos.set(j, datos.get(k));
-                                datos.set(k, tem);
-                                j -= salto;
-                            }else if(datos.get(j)[column].equals("ALTA") && !datos.get(k)[column].equals("ALTA")){
-                                tem= datos.get(k);
-                                datos.set(k, datos.get(j));
-                                datos.set(j, tem);
-                                j -= salto;
-                            }
-                            else
-                            j=-1;
-                        }
-                    }
-                    salto= salto/2;
+        while(salto > 0){//COMPRUEBA QUE SALTO SEA MEYOR A 0
+            for(i= salto; i< datos.size(); i++){//RECORREMOS EL ARRAYLIST
+                j= i - salto;
+                while(j >= 0){
+                    k= j+ salto;
+                    if(datos.get(j)[column].compareTo(datos.get(k)[column])>0){//SELECCIONAMOS UN ARREGLO ESPECIFICO DENTRO DE LA ARREGLO
+                        tem= datos.get(j);//ASIGNAMOS UN ELEMENTO ESPECIFICO DEL ARRAYLIST A tem
+                        datos.set(j, datos.get(k));//ASIGNAMOS AL INDICE j EL ELEMENTO DEL INDICE j DEL ARRAYLIST
+                        datos.set(k, tem);//ASIGNAMOS EN EL INDICE k DEL ARRAYLIST EL ARRAY STRING tem
+                        j -= salto;
+                    }else{j=-1;}
                 }
             }
+            salto= salto/2;
         }
         datos = data.setFormatList(datos);//METODO PARA DAR FORMATO CORRECTO AL CODIGO
         System.out.println("--Ordenamiento Shell Sort---\n"+"SUCESS");//AVISO POR CONSOLA
@@ -209,7 +183,7 @@ indice  valor
     
     public static ArrayList<String[]> Quick_sort(int column){//KEVIN
         ArrayList<String[]> numeros=new ArrayList<>();
-        String[][] todo_dato = Hash.getData();
+        String[][] todo_dato = Hash.getNotNullData();
         for (String[] dato : todo_dato) {
             if(dato!=null){
                 numeros.add(dato);
@@ -223,6 +197,7 @@ indice  valor
         System.out.println("--Ordenamiento Quick Sort---\n"+"SUCESS");//AVISO POR CONSOLA
         return quicksort_implement(numeros,0,numeros.size()-1, column); 
     }
+    
     public static ArrayList<String[]> quicksort_implement(ArrayList<String[]> datito,int primero, int ultimo, int column){//SHELL SORT
         if(primero>=ultimo)//COMPROBAMOS QUE PRIMERO SEA MAYOR O IGUAL A ULTIMO
             return datito;//DE SER ASÍ DEVOLVEMOS DATITO
