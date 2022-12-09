@@ -1,13 +1,9 @@
 
 package VISTAS;
 
-import java.awt.Color;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class Ordenamiento extends javax.swing.JFrame {
     
@@ -29,10 +25,8 @@ public class Ordenamiento extends javax.swing.JFrame {
         BTN_RESET = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBL_AREA = new javax.swing.JTable();
-        CBO_ORDENAR = new javax.swing.JComboBox<>();
         CBO_COLUMNA = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnVolver = new javax.swing.JButton();
 
@@ -70,30 +64,26 @@ public class Ordenamiento extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Descripción", "Prioridad", "Proveedor", "Costo"
+                "Código [ID]", "Descripción", "Prioridad", "Proveedor", "Costo", "Razón Social"
             }
-        ));
-        jScrollPane2.setViewportView(TBL_AREA);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        CBO_ORDENAR.setBackground(new java.awt.Color(0, 102, 102));
-        CBO_ORDENAR.setForeground(new java.awt.Color(255, 255, 255));
-        CBO_ORDENAR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Shell Sort", "Quick Sort", "Selección", "Burbúja", "Inserción" }));
-        CBO_ORDENAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBO_ORDENARActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane2.setViewportView(TBL_AREA);
 
         CBO_COLUMNA.setBackground(new java.awt.Color(0, 102, 102));
         CBO_COLUMNA.setForeground(new java.awt.Color(255, 255, 255));
-        CBO_COLUMNA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Prioridad", "Costo" }));
+        CBO_COLUMNA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Descripción", "Prioridad", "Proveedor", "Costo", "Razón Social" }));
         CBO_COLUMNA.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BUSCAR POR:");
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("USAR MÉTODO:");
 
         jSeparator1.setBackground(new java.awt.Color(0, 153, 153));
         jSeparator1.setForeground(new java.awt.Color(0, 153, 153));
@@ -119,19 +109,14 @@ public class Ordenamiento extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(CBO_ORDENAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(CBO_COLUMNA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(118, 118, 118)
-                                .addComponent(BTN_ORDENAR)))))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(CBO_COLUMNA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118)
+                        .addComponent(BTN_ORDENAR)))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,11 +139,9 @@ public class Ordenamiento extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CBO_ORDENAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CBO_COLUMNA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTN_ORDENAR)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -182,10 +165,6 @@ public class Ordenamiento extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void CBO_ORDENARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBO_ORDENARActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CBO_ORDENARActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,12 +207,10 @@ public class Ordenamiento extends javax.swing.JFrame {
     public javax.swing.JButton BTN_ORDENAR;
     public javax.swing.JButton BTN_RESET;
     public javax.swing.JComboBox<String> CBO_COLUMNA;
-    public javax.swing.JComboBox<String> CBO_ORDENAR;
-    public javax.swing.JTable TBL_AREA;
+    public static javax.swing.JTable TBL_AREA;
     public javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

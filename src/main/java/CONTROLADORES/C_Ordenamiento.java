@@ -41,73 +41,23 @@ public class C_Ordenamiento implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(vista.BTN_ORDENAR)){
-            if(vista.CBO_ORDENAR.getSelectedIndex()==0){
-                JOptionPane.showMessageDialog(null, "Sebe escocger un método de ordenación.");
-            }else if(vista.CBO_ORDENAR.getSelectedItem()=="Shell Sort"){
+            if(vista.CBO_COLUMNA.getSelectedItem()=="ID"){
                 int column=0;//ORDENA POR DEFECTO POR ID
-                if(vista.CBO_COLUMNA.getSelectedItem().equals("Prioridad")){
-                    column = 2;
-                }else if(vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                    column = 4;
-                }
-                try {
-                    Table("Shell Sort", column);
-                } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                }
-            }else if(vista.CBO_ORDENAR.getSelectedItem()=="Quick Sort"){
-                int column=0;//ORDENA POR DEFECTO POR ID
-                if(vista.CBO_COLUMNA.getSelectedItem().equals("ID") || vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                    if(vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                        column = 4;
-                    }
-                    try {
-                        Table("Quick Sort", column);
-                    } catch (SQLException | CloneNotSupportedException ex) {
-                        JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "De momento no se ordenar por la categoría seleccionada usando este método.");
-                }
-
-            }else if(vista.CBO_ORDENAR.getSelectedItem().equals("Burbúja")){
-                int column=0;//ORDENA POR DEFECTO POR ID
-                if(vista.CBO_COLUMNA.getSelectedItem().equals("Prioridad")){
-                    column = 2;
-                }else if(vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                    column = 4;
-                }
-                try {
-                    Table("Burbúja", column);
-                } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                }
-            }else if(vista.CBO_ORDENAR.getSelectedItem().equals("Selección")){
-                int column=0;//ORDENA POR DEFECTO POR ID
-                if(vista.CBO_COLUMNA.getSelectedItem().equals("Prioridad")){
-                    column = 2;
-                }else if(vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                    column = 4;
-                }
-                try {
-                    Table("Selección", column);
-                } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                }
-            }else if(vista.CBO_ORDENAR.getSelectedItem().equals("Inserción")){
-                int column=0;//ORDENA POR DEFECTO POR ID
-                if(vista.CBO_COLUMNA.getSelectedItem().equals("ID") || vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                    if(vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
-                        column = 4;
-                    }
-                    try {
-                        Table("Inserción", column);
-                    } catch (SQLException | CloneNotSupportedException ex) {
-                        JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "De momento no se puede ordenar por la categoría seleccionada usando este método.");
-                }
+                OrdenarTabla("Quick Sort", column);
+            }else if(vista.CBO_COLUMNA.getSelectedItem().equals("Prioridad")){
+                int column=2;//ORDENA POR DEFECTO POR ID
+                OrdenarTabla("Burbúja", column);
+            }else if(vista.CBO_COLUMNA.getSelectedItem().equals("Proveedor")){
+                int column=3;//ORDENA POR DEFECTO POR ID
+                OrdenarTabla("Selección", column);
+            }else if(vista.CBO_COLUMNA.getSelectedItem().equals("Costo")){
+                OrdenarTabla("Inserción", 4);
+            }else if(vista.CBO_COLUMNA.getSelectedItem()=="Descripción"){
+                int column=1;//ORDENA POR DEFECTO POR ID
+                OrdenarTabla("Shell Sort", column);
+            }else if(vista.CBO_COLUMNA.getSelectedItem()=="Razón Social"){
+                int column=5;
+                OrdenarTabla("Shell Sort", column);
             }
         }else if(e.getSource().equals(vista.BTN_RESET)){
             try {
@@ -124,22 +74,15 @@ public class C_Ordenamiento implements ActionListener {
         }
     }
     
-    public void Table(String tipo, int column) throws SQLException, CloneNotSupportedException{
-        ArrayList<String> lista = new ArrayList<>();
-        if(column == -1){
-            lista.add("ID");
-            lista.add("Descripción");
-            lista.add("Prioridad");
-            lista.add("Proveedor");
-            lista.add("Costo");
-            lista.add("Razón Social");
-
-            for (String columna : lista) {
-                modelo.addColumn(columna);
-            }
-            vista.TBL_AREA.setModel(modelo.getTable_model());
+    public void OrdenarTabla(String tipo, int columna){
+        try {
+            Table(tipo, columna);
+        } catch (SQLException | CloneNotSupportedException ex) {
+            JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
         }
-
+    }
+    
+    public void Table(String tipo, int column) throws SQLException, CloneNotSupportedException{
         if(null != tipo)switch (tipo) {
             case "Reset":
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
@@ -149,9 +92,11 @@ public class C_Ordenamiento implements ActionListener {
             case "Burbúja":
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                 modelo.setMy_dict(Clases.data.Burbuja(0));
+                break;
             case "Selección":
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                 modelo.setMy_dict(Clases.data.Seleccion(0));
+                break;
             case "Shell Sort":
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                 modelo.setMy_dict(Clases.data.Shell_sort(column));//LLAMA AL METODO SHELL SORT
@@ -162,7 +107,7 @@ public class C_Ordenamiento implements ActionListener {
                 break;
             case "Inserción":
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-                modelo.setMy_dict(Clases.data.Insercion(column));//LLAMA AL METODO QUICK SORT
+                modelo.setMy_dict(Clases.data.Insercion(column));//LLAMA AL METODO INSERCIÓN
                 break;
             default:
                 break;
@@ -171,6 +116,5 @@ public class C_Ordenamiento implements ActionListener {
         for (String []Datos : modelo.getMy_dict()){
             modelo.addRow(Datos);//AGREGA LAS FILAS AL MODELO
         }
-        vista.TBL_AREA.setModel(modelo.getTable_model());//AGREGA EL MODELO A LA TABLA
     }
 }

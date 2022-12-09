@@ -9,10 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormatoArbolBinario extends javax.swing.JFrame {
-    public static DAO.Implement im = new DAO.Implement();
-private final DefaultTableModel Table_model= new DefaultTableModel();
-private ArrayList<String[]> my_dict = new ArrayList<>();
-private final ArbolBinario ab = new ArbolBinario();
+    private final DefaultTableModel Table_model= new DefaultTableModel();
+    private ArrayList<String[]> my_dict = new ArrayList<>();
+    private final ArbolBinario ab = new ArbolBinario();
 
     public FormatoArbolBinario() {
         initComponents();

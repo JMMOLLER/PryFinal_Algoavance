@@ -4,6 +4,7 @@
  */
 package MODELOS;
 
+import VISTAS.Ordenamiento;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class M_Ordenamiento {
     private ArrayList<String[]> my_dict = new ArrayList<>();  
-    private DefaultTableModel Table_model= new DefaultTableModel();
+    private final DefaultTableModel Table_model= (DefaultTableModel)Ordenamiento.TBL_AREA.getModel();
 
     public ArrayList<String[]> getMy_dict() {
         return my_dict;
@@ -21,14 +22,6 @@ public class M_Ordenamiento {
 
     public void setMy_dict(ArrayList<String[]> my_dict) {
         this.my_dict = my_dict;
-    }
-
-    public DefaultTableModel getTable_model() {
-        return Table_model;
-    }
-
-    public void setTable_model(DefaultTableModel Table_model) {
-        this.Table_model = Table_model;
     }
 
     public void addColumn(Object columnName) {
