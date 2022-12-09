@@ -12,9 +12,8 @@ import javax.swing.table.DefaultTableModel;
  * @author jlmmj
  */
 public class M_Buscar {
-    ArrayList<String[]> my_dict = new ArrayList<>();  
-    DefaultTableModel table_model= new DefaultTableModel();
-    int init = 1;
+    private ArrayList<String[]> my_dict = new ArrayList<>();  
+    private final DefaultTableModel table_model= (DefaultTableModel)VISTAS.Buscar.TBL_AREA.getModel();
 
     public ArrayList<String[]> getMy_dict() {
         return my_dict;
@@ -22,23 +21,7 @@ public class M_Buscar {
 
     public void setMy_dict(ArrayList<String[]> my_dict) {
         this.my_dict = my_dict;
-    }
-
-    public DefaultTableModel getTable_model() {
-        return table_model;
-    }
-
-    public void setTable_model(DefaultTableModel modelo) {
-        this.table_model = modelo;
-    }
-
-    public int getInit() {
-        return init;
-    }
-
-    public void setInit(int init) {
-        this.init = init;
-    }   
+    }  
 
     public void addColumn(Object columnName) {
         table_model.addColumn(columnName);

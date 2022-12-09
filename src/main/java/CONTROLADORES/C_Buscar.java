@@ -8,13 +8,9 @@ import MODELOS.M_Buscar;
 import VISTAS.Buscar;
 import VISTAS.Inicio;
 import java.awt.Color;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,11 +18,10 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class C_Buscar implements ActionListener {
-    private final M_Buscar modelo;
+    private final M_Buscar modelo = new M_Buscar();
     private final Buscar vista;
 
-    public C_Buscar(M_Buscar modelo, Buscar vista) {
-        this.modelo = modelo;
+    public C_Buscar(Buscar vista) {
         this.vista = vista;
         this.vista.BTN_BACK.addActionListener(this);
         this.vista.BTN_BUSCAR.addActionListener(this);
@@ -70,25 +65,6 @@ public class C_Buscar implements ActionListener {
     }
     
     public void Table(String tipo, String buscar) throws SQLException, CloneNotSupportedException{
-        ArrayList<String> lista = new ArrayList<>();
-        if(buscar!=null)
-            buscar = buscar.replace("P", "");
-        
-        if(modelo.getInit()==1){
-            modelo.setInit(0);
-            lista.add("ID");
-            lista.add("Descripción");
-            lista.add("Prioridad");
-            lista.add("Proveedor");
-            lista.add("Costo");
-            lista.add("Razón Social");
-        }
-
-        for (String columna : lista) {
-            modelo.addColumn(columna);
-        }
-        vista.TBL_AREA.setModel(modelo.getTable_model());
-
         if(null != tipo)switch (tipo) {
             case "Reset":{
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
@@ -138,6 +114,5 @@ public class C_Buscar implements ActionListener {
         for (String []Datos : modelo.getMy_dict()){
             modelo.addRow(Datos);//AGREGA LAS FILAS AL MODELO
         }
-        vista.TBL_AREA.setModel(modelo.getTable_model());//AGREGA EL MODELO A LA TABLA
     }
 }

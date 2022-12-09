@@ -9,31 +9,19 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormatoArbolBinario extends javax.swing.JFrame {
-    private final DefaultTableModel Table_model= new DefaultTableModel();
+    private final DefaultTableModel Table_model;
     private ArrayList<String[]> my_dict = new ArrayList<>();
     private final ArbolBinario ab = new ArbolBinario();
 
     public FormatoArbolBinario() {
         initComponents();
         setLocationRelativeTo(this);
-        Table();
         this.Panel_1.setBackground(new Color(0, 51, 51));
+        Table_model = (DefaultTableModel)TBL_AREA.getModel();
+        Table();
     }
 
     public void Table(){
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("ID");
-        lista.add("Descripción");
-        lista.add("Prioridad");
-        lista.add("Proveedor");
-        lista.add("Costo");
-        lista.add("Razón Social");
-
-        for (String columna : lista) {
-            Table_model.addColumn(columna);
-        }
-        this.TBL_AREA.setModel(Table_model);
-
         Table_model.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
         my_dict = Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
         Collections.shuffle(my_dict);
@@ -54,7 +42,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         for (String []Datos : my_dict){
             Table_model.addRow(Datos);//AGREGA LAS FILAS AL MODELO
         }
-        this.TBL_AREA.setModel(Table_model);//AGREGA EL MODELO A LA TABLA
     }
     
     /**
@@ -129,15 +116,23 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
         TBL_AREA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Código [ID]", "Descripción", "Prioridad", "Proveedor", "Costo", "Razón Social"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(TBL_AREA);
 
         jToggleButton1.setBackground(new java.awt.Color(0, 102, 102));

@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class M_Pila {
     private final Pila_enlazada Pila=new Pila_enlazada();
     private ArrayList<String[]> my_dict = new ArrayList<>();  
-    private DefaultTableModel table_model= new DefaultTableModel();
+    private final DefaultTableModel table_model= (DefaultTableModel)VISTAS.Pila.TBL_AREA.getModel();
     int init = 1;
 
     public Pila_enlazada getPila() {
@@ -28,14 +28,6 @@ public class M_Pila {
 
     public void setMy_dict(ArrayList<String[]> my_dict) {
         this.my_dict = my_dict;
-    }
-
-    public DefaultTableModel getTable_model() {
-        return table_model;
-    }
-
-    public void setTable_model(DefaultTableModel modelo) {
-        this.table_model = modelo;
     }
 
     public int getInit() {

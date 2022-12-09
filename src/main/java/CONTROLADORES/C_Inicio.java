@@ -46,9 +46,8 @@ public class C_Inicio implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(vista.BTN_BUSCAR)){
             try {
-                M_Buscar modelo = new M_Buscar();
                 Buscar view = new Buscar();
-                C_Buscar ctrl = new C_Buscar(modelo, view);
+                C_Buscar ctrl = new C_Buscar(view);
                 ctrl.iniciar();
                 view.setVisible(true);
                 vista.setVisible(false);

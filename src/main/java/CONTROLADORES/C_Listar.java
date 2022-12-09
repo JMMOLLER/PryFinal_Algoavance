@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,19 +47,6 @@ public class C_Listar implements ActionListener {
     }
     
     public void Table(String tipo) throws SQLException, CloneNotSupportedException{
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("ID");
-        lista.add("Descripción");
-        lista.add("Prioridad");
-        lista.add("Proveedor");
-        lista.add("Costo");
-        lista.add("Razón Social");
-
-        for (String columna : lista) {
-            modelo.addColumn(columna);
-        }
-        vista.TBL_AREA.setModel(modelo.getModelo());
-
         modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
         modelo.setMy_dict(Clases.data.getElements());//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
         modelo.setMy_dict(Clases.data.setFormatList(modelo.getMy_dict()));//A LOS ELEMENTOS DE LA BASE DE DATOS LE DA AL CÓDIGO EL FORMATO
@@ -68,6 +54,5 @@ public class C_Listar implements ActionListener {
         for (String []Datos : modelo.getMy_dict()){
             modelo.addRow(Datos);//AGREGA LAS FILAS AL MODELO
         }
-        vista.TBL_AREA.setModel(modelo.getModelo());//AGREGA EL MODELO A LA TABLA
     }
 }

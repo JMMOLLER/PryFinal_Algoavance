@@ -65,7 +65,6 @@ public class Pila extends javax.swing.JFrame {
         });
 
         TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
-        TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
         TBL_AREA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -73,7 +72,15 @@ public class Pila extends javax.swing.JFrame {
             new String [] {
                 "ID", "Descripción", "Prioridad", "Proveedor", "Costo", "Razon Social"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(TBL_AREA);
 
         btnVolver.setBackground(new java.awt.Color(0, 102, 102));
@@ -232,7 +239,7 @@ public class Pila extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TBL_AREA;
+    public static javax.swing.JTable TBL_AREA;
     public javax.swing.JToggleButton btnActualizar;
     public javax.swing.JToggleButton btnBuscar;
     public javax.swing.JToggleButton btnEliminar;

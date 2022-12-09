@@ -100,23 +100,6 @@ public class C_Pila implements ActionListener {
     }
     
     public void Table(String tipo, String buscar) throws SQLException, CloneNotSupportedException{
-        ArrayList<String> lista = new ArrayList<>();
-        
-        if(modelo.getInit()==1){
-            modelo.setInit(0);
-            lista.add("ID");
-            lista.add("Descripción");
-            lista.add("Prioridad");
-            lista.add("Proveedor");
-            lista.add("Costo");
-            lista.add("Razón Social");
-        }
-
-        for (String columna : lista) {
-            modelo.addColumn(columna);
-        }
-        vista.TBL_AREA.setModel(modelo.getTable_model());
-
         if(null != tipo)switch (tipo) {
             case "Reset":{
                 modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
@@ -145,6 +128,5 @@ public class C_Pila implements ActionListener {
         for (String []Datos : modelo.getMy_dict()){
             modelo.addRow(Datos);//AGREGA LAS FILAS AL MODELO
         }
-        vista.TBL_AREA.setModel(modelo.getTable_model());//AGREGA EL MODELO A LA TABLA
     }
 }

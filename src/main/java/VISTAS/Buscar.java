@@ -62,9 +62,17 @@ public class Buscar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Zona", "Local", "Sistema", "Descripción", "Prioridad", "Tipo", "Proveedor", "Costo", "Razon Social", "Encargado"
+                "Código", "Descripción", "Prioridad", "Proveedor", "Costo", "Razon Social"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(TBL_AREA);
 
         CBO_BUSQUEDA.setBackground(new java.awt.Color(0, 102, 102));
@@ -179,7 +187,7 @@ public class Buscar extends javax.swing.JFrame {
     public javax.swing.JButton BTN_BACK;
     public javax.swing.JButton BTN_BUSCAR;
     public javax.swing.JComboBox<String> CBO_BUSQUEDA;
-    public javax.swing.JTable TBL_AREA;
+    public static javax.swing.JTable TBL_AREA;
     public javax.swing.JTextField TXT_BUSCAR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
