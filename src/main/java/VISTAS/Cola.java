@@ -12,21 +12,22 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class Cola extends javax.swing.JFrame {
-    protected DefaultTableModel tb1;
-    protected TableRowSorter<TableModel> rowSorter;
+    protected DefaultTableModel tb1;//EL MODELO POR DEFECTO DE LA TABLA
+    protected TableRowSorter<TableModel> rowSorter;//BUSCA EN LA TABLA
     
     public Cola() {
         initComponents();
         this.setLocationRelativeTo(this);
-        tb1 = (DefaultTableModel)TBL_AREA.getModel();
-        rowSorter = new TableRowSorter<>(TBL_AREA.getModel());
-        TBL_AREA.setRowSorter(rowSorter);
+        tb1 = (DefaultTableModel)TBL_AREA.getModel();//ASIGNA EL MODELO DE LA TABLA DEL JFRAME A TB1
+        rowSorter = new TableRowSorter<>(TBL_AREA.getModel());//ASIGNA EL MODELO DE LA TABLA DEL JFRAME A ROWSORTER
+        TBL_AREA.setRowSorter(rowSorter);//ASIGNA ROWSORTER A LA TABLA;
         Clases.Cola_Pendientes.removeCancelados();
-        this.RenderTable();
+        this.RenderTable();//REFERIZA LA TABLA
         this.getContentPane().setBackground(new Color(0, 102, 102));
         this.createSearcher();
     }
     
+    /*   MÉTODO PARA BUSCAR EN LA TABLA   */
     public void createSearcher(){
         txtBuscar.getDocument().addDocumentListener(new DocumentListener(){
 
