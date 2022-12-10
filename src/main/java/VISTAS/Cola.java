@@ -60,7 +60,6 @@ public class Cola extends javax.swing.JFrame {
         });
     }
     
-    
     private void RenderTable(){
         tb1.setRowCount(0);
         for (int i = 0; i <= Clases.Cola_Pendientes.size(); i++) {

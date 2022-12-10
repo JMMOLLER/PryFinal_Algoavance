@@ -64,7 +64,7 @@ public class TablaHash {
         return null;
     }
     
-    public static String getLastID(){
+    public String getLastID(){
         int ID=0;
         final String LastID;
         for (String[] arreglo1 : arreglo) {
@@ -95,7 +95,7 @@ public class TablaHash {
                 temp.add(array);
         }
         final String[][] result =new String[temp.toArray().length][];
-        for (int i = 0; i < temp.toArray().length-1; i++) {
+        for (int i = 0; i < temp.toArray().length; i++) {
             result[i]=temp.get(i);
         }
         return result;

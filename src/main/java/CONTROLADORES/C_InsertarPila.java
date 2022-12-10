@@ -24,8 +24,12 @@ public class C_InsertarPila implements ActionListener{
     
     public void Iniciar(){
         this.vista.setLocationRelativeTo(vista);
-        this.vista.txtID.setText(getLastID());
+        this.vista.txtID.setText(Clases.data.getTablaHash().getLastID());
         this.vista.txtCosto.setText("0.00");
+    }
+    
+    private String getID(){
+        return vista.txtID.getText().replace("P", "");
     }
     
     @Override
@@ -38,7 +42,7 @@ public class C_InsertarPila implements ActionListener{
                 String Prioridad=vista.txtPrioridad.getText();
                 float Costo = 0;
                 Costo = Float.parseFloat(vista.txtCosto.getText());
-                String dato[] = {vista.txtID.getText().replace("P", ""),Descripcion,Razonsocial,Proveedor,Prioridad,String.valueOf(Costo)};
+                String dato[] = {this.getID(),Descripcion,Razonsocial,Proveedor,Prioridad,String.valueOf(Costo)};
                 modelo.getPila().Insertar(dato);
                 modelo.getPila().EnviarDatos();
                 System.out.println("Cantidad de elementos en la lista --> "+modelo.getPila().getnElementos());
@@ -65,7 +69,7 @@ public class C_InsertarPila implements ActionListener{
                 }
             }catch(NumberFormatException  ex){
                 JOptionPane.showMessageDialog(null, "Solo se permiten números");
-                vista.txtID.setText(getLastID());
+                vista.txtID.setText(Clases.data.getTablaHash().getLastID());
                 vista.txtDescrip.setText(null);
                 vista.txtRazsocial.setText(null);
                 vista.txtProveedor.setText(null);
@@ -86,20 +90,5 @@ public class C_InsertarPila implements ActionListener{
         }else{
             JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
         }
-    }
-    
-    private String getLastID(){
-        int LastID=
-        Integer.parseInt(
-            Clases.data.Burbuja(0).get(
-                Clases.data.Burbuja(0).size()-1
-            )[0].replace("P", "")
-        )+1;
-        if(LastID>99)
-            return "P"+LastID;
-        else if(LastID>9)
-            return "P0"+LastID;
-        else
-            return "P00"+LastID;
     }
 }

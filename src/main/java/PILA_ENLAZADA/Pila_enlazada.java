@@ -1,7 +1,6 @@
 package PILA_ENLAZADA;
 
 import Clases.Nodo;
-import Clases.data;
 import java.util.ArrayList;
 
 /**
@@ -69,11 +68,19 @@ public class Pila_enlazada {
     public void EnviarDatos(){
         ArrayList<String[]> lista= new ArrayList<>();
         Nodo temp= inicio;
+        String[][] data = Clases.data.getTablaHash().getNotNullData();
         while(temp!=null){
-            lista.add(temp.getDato());
+            boolean exists = false;
+            for (String[] array : data) {
+                if (array == temp.getDato()) {
+                    exists = true;
+                }
+            }
+            if(!exists)
+                lista.add(temp.getDato());
             temp=temp.getSiguienteNodo();
         }
-        data.updateElements(lista);
+        Clases.data.updateElements(lista);
     }
     
     public String[] Buscar(String ID){

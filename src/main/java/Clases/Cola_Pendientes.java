@@ -80,7 +80,7 @@ public class Cola_Pendientes {
             if(pendientes[i]!=null){
                 if(pendientes[i][6].equals("TERMINADO")){
                     final String[] dato = pendientes[i];
-                    dato[0]=Clases.TablaHash.getLastID();
+                    dato[0]=Clases.data.getTablaHash().getLastID();
                     dato[6]=null;
                     temp.add(dato);
                     Cola_Pendientes.remove(i);

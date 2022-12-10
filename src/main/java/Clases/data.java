@@ -22,6 +22,10 @@ indice  valor
 5   :   Razón Social
 */
 
+    public static TablaHash getTablaHash(){
+        return Hash;
+    }
+
     public static ArrayList<String[]> getElements() {
         ArrayList<String[]> temp=new ArrayList<>();
         temp.addAll(Arrays.asList(Hash.getData()));
