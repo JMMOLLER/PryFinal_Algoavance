@@ -29,7 +29,7 @@ public class C_InsertarPila implements ActionListener{
     }
     
     private String getID(){
-        return vista.txtID.getText().replace("P", "");
+        return Clases.data.getTablaHash().getLastID();
     }
     
     private String getNextID(){
@@ -46,7 +46,7 @@ public class C_InsertarPila implements ActionListener{
                 String Prioridad=vista.txtPrioridad.getText();
                 float Costo = 0;
                 Costo = Float.parseFloat(vista.txtCosto.getText());
-                String dato[] = {this.getID(),Descripcion,Razonsocial,Proveedor,Prioridad,String.valueOf(Costo)};
+                String dato[] = {this.getID(),Descripcion,Prioridad,Proveedor,String.format("%.2f",Costo),Razonsocial};
                 modelo.getPila().Insertar(dato);
                 modelo.getPila().EnviarDatos();
                 System.out.println("Cantidad de elementos en la lista --> "+modelo.getPila().getnElementos());

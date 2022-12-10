@@ -48,7 +48,7 @@ public class InsertarCola extends javax.swing.JFrame {
                 txtDescrip.getText(),
                 CBO_PRIORIDAD.getSelectedItem().toString(),
                 txtProveedor.getText().toUpperCase(),
-                String. format("%.2f", costo),
+                String.format("%.2f", costo),
                 txtRazsocial.getText().toUpperCase(),
                 txtEstado.getText()
             };
