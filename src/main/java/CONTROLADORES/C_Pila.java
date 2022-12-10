@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -60,11 +59,11 @@ public class C_Pila implements ActionListener {
             }
         }else if(e.getSource().equals(vista.btnEliminar)){
             try {
-                int index=vista.TBL_AREA.getSelectedRow();
+                int index=Pila.TBL_AREA.getSelectedRow();
                 if(index!=-1){
                     int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar el elemento: " + index);
                     if(confirm==0){
-                        modelo.getPila().Eliminar(vista.TBL_AREA.getValueAt(index, 0).toString().replace("P", ""));
+                        modelo.getPila().Eliminar(Pila.TBL_AREA.getValueAt(index, 0).toString().replace("P", ""));
                         Table("Reset", null);
                         JOptionPane.showMessageDialog(null, "Se eliminó el elemento seleccionado.");
                     }

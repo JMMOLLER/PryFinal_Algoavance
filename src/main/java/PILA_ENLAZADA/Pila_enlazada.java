@@ -72,9 +72,8 @@ public class Pila_enlazada {
         while(temp!=null){
             boolean exists = false;
             for (String[] array : data) {
-                if (array == temp.getDato()) {
+                if (array == temp.getDato())
                     exists = true;
-                }
             }
             if(!exists)
                 lista.add(temp.getDato());

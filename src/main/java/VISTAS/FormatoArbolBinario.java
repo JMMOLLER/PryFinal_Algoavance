@@ -2,6 +2,7 @@ package VISTAS;
 
 import CONTROLADORES.C_Inicio;
 import Clases.ArbolBinario;
+import Clases.TablaHash;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,18 +21,40 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         Table_model = (DefaultTableModel)TBL_AREA.getModel();
         Table();
     }
+    
+    private int getMedia(){
+        String[][] data = Clases.data.getTablaHash().getNotNullData();
+        int temp_media = 0;
+        int media;
+        for(String[] array: data){
+            temp_media +=Integer.parseInt(array[0]);
+        }
+        temp_media /= data.length;
+        media = buscarMedia(temp_media);
+        return media;
+    }
+    
+    private int buscarMedia(int media_teorica){
+        ArrayList<String[]> temp = Clases.data.getElements();
+        if(temp.get(media_teorica)==null)
+            media_teorica = this.buscarMedia(media_teorica+1);
+        else
+            media_teorica=Integer.parseInt(temp.get(media_teorica)[0]);
+        return media_teorica;
+    }
 
     public void Table(){
         Table_model.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
         my_dict = Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
         Collections.shuffle(my_dict);
         int count = 0;
+        int media = this.getMedia();
         while(my_dict.size()!=count){
             if(count==0){
-                this.ab.insertar(32);
-                System.out.println(32);
+                this.ab.insertar(media);
+                System.out.println(media);
             }
-            else if(my_dict.get(count)!=null && count!=32){
+            else if(my_dict.get(count)!=null && Integer.parseInt(my_dict.get(count)[0])!=media){
                 this.ab.insertar(Integer.parseInt(my_dict.get(count)[0]));
             }
             count++;
@@ -58,7 +81,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Panel_1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        BTN_DRAW = new javax.swing.JButton();
+        btnDibujar = new javax.swing.JButton();
         btnInsertar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -90,13 +113,13 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("INGRESA EL ID:");
 
-        BTN_DRAW.setBackground(new java.awt.Color(0, 102, 102));
-        BTN_DRAW.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        BTN_DRAW.setForeground(new java.awt.Color(255, 255, 255));
-        BTN_DRAW.setText("DIBUJAR");
-        BTN_DRAW.addActionListener(new java.awt.event.ActionListener() {
+        btnDibujar.setBackground(new java.awt.Color(0, 102, 102));
+        btnDibujar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDibujar.setForeground(new java.awt.Color(255, 255, 255));
+        btnDibujar.setText("DIBUJAR");
+        btnDibujar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_DRAWActionPerformed(evt);
+                btnDibujarActionPerformed(evt);
             }
         });
 
@@ -186,7 +209,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                             .addGap(325, 325, 325)
                             .addComponent(btnVolver1)
                             .addGap(18, 18, 18)
-                            .addComponent(BTN_DRAW)
+                            .addComponent(btnDibujar)
                             .addGap(296, 296, 296))
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_1Layout.createSequentialGroup()
@@ -234,7 +257,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(Panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTN_DRAW, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDibujar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -268,12 +291,12 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnVolver1ActionPerformed
 
-    private void BTN_DRAWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_DRAWActionPerformed
+    private void btnDibujarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDibujarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         ABG vista = new ABG(ab);
         vista.setVisible(true);
-    }//GEN-LAST:event_BTN_DRAWActionPerformed
+    }//GEN-LAST:event_btnDibujarActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
@@ -330,10 +353,10 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton BTN_DRAW;
     private javax.swing.JComboBox<String> CB_ARBOL;
     private javax.swing.JPanel Panel_1;
     private javax.swing.JTable TBL_AREA;
+    public javax.swing.JButton btnDibujar;
     public javax.swing.JButton btnInsertar;
     public javax.swing.JButton btnVolver1;
     private javax.swing.JLabel jLabel2;

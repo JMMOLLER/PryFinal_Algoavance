@@ -24,12 +24,16 @@ public class C_InsertarPila implements ActionListener{
     
     public void Iniciar(){
         this.vista.setLocationRelativeTo(vista);
-        this.vista.txtID.setText(Clases.data.getTablaHash().getLastID());
+        this.vista.txtID.setText(getNextID());
         this.vista.txtCosto.setText("0.00");
     }
     
     private String getID(){
         return vista.txtID.getText().replace("P", "");
+    }
+    
+    private String getNextID(){
+        return "P"+Clases.data.getTablaHash().getLastID();
     }
     
     @Override
@@ -59,23 +63,17 @@ public class C_InsertarPila implements ActionListener{
                     } catch (SQLException | CloneNotSupportedException ex) {
                         Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else{
-                    vista.txtID.setText(Integer.toString(Integer.parseInt(vista.txtID.getText().replace("P", ""))+1));
-                    vista.txtDescrip.setText(null);
-                    vista.txtRazsocial.setText(null);
-                    vista.txtProveedor.setText(null);
-                    vista.txtPrioridad.setText(null);
-                    vista.txtCosto.setText("0.00");
                 }
             }catch(NumberFormatException  ex){
                 JOptionPane.showMessageDialog(null, "Solo se permiten números");
-                vista.txtID.setText(Clases.data.getTablaHash().getLastID());
+            }
+                vista.txtID.setText(getNextID());
                 vista.txtDescrip.setText(null);
                 vista.txtRazsocial.setText(null);
                 vista.txtProveedor.setText(null);
                 vista.txtPrioridad.setText(null);
                 vista.txtCosto.setText("0.00");
-            }
+                vista.btnGuarda.setSelected(false);
         }else if(e.getSource().equals(vista.btnVolver)){
             try {
                 Pila view = new Pila();

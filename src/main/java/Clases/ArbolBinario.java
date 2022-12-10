@@ -69,7 +69,7 @@ public class ArbolBinario {
     
     
     public String getOrdenData(NArbol r, String type){
-        String response = null;
+        String response;
         switch (type) {
             case "preOrden":
                 response = this.preOrden(r).toString();
@@ -78,7 +78,7 @@ public class ArbolBinario {
                 response = this.postOrden(r).toString();
                 break;
             case "inOrden":
-                this.inOrden(r).toString();
+                response = this.inOrden(r).toString();
                 break;
             default:
                 return null;

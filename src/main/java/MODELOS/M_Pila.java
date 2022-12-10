@@ -16,7 +16,6 @@ public class M_Pila {
     private final Pila_enlazada Pila=new Pila_enlazada();
     private ArrayList<String[]> my_dict = new ArrayList<>();  
     private final DefaultTableModel table_model= (DefaultTableModel)VISTAS.Pila.TBL_AREA.getModel();
-    int init = 1;
 
     public Pila_enlazada getPila() {
         return Pila;
@@ -28,15 +27,7 @@ public class M_Pila {
 
     public void setMy_dict(ArrayList<String[]> my_dict) {
         this.my_dict = my_dict;
-    }
-
-    public int getInit() {
-        return init;
-    }
-
-    public void setInit(int init) {
-        this.init = init;
-    }   
+    } 
 
     public void addColumn(Object columnName) {
         table_model.addColumn(columnName);
