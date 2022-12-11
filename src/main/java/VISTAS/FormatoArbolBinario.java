@@ -173,6 +173,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registros en Árbol Binario");
         setBackground(new java.awt.Color(0, 51, 51));
+        setResizable(false);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("BÚSQUEDA POR ID:");

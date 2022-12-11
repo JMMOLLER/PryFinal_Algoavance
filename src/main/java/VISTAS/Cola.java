@@ -103,6 +103,7 @@ public class Cola extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trabajos Pendientes [Cola]");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,7 +135,6 @@ public class Cola extends javax.swing.JFrame {
         });
 
         TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
-        TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
         TBL_AREA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

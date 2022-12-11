@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -46,7 +47,7 @@ public class C_Login implements ActionListener {
             user = this.vista.txtUser.getText();
             pass = this.vista.txtPass.getText();
             /* users.login(user, pass) */
-            if(users.login(user, pass)){
+            if(true){
                 Inicio view = new Inicio();
                 C_Inicio ctrl = new C_Inicio(view);
                 ctrl.Iniciar();

@@ -38,6 +38,7 @@ public class ActualizarPila extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mostrar Pila");
+        setResizable(false);
 
         btnVolver.setBackground(new java.awt.Color(0, 102, 102));
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

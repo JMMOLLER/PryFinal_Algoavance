@@ -89,6 +89,7 @@ public class InsertarCola extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         btnVolver.setBackground(new java.awt.Color(0, 102, 102));
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

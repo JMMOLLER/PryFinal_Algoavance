@@ -29,7 +29,7 @@ public class Inicio extends javax.swing.JFrame {
         BTN_ARBOL = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmAdmin = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmNuevoA = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenuItem();
 
@@ -38,6 +38,7 @@ public class Inicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de Mantenimientos");
         setBackground(new java.awt.Color(0, 153, 153));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BIENVENIDO(A)", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("SansSerif", 0, 24), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -113,8 +114,13 @@ public class Inicio extends javax.swing.JFrame {
 
         jmAdmin.setText("Opciones");
 
-        jMenuItem1.setText("Crear nuevo administrador");
-        jmAdmin.add(jMenuItem1);
+        jmNuevoA.setText("Crear nuevo administrador");
+        jmNuevoA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmNuevoAActionPerformed(evt);
+            }
+        });
+        jmAdmin.add(jmNuevoA);
 
         jMenuItem2.setText("Información");
         jmAdmin.add(jMenuItem2);
@@ -152,7 +158,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTN_ARBOLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ARBOLActionPerformed
-        setVisible(false);
+        this.setVisible(false);
         FormatoArbolBinario ar = new FormatoArbolBinario();
         ar.setVisible(true);
     }//GEN-LAST:event_BTN_ARBOLActionPerformed
@@ -161,6 +167,13 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jmSalirActionPerformed
+
+    private void jmNuevoAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevoAActionPerformed
+        // TODO add your handling code here:
+        NUsuario nu= new NUsuario();
+        this.setVisible(false);
+        nu.setVisible(true);
+    }//GEN-LAST:event_jmNuevoAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,10 +219,10 @@ public class Inicio extends javax.swing.JFrame {
     public javax.swing.JButton BTN_PILA;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jmAdmin;
+    private javax.swing.JMenuItem jmNuevoA;
     private javax.swing.JMenuItem jmSalir;
     // End of variables declaration//GEN-END:variables
 }

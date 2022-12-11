@@ -29,6 +29,7 @@ public class Listar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Mantenimientos");
+        setResizable(false);
 
         BTN_BACK.setBackground(new java.awt.Color(0, 102, 102));
         BTN_BACK.setForeground(new java.awt.Color(255, 255, 255));

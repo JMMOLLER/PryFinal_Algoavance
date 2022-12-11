@@ -64,7 +64,10 @@ private ArbolBinario ab= new ArbolBinario();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gráfico Arbol Binario");
-        setSize(new java.awt.Dimension(1920, 1080));
+        setBackground(new Color(0, 102, 102));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1280, 720));
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,14 +81,14 @@ private ArbolBinario ab= new ArbolBinario();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(834, Short.MAX_VALUE)
+                .addContainerGap(623, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(585, 585, 585))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(804, Short.MAX_VALUE)
+                .addContainerGap(679, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(19, 19, 19))
         );

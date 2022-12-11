@@ -32,6 +32,7 @@ public class Ordenamiento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ordernar Registros");
+        setResizable(false);
 
         BTN_ORDENAR.setBackground(new java.awt.Color(0, 102, 102));
         BTN_ORDENAR.setForeground(new java.awt.Color(255, 255, 255));
