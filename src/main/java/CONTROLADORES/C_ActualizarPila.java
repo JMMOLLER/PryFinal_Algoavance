@@ -5,7 +5,7 @@
 package CONTROLADORES;
 
 import MODELOS.M_Pila;
-import PILA_ENLAZADA.Pila_enlazada;
+import Clases.Pila_enlazada;
 import VISTAS.ActualizarPila;
 import VISTAS.Pila;
 import java.awt.Color;

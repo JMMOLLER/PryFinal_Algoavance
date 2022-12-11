@@ -1,4 +1,4 @@
-package LISTA_ENLAZADA;
+package Clases;
 
 import Clases.Nodo;
 import java.util.Arrays;

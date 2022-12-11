@@ -4,7 +4,7 @@
  */
 package MODELOS;
 
-import PILA_ENLAZADA.Pila_enlazada;
+import Clases.Pila_enlazada;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 

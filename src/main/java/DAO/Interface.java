@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import LISTA_ENLAZADA.Lista_enlazada;
+import Clases.Lista_enlazada;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package DAO;
 
-import LISTA_ENLAZADA.Lista_enlazada;
+import Clases.Lista_enlazada;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
