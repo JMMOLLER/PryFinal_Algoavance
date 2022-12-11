@@ -7,7 +7,6 @@ package VISTAS;
 import CONTROLADORES.C_Inicio;
 import Clases.Usuarios;
 import java.awt.Color;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -17,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class NUsuario extends javax.swing.JFrame {
 private final Usuarios Users;
+private final ImageIcon icon = new ImageIcon(getClass().getResource("/icon/check.png"));
     /**
      * Creates new form Usuarios
      */
@@ -217,7 +217,6 @@ private final Usuarios Users;
             String validation = this.validations();
             if(validation!=null){throw new Error(validation);}
             Users.addUser(txtUser.getText(), txtPass.getText());
-            ImageIcon icon = new ImageIcon(getClass().getResource("/icon/check.png"));
             int response = JOptionPane.showConfirmDialog(null,
                 "Nueva cuenta de Administardor agregada con exito.\n¿Desea agregar otro usuario?", "¡AGREGADO CORRECTAMENTE!", WIDTH,HEIGHT,icon);
             if(response==1){

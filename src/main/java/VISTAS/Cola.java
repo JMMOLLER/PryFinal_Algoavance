@@ -3,6 +3,7 @@ package VISTAS;
 
 import CONTROLADORES.C_Inicio;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
@@ -12,6 +13,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class Cola extends javax.swing.JFrame {
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     protected DefaultTableModel tb1;//EL MODELO POR DEFECTO DE LA TABLA -- este
     protected TableRowSorter<TableModel> rowSorter;//BUSCA EN LA TABLA-- este
     
@@ -78,7 +80,7 @@ public class Cola extends javax.swing.JFrame {
             }
             this.RenderTable();
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un pendiente para cambiar su estado.", "¡Acción no valida!",WIDTH);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un pendiente para cambiar su estado.", "¡Acción no valida!",WIDTH, error);
         }
     }
 
@@ -233,7 +235,7 @@ public class Cola extends javax.swing.JFrame {
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // Insertar a la Pila
         if(Clases.Cola_Pendientes.isFull())
-            JOptionPane.showMessageDialog(null, "Ya se alcanzó el número máximo de pendientes...");
+            JOptionPane.showMessageDialog(null, "Ya se alcanzó el número máximo de pendientes...","Acción no válida", WIDTH, error);
         else{
             InsertarCola IC= new InsertarCola();
             IC.setVisible(true);

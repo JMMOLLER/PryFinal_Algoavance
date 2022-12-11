@@ -8,10 +8,13 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
 public class C_InsertarPila implements ActionListener{
+    private final ImageIcon check = new ImageIcon(getClass().getResource("/icon/check.png"));
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     private final M_Pila modelo;
     private final InsertarPila vista;
 
@@ -58,7 +61,7 @@ public class C_InsertarPila implements ActionListener{
                 modelo.getPila().EnviarDatos();
                 System.out.println("Cantidad de elementos en la lista --> "+modelo.getPila().getnElementos());
                 int response = JOptionPane.showConfirmDialog(null, "Se agregó correctamente el dato.\n"
-                        + "¿Desea ingresar un nuevo dato?", "¡ATENCIÓN!", 0);
+                        + "¿Desea ingresar un nuevo dato?", "¡ATENCIÓN!", 0, 0, check);
                 if(response==1){
                     try {
                         Pila view = new Pila();
@@ -72,9 +75,9 @@ public class C_InsertarPila implements ActionListener{
                     }
                 }
             }catch(NumberFormatException  ex){
-                JOptionPane.showMessageDialog(null, "Solo se permiten números en esta sección", "¡ATENCIÓN!", 0);
+                JOptionPane.showMessageDialog(null, "Solo se permiten números en esta sección", "¡ATENCIÓN!", 0, error);
             }catch(Error ez){
-                JOptionPane.showMessageDialog(null, "No puede dejar campos vacíos.", "¡ATENCIÓN!", 0);
+                JOptionPane.showMessageDialog(null, "No puede dejar campos vacíos.", "¡ATENCIÓN!", 0, error);
             }
                 vista.txtID.setText(getNextID());
                 vista.txtDescrip.setText(null);

@@ -5,6 +5,7 @@ import Clases.ArbolBinario;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
@@ -14,6 +15,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class FormatoArbolBinario extends javax.swing.JFrame {
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     private final DefaultTableModel Table_model;
     private ArrayList<String[]> my_dict = new ArrayList<>();
     private final ArbolBinario ab = new ArbolBinario();
@@ -359,7 +361,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                 if(!inDefault)
                     this.renderTable(false, null);
                 else
-                    JOptionPane.showMessageDialog(null, "Deberías escoger un método de ordenamiento antes de continuar", "¡ADVERTENCIA!", HEIGHT);
+                    JOptionPane.showMessageDialog(null, "Debes escoger un método de ordenamiento antes de continuar", "¡ADVERTENCIA!", HEIGHT, error);
                 return;
             case 1:
                 method = ab.getOrdenData(ab.getRaiz(), "preOrden");
@@ -420,7 +422,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_1;
     private javax.swing.JTable TBL_AREA;
     public javax.swing.JButton btnDibujar;
-    public javax.swing.JButton btnInsertar;
+    private javax.swing.JButton btnInsertar;
     private javax.swing.JToggleButton btnMostrar;
     public javax.swing.JButton btnVolver1;
     private javax.swing.JLabel jLabel2;

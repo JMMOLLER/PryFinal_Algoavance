@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class C_Buscar implements ActionListener {
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     private final M_Buscar modelo = new M_Buscar();
     private final Buscar vista;
 
@@ -36,21 +38,21 @@ public class C_Buscar implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(vista.BTN_BUSCAR)){
-            if(vista.TXT_BUSCAR.getText() == null || vista.TXT_BUSCAR.getText().equals(" ")){
-                JOptionPane.showMessageDialog(null, "No es posible buscar elementos vacíos", "¡ADVERTENCIA!", 0);
+            if(vista.TXT_BUSCAR.getText().trim().equals("")){
+                JOptionPane.showMessageDialog(null, "No es posible buscar elementos vacíos", "¡ADVERTENCIA!", 0, error);
             }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Ninguno")){
-                JOptionPane.showMessageDialog(null, "Antes debe escoger un método de búsqueda", "¡ATENCIÓN!", 0);
+                JOptionPane.showMessageDialog(null, "Antes debe escoger un método de búsqueda", "¡ATENCIÓN!", 0, error);
             }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Binaria")){
                 try {
                     Table("Busqueda Binaria", vista.TXT_BUSCAR.getText());
                 } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado", "¡ATENCIÓN!", 0);
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado", "¡ATENCIÓN!", 0, error);
                 }
             }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Secuencial")){
                 try {
                     Table("Busqueda Secuencial", vista.TXT_BUSCAR.getText());
                 } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado", "¡ATENCIÓN!", 0);
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado", "¡ATENCIÓN!", 0, error);
                 }
             }
         }else if(e.getSource().equals(vista.BTN_BACK)){

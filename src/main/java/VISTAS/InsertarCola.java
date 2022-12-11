@@ -3,6 +3,7 @@ package VISTAS;
 
 import java.awt.Color;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,7 +11,8 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class InsertarCola extends javax.swing.JFrame {
-
+    private final ImageIcon check = new ImageIcon(getClass().getResource("/icon/check.png"));
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     /**
      * Creates new form Insertar_Pila
      */
@@ -53,7 +55,7 @@ public class InsertarCola extends javax.swing.JFrame {
                 txtEstado.getText()
             };
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "El costo debe se un número");
+            JOptionPane.showMessageDialog(null, "El costo debe se un número", "¡ERROR!", 0, error);
             return null;
         }
     }
@@ -314,12 +316,13 @@ public class InsertarCola extends javax.swing.JFrame {
             if(checkInputs()){
                 String[] Pendiente = getNewPendiente();
                 if(Pendiente==null){
+                    btnGuarda.setSelected(false);
                     return;
                 }
                 Clases.Cola_Pendientes.add(Pendiente);
                 System.out.println(Arrays.toString(Clases.Cola_Pendientes.getLastData(Clases.Cola_Pendientes.getLastID())));
                 int response = JOptionPane.showConfirmDialog(null, "Se agregó correctamente a la cola.\n"
-                        + "¿Desea ingresar un nuevo dato?", "¡ATENCIÓN!", WIDTH);
+                        + "¿Desea ingresar un nuevo dato?", "¡AGREGADO CORRECTAMENTE!", WIDTH, 0, check);
                 if(response==1){
                     Cola cola = new Cola();
                     cola.setVisible(true);
@@ -333,11 +336,12 @@ public class InsertarCola extends javax.swing.JFrame {
                     txtCosto.setText("0.00");
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Debe completar los campos \"Descripción, Proveedor y Razón Social\".", "¡ADVERTENCIA!", HEIGHT);
+                JOptionPane.showMessageDialog(null, "Debe completar los campos \"Descripción, Proveedor y Razón Social\".", "¡ADVERTENCIA!", HEIGHT, error);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Ya no se puede agregar más datos mientras no se completen algunos pendientes...", "¡ADVERTENCIA", HEIGHT);
+            JOptionPane.showMessageDialog(null, "Ya no se puede agregar más datos mientras no se completen algunos pendientes...", "¡ADVERTENCIA", HEIGHT, error);
         }
+        btnGuarda.setSelected(false);
     }//GEN-LAST:event_btnGuardaActionPerformed
 
     /**

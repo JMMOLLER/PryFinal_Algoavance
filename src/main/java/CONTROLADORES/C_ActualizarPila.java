@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,8 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class C_ActualizarPila implements ActionListener {
+    private final ImageIcon check = new ImageIcon(getClass().getResource("/icon/check.png"));
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     private final ActualizarPila vista;
     private Pila_enlazada Pila = new Pila_enlazada();
     private String[] dato;
@@ -89,7 +92,7 @@ public class C_ActualizarPila implements ActionListener {
                 String nuevo[] = this.ActualizarDato(Descripcion, Prioridad, Proveedor, Costo, Razonsocial);
                 Pila.buscarYremplazar(Integer.parseInt(nuevo[0]),nuevo);
                 int response = JOptionPane.showConfirmDialog(null, "Se actualizó correctamente el dato.\n"
-                        + "¿Desea volver a editar el dato?", "¡ATENCIÓN!", 0);
+                        + "¿Desea volver a editar el dato?", "¡CAMBIOS APLICADOS!", 0, 0,check);
                 if(response==1){
                     try {
                         Pila view = new Pila();
@@ -103,9 +106,9 @@ public class C_ActualizarPila implements ActionListener {
                     }
                 }
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(null, "Solo se permiten números en el campo \"Costo\".", "¡ATENCIÓN!", 0);
+                JOptionPane.showMessageDialog(null, "Solo se permiten números en el campo \"Costo\".", "¡NO VÁLIDO!", 0, error);
             }catch(Error ez){
-                JOptionPane.showMessageDialog(null, "No puede dejar campos vacíos.", "¡ATENCIÓN!", 0);
+                JOptionPane.showMessageDialog(null, "No puede dejar campos vacíos.", "¡ERROR!", 0, error);
             }
                 this.Pila = new Pila_enlazada();
                 this.dato = this.Pila.Buscar(vista.txtId.getText());

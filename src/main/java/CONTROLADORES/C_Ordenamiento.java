@@ -11,9 +11,9 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class C_Ordenamiento implements ActionListener {
+    private final ImageIcon check = new ImageIcon(getClass().getResource("/icon/check.png"));
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     private final Ordenamiento vista;
     private final M_Ordenamiento modelo;
 
@@ -78,7 +80,7 @@ public class C_Ordenamiento implements ActionListener {
         try {
             Table(tipo, columna);
         } catch (SQLException | CloneNotSupportedException ex) {
-            JOptionPane.showMessageDialog(null, "Se ha generado un error", "¡ADVERTENCIA!", 0);
+            JOptionPane.showMessageDialog(null, "Se ha generado un error", "¡ADVERTENCIA!", 0, error);
         }
     }
     

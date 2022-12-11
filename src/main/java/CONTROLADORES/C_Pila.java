@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,9 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class C_Pila implements ActionListener {
+    private final ImageIcon check = new ImageIcon(getClass().getResource("/icon/check.png"));
+    private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
+    private final ImageIcon warning = new ImageIcon(getClass().getResource("/icon/warning.png"));
     private final Pila vista;
     private final M_Pila modelo;
 
@@ -57,21 +61,21 @@ public class C_Pila implements ActionListener {
             } catch (SQLException | CloneNotSupportedException ex) {
                 Logger.getLogger(C_Pila.class.getName()).log(Level.SEVERE, null, ex);
             }catch(Error ez){
-                JOptionPane.showMessageDialog(null, "No puede buscar un dato vacío.", "¡ADVERTENCIA!", 0);
+                JOptionPane.showMessageDialog(null, "No puede buscar un dato vacío.", "¡ADVERTENCIA!", 0, error);
             }
             vista.btnBuscar.setSelected(false);
         }else if(e.getSource().equals(vista.btnEliminar)){
             try {
                 int index=Pila.TBL_AREA.getSelectedRow();
                 if(index!=-1){
-                    int confirm = JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea eliminar el elemento: " + index, "¡ATENCIÓN!", 0);
+                    int confirm = JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea eliminar el elemento: " + index, "¡ATENCIÓN!", 0, 0, warning);
                     if(confirm==0){
                         modelo.getPila().Eliminar(Pila.TBL_AREA.getValueAt(index, 0).toString().replace("P", ""));
                         Table("Reset", null);
-                        JOptionPane.showMessageDialog(null, "Se eliminó el elemento seleccionado con éxito", "¡LISTO!", 0);
+                        JOptionPane.showMessageDialog(null, "Se eliminó el elemento seleccionado con éxito", "¡LISTO!", 0, check);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Antes debe escoger una fila a eliminar", "¡ADVERTENCIA!", 0);
+                    JOptionPane.showMessageDialog(null, "Antes debe escoger una fila a eliminar", "¡ADVERTENCIA!", 0, error);
                 }
                 vista.btnEliminar.setSelected(false);
             } catch (SQLException | CloneNotSupportedException ex) {
@@ -87,8 +91,9 @@ public class C_Pila implements ActionListener {
                 ap.setVisible(true);
                 this.vista.setVisible(false);
             }else{
-                JOptionPane.showMessageDialog(null, "Antes debe escoger una fila a actualizar", "¡ADVERTENCIA!", 0);
+                JOptionPane.showMessageDialog(null, "Antes debe escoger una fila a actualizar", "¡ADVERTENCIA!", 0, error);
             }
+            this.vista.btnActualizar.setSelected(false);
         }else if(e.getSource().equals(vista.btnVolver)){
             Inicio view= new Inicio();
             C_Inicio ctrl= new C_Inicio(view);
@@ -115,7 +120,7 @@ public class C_Pila implements ActionListener {
                     modelo.addIntoArrayList(result);//LLAMA AL METODO DE ORDENACIÓN Y PIDE UN ELEMENTO ESPECIFICO CON EL INDEX
                     modelo.setMy_dict(Clases.data.setFormatList(modelo.getMy_dict()));//LE DA EL FORMATO CORRECTO AL CÓDIGO
                 }else{
-                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra regsitrado", "¡ADVERTENCIA!", 0);
+                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra regsitrado", "¡ADVERTENCIA!", 0, error);
                     modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                     modelo.clearArrayList();//ELIMINA LOS DATOS DE LA ARRAYLIST
                     modelo.setMy_dict(modelo.getPila().getDatos());
