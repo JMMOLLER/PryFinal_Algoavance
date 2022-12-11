@@ -53,7 +53,7 @@ public class C_Login implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta");
             }
         }else if(e.getSource().equals(vista.btnExit)){
-            System.exit(WIDTH);
+            System.exit(0);
         }else{
             JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
         }
