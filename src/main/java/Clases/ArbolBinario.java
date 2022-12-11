@@ -6,6 +6,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -68,50 +69,62 @@ public class ArbolBinario {
     }
     
     
-    public String getOrdenData(NArbol r, String type){
-        String response;
+    public int[] getOrdenData(NArbol r, String type){
+        int[] response;
         switch (type) {
             case "preOrden":
-                response = this.preOrden(r).toString();
+                response = this.preOrden(r);
                 break;
             case "postOrden":
-                response = this.postOrden(r).toString();
+                response = this.postOrden(r);
                 break;
             case "inOrden":
-                response = this.inOrden(r).toString();
+                response = this.inOrden(r);
                 break;
             default:
                 return null;
         }
+        System.out.println("----"+type+"----");
+        System.out.println(Arrays.toString(response));
         datos.clear();
         return response;
     }
     
-    public ArrayList<Integer> preOrden(NArbol r){
+    public int[] preOrden(NArbol r){
         if(r!=null){
             datos.add(r.getDato());
             preOrden(r.getIzq());
             preOrden(r.getDer());
         }
-        return datos;
+        return toStringArray();
     }
      
     
-    public ArrayList<Integer> inOrden(NArbol r){
+    public int[] inOrden(NArbol r){
         if(r!=null){
             this.inOrden(r.getIzq());
             datos.add(r.getDato());
             this.inOrden(r.getDer());
         }
-        return datos;
+        return toStringArray();
     }
     
-    public ArrayList<Integer> postOrden(NArbol r){
+    public int[] postOrden(NArbol r){
         if(r!=null){
             this.inOrden(r.getIzq());
             this.inOrden(r.getDer());
             datos.add(r.getDato()); 
         }
-        return datos;
+        return toStringArray();
+    }
+    
+    public int[] toStringArray(){
+        int[] response= new int[datos.size()];
+        int count = 0;
+        for(int dato:datos){
+            response[count]=dato;
+            count++;
+        }
+        return response;
     }
 }

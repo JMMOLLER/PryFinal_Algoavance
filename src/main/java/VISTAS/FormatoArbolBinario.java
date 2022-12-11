@@ -2,7 +2,6 @@ package VISTAS;
 
 import CONTROLADORES.C_Inicio;
 import Clases.ArbolBinario;
-import Clases.TablaHash;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,13 +12,15 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
     private final DefaultTableModel Table_model;
     private ArrayList<String[]> my_dict = new ArrayList<>();
     private final ArbolBinario ab = new ArbolBinario();
+    private boolean inDefault=true;
 
     public FormatoArbolBinario() {
         initComponents();
         setLocationRelativeTo(this);
         this.Panel_1.setBackground(new Color(0, 51, 51));
         Table_model = (DefaultTableModel)TBL_AREA.getModel();
-        Table();
+        renderArbolBinario();
+        renderTable(false, null);
     }
     
     private int getMedia(){
@@ -34,6 +35,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         return media;
     }
     
+    /*   RECURSIVIDAD   */
     private int buscarMedia(int media_teorica){
         ArrayList<String[]> temp = Clases.data.getElements();
         if(temp.get(media_teorica)==null)
@@ -42,26 +44,47 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
             media_teorica=Integer.parseInt(temp.get(media_teorica)[0]);
         return media_teorica;
     }
-
-    public void Table(){
-        Table_model.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
-        my_dict = Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
-        Collections.shuffle(my_dict);
+    
+    private void reOrdenarTabla(int[] IDs){
+        my_dict.clear();
+        String[][] temp = Clases.data.getTablaHash().getNotNullData();
+        for (int ID : IDs) {
+            for (String[] temp1 : temp) {
+                if (ID==Integer.parseInt(temp1[0])) {
+                    my_dict.add(temp1);
+                }
+            }
+        }
+    }
+    
+    private void renderArbolBinario(){
         int count = 0;
         int media = this.getMedia();
+        my_dict.clear();
+        my_dict=Clases.data.getElements();
+        Collections.shuffle(my_dict);
         while(my_dict.size()!=count){
             if(count==0){
                 this.ab.insertar(media);
-                System.out.println(media);
+                System.out.println("El número más próximo a la media es: "+media);
             }
             else if(my_dict.get(count)!=null && Integer.parseInt(my_dict.get(count)[0])!=media){
                 this.ab.insertar(Integer.parseInt(my_dict.get(count)[0]));
             }
             count++;
         }
+    }
+
+    public void renderTable(boolean whithMethod, int[] IDs){
+        Table_model.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
+        if(!whithMethod){
+            my_dict = Clases.data.getElements();//TRAE LOS ELEMENTOS DE LA BASE DE DATOS
+            inDefault=true;
+        }else{
+            reOrdenarTabla(IDs);
+            inDefault=false;
+        }
         my_dict = Clases.data.setFormatList(my_dict);//A LOS ELEMENTOS DE LA BASE DE DATOS LE DA AL CÓDIGO EL FORMATO
-        
-        
         for (String []Datos : my_dict){
             Table_model.addRow(Datos);//AGREGA LAS FILAS AL MODELO
         }
@@ -86,7 +109,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TBL_AREA = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnMostrar = new javax.swing.JToggleButton();
         CB_ARBOL = new javax.swing.JComboBox<>();
         btnVolver1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -126,12 +149,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         btnInsertar.setBackground(new java.awt.Color(0, 102, 102));
         btnInsertar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnInsertar.setForeground(new java.awt.Color(255, 255, 255));
-        btnInsertar.setText("INSERTAR");
-        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertarActionPerformed(evt);
-            }
-        });
+        btnInsertar.setText("BUSCAR");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("USAR MÉTODO:");
@@ -158,23 +176,18 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(TBL_AREA);
 
-        jToggleButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("MOSTRAR");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.setBackground(new java.awt.Color(0, 102, 102));
+        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrar.setText("MOSTRAR");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
             }
         });
 
         CB_ARBOL.setBackground(new java.awt.Color(0, 102, 102));
         CB_ARBOL.setForeground(new java.awt.Color(255, 255, 255));
         CB_ARBOL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Pre-Orden", "En-Orden", "Post-Orden" }));
-        CB_ARBOL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CB_ARBOLActionPerformed(evt);
-            }
-        });
 
         btnVolver1.setBackground(new java.awt.Color(0, 102, 102));
         btnVolver1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -233,7 +246,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnInsertar)
                 .addGap(51, 51, 51)
-                .addComponent(jToggleButton1)
+                .addComponent(btnMostrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Panel_1Layout.setVerticalGroup(
@@ -245,7 +258,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CB_ARBOL, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,14 +288,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-        
-    }//GEN-LAST:event_btnInsertarActionPerformed
-
-    private void CB_ARBOLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_ARBOLActionPerformed
-        
-    }//GEN-LAST:event_CB_ARBOLActionPerformed
-
     private void btnVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver1ActionPerformed
         Inicio view = new Inicio();
         C_Inicio ctrl = new C_Inicio(view);
@@ -298,25 +303,31 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         vista.setVisible(true);
     }//GEN-LAST:event_btnDibujarActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
+        final int[] method;
+        btnMostrar.setSelected(false);
         switch (CB_ARBOL.getSelectedIndex()) {
             case 0:
-                JOptionPane.showMessageDialog(null, "Debe escocger un método de orden.");
-                break;
+                if(!inDefault)
+                    this.renderTable(false, null);
+                else
+                    JOptionPane.showMessageDialog(null, "Debe escocger un método de orden.");
+                return;
             case 1:
-                System.out.println(ab.getOrdenData(ab.getRaiz(), "preOrden"));
+                method = ab.getOrdenData(ab.getRaiz(), "preOrden");
                 break;
             case 2:
-                System.out.println(ab.getOrdenData(ab.getRaiz(), "inOrden"));
+                method = ab.getOrdenData(ab.getRaiz(), "inOrden");
                 break;
             case 3:
-                System.out.println(ab.getOrdenData(ab.getRaiz(), "postOrden"));
+                method = ab.getOrdenData(ab.getRaiz(), "postOrden");
                 break;
             default:
-                break;
+                return;
         }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        this.renderTable(true, method);
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,6 +369,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
     private javax.swing.JTable TBL_AREA;
     public javax.swing.JButton btnDibujar;
     public javax.swing.JButton btnInsertar;
+    private javax.swing.JToggleButton btnMostrar;
     public javax.swing.JButton btnVolver1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -366,7 +378,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTree jTree1;
     private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
