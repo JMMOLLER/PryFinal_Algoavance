@@ -112,8 +112,6 @@ public class C_ActualizarPila implements ActionListener {
                 this.dato = this.Pila.Buscar(vista.txtId.getText());
                 this.setValueToTextFields();
                 this.vista.btnGuardar.setSelected(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡HA OCURRIDO UN ERROR!", 0);
         }
     }
     
