@@ -6,21 +6,62 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class FormatoArbolBinario extends javax.swing.JFrame {
     private final DefaultTableModel Table_model;
     private ArrayList<String[]> my_dict = new ArrayList<>();
     private final ArbolBinario ab = new ArbolBinario();
     private boolean inDefault=true;
-
+    protected TableRowSorter<TableModel> rowSorter;
+    
     public FormatoArbolBinario() {
         initComponents();
         setLocationRelativeTo(this);
         this.Panel_1.setBackground(new Color(0, 51, 51));
         Table_model = (DefaultTableModel)TBL_AREA.getModel();
+        rowSorter = new TableRowSorter<>(TBL_AREA.getModel());
+        TBL_AREA.setRowSorter(rowSorter);
         renderArbolBinario();
         renderTable(false, null);
+        this.createSearcher();
+    }
+    
+    public void createSearcher(){
+        txtBuscar.getDocument().addDocumentListener(new DocumentListener(){
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = txtBuscar.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = txtBuscar.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
     
     private int getMedia(){
@@ -112,7 +153,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         btnMostrar = new javax.swing.JToggleButton();
         CB_ARBOL = new javax.swing.JComboBox<>();
         btnVolver1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         separador = new javax.swing.JSeparator();
 
@@ -134,7 +175,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 51, 51));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("INGRESA EL ID:");
+        jLabel4.setText("BÚSQUEDA POR ID:");
 
         btnDibujar.setBackground(new java.awt.Color(0, 102, 102));
         btnDibujar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -150,6 +191,11 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         btnInsertar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnInsertar.setForeground(new java.awt.Color(255, 255, 255));
         btnInsertar.setText("BUSCAR");
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("USAR MÉTODO:");
@@ -199,8 +245,8 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(0, 102, 102));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscar.setBackground(new java.awt.Color(0, 102, 102));
+        txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,7 +288,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnInsertar)
                 .addGap(51, 51, 51)
@@ -264,7 +310,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                         .addComponent(CB_ARBOL, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -312,7 +358,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                 if(!inDefault)
                     this.renderTable(false, null);
                 else
-                    JOptionPane.showMessageDialog(null, "Debe escocger un método de orden.");
+                    JOptionPane.showMessageDialog(null, "Deberías escoger un método de ordenamiento antes de continuar", "¡ADVERTENCIA!", HEIGHT);
                 return;
             case 1:
                 method = ab.getOrdenData(ab.getRaiz(), "preOrden");
@@ -328,6 +374,11 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         }
         this.renderTable(true, method);
     }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        //
+    }//GEN-LAST:event_btnInsertarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,8 +428,8 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTree jTree1;
     private javax.swing.JSeparator separador;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

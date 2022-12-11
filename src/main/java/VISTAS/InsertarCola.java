@@ -318,7 +318,7 @@ public class InsertarCola extends javax.swing.JFrame {
                 Clases.Cola_Pendientes.add(Pendiente);
                 System.out.println(Arrays.toString(Clases.Cola_Pendientes.getLastData(Clases.Cola_Pendientes.getLastID())));
                 int response = JOptionPane.showConfirmDialog(null, "Se agregó correctamente a la cola.\n"
-                        + "¿Desea ingresar un nuevo dato?");
+                        + "¿Desea ingresar un nuevo dato?", "¡ATENCIÓN!", WIDTH);
                 if(response==1){
                     Cola cola = new Cola();
                     cola.setVisible(true);
@@ -332,10 +332,10 @@ public class InsertarCola extends javax.swing.JFrame {
                     txtCosto.setText("0.00");
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Debe completar los campos \"Descripción, Proveedor y Razón Social\".");
+                JOptionPane.showMessageDialog(null, "Debe completar los campos \"Descripción, Proveedor y Razón Social\".", "¡ADVERTENCIA!", HEIGHT);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Ya no se puede agregar más datos mientras no se completen algunos pendientes...");
+            JOptionPane.showMessageDialog(null, "Ya no se puede agregar más datos mientras no se completen algunos pendientes...", "¡ADVERTENCIA", HEIGHT);
         }
     }//GEN-LAST:event_btnGuardaActionPerformed
 

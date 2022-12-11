@@ -12,19 +12,19 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class Cola extends javax.swing.JFrame {
-    protected DefaultTableModel tb1;//EL MODELO POR DEFECTO DE LA TABLA
-    protected TableRowSorter<TableModel> rowSorter;//BUSCA EN LA TABLA
+    protected DefaultTableModel tb1;//EL MODELO POR DEFECTO DE LA TABLA -- este
+    protected TableRowSorter<TableModel> rowSorter;//BUSCA EN LA TABLA-- este
     
     public Cola() {
         initComponents();
         this.setLocationRelativeTo(this);
-        tb1 = (DefaultTableModel)TBL_AREA.getModel();//ASIGNA EL MODELO DE LA TABLA DEL JFRAME A TB1
-        rowSorter = new TableRowSorter<>(TBL_AREA.getModel());//ASIGNA EL MODELO DE LA TABLA DEL JFRAME A ROWSORTER
-        TBL_AREA.setRowSorter(rowSorter);//ASIGNA ROWSORTER A LA TABLA;
+        tb1 = (DefaultTableModel)TBL_AREA.getModel();//ASIGNA EL MODELO DE LA TABLA DEL JFRAME A TB1-- este
+        rowSorter = new TableRowSorter<>(TBL_AREA.getModel());//ASIGNA EL MODELO DE LA TABLA DEL JFRAME A ROWSORTER-- este
+        TBL_AREA.setRowSorter(rowSorter);//ASIGNA ROWSORTER A LA TABLA;-- este
         Clases.Cola_Pendientes.removeCancelados();
         this.RenderTable();//REFERIZA LA TABLA
         this.getContentPane().setBackground(new Color(0, 102, 102));
-        this.createSearcher();
+        this.createSearcher();//-este quede
     }
     
     /*   MÉTODO PARA BUSCAR EN LA TABLA   */
@@ -58,7 +58,7 @@ public class Cola extends javax.swing.JFrame {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
-    }
+    }//-- este
     
     private void RenderTable(){
         tb1.setRowCount(0);

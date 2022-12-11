@@ -49,7 +49,7 @@ public class C_ActualizarPila implements ActionListener {
         }if(e.getSource().equals(vista.btnGuardar)){
             
         }else{
-            JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
+            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡HA OCURRIDO UN ERROR!", 0);
         }
     }
     

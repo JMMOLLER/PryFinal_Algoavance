@@ -51,7 +51,7 @@ public class C_InsertarPila implements ActionListener{
                 modelo.getPila().EnviarDatos();
                 System.out.println("Cantidad de elementos en la lista --> "+modelo.getPila().getnElementos());
                 int response = JOptionPane.showConfirmDialog(null, "Se agregó correctamente el dato.\n"
-                        + "¿Desea ingresar un nuevo dato?");
+                        + "¿Desea ingresar un nuevo dato?", "¡ATENCIÓN!", 0);
                 if(response==1){
                     try {
                         Pila view = new Pila();
@@ -65,7 +65,7 @@ public class C_InsertarPila implements ActionListener{
                     }
                 }
             }catch(NumberFormatException  ex){
-                JOptionPane.showMessageDialog(null, "Solo se permiten números");
+                JOptionPane.showMessageDialog(null, "Solo se permiten números en esta sección", "¡ATENCIÓN!", 0);
             }
                 vista.txtID.setText(getNextID());
                 vista.txtDescrip.setText(null);
@@ -86,7 +86,7 @@ public class C_InsertarPila implements ActionListener{
                 Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
+            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡ADVERTENCIA!", 0);
         }
     }
 }

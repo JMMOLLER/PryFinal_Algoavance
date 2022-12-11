@@ -78,7 +78,7 @@ public class C_Ordenamiento implements ActionListener {
         try {
             Table(tipo, columna);
         } catch (SQLException | CloneNotSupportedException ex) {
-            JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
+            JOptionPane.showMessageDialog(null, "Se ha generado un error", "¡ADVERTENCIA!", 0);
         }
     }
     

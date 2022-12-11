@@ -42,7 +42,7 @@ public class C_Listar implements ActionListener {
             view.setVisible(true);
             this.vista.setVisible(false);
         }else{
-            JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
+            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡ADVERTENCIA!", 0);
         }
     }
     

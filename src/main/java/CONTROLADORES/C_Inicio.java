@@ -97,7 +97,7 @@ public class C_Inicio implements ActionListener {
                 Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
+            JOptionPane.showMessageDialog(null, "¡UPS, al parecer aún no hemos programado esa función!", "¡ADVERTENCIA!", 0);
         }
     }
     

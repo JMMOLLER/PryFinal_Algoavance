@@ -61,14 +61,14 @@ public class C_Pila implements ActionListener {
             try {
                 int index=Pila.TBL_AREA.getSelectedRow();
                 if(index!=-1){
-                    int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar el elemento: " + index);
+                    int confirm = JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea eliminar el elemento: " + index, "¡ATENCIÓN!", 0);
                     if(confirm==0){
                         modelo.getPila().Eliminar(Pila.TBL_AREA.getValueAt(index, 0).toString().replace("P", ""));
                         Table("Reset", null);
-                        JOptionPane.showMessageDialog(null, "Se eliminó el elemento seleccionado.");
+                        JOptionPane.showMessageDialog(null, "Se eliminó el elemento seleccionado con éxito", "¡LISTO!", 0);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Debe escoger una fila a eliminar");
+                    JOptionPane.showMessageDialog(null, "Antes debe escoger una fila a eliminar", "¡ADVERTENCIA!", 0);
                 }
             } catch (SQLException | CloneNotSupportedException ex) {
                 Logger.getLogger(C_Pila.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,12 +89,12 @@ public class C_Pila implements ActionListener {
             try {
                 vista.txtDato.setText(null);
                 Table("Reset", null);
-                JOptionPane.showMessageDialog(null, "Se reinició la tabla correctamente.");
+                JOptionPane.showMessageDialog(null, "Se reinició la tabla correctamente", "¡LISTO!", 0);
             } catch (SQLException | CloneNotSupportedException ex) {
-                JOptionPane.showMessageDialog(null, "Se generó un problema al intentar reiniciar la tabla.");
+                JOptionPane.showMessageDialog(null, "Se generó un problema al intentar reiniciar la tabla", "¡ERROR!", 0);
             }
         }else{
-            JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
+            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡ATENCIÓN!", 0);
         }
     }
     
@@ -113,7 +113,7 @@ public class C_Pila implements ActionListener {
                     modelo.addIntoArrayList(result);//LLAMA AL METODO DE ORDENACIÓN Y PIDE UN ELEMENTO ESPECIFICO CON EL INDEX
                     modelo.setMy_dict(Clases.data.setFormatList(modelo.getMy_dict()));//LE DA EL FORMATO CORRECTO AL CÓDIGO
                 }else{
-                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra en la Base de Datos.");
+                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra regsitrado", "¡ADVERTENCIA!", 0);
                     modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                     modelo.clearArrayList();//ELIMINA LOS DATOS DE LA ARRAYLIST
                     modelo.setMy_dict(modelo.getPila().getDatos());

@@ -37,20 +37,20 @@ public class C_Buscar implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(vista.BTN_BUSCAR)){
             if(vista.TXT_BUSCAR.getText() == null || vista.TXT_BUSCAR.getText().equals(" ")){
-                JOptionPane.showMessageDialog(null, "No puede buscar elementos vacios");
+                JOptionPane.showMessageDialog(null, "No es posible buscar elementos vacíos", "¡ADVERTENCIA!", 0);
             }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Ninguno")){
-                JOptionPane.showMessageDialog(null, "Debe escoger un método de busqueda.");
+                JOptionPane.showMessageDialog(null, "Antes debe escoger un método de búsqueda", "¡ATENCIÓN!", 0);
             }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Binaria")){
                 try {
                     Table("Busqueda Binaria", vista.TXT_BUSCAR.getText());
                 } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado", "¡ATENCIÓN!", 0);
                 }
             }else if(vista.CBO_BUSQUEDA.getSelectedItem().equals("Busqueda Secuencial")){
                 try {
                     Table("Busqueda Secuencial", vista.TXT_BUSCAR.getText());
                 } catch (SQLException | CloneNotSupportedException ex) {
-                    JOptionPane.showMessageDialog(null, "Se ha generado un error con la Base de Datos.");
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado", "¡ATENCIÓN!", 0);
                 }
             }
         }else if(e.getSource().equals(vista.BTN_BACK)){
@@ -60,7 +60,7 @@ public class C_Buscar implements ActionListener {
             view.setVisible(true);
             vista.setVisible(false);
         }else{
-            JOptionPane.showMessageDialog(null,"¡UPS, parece que aún no hemos programado esa función!");
+            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "ADVERTENCIA", 0);
         }
     }
     
@@ -80,7 +80,7 @@ public class C_Buscar implements ActionListener {
                     modelo.addIntoArrayList(Clases.data.Quick_sort(0).get(index));//LLAMA AL METODO DE ORDENACIÓN Y PIDE UN ELEMENTO ESPECIFICO CON EL INDEX
                     modelo.setMy_dict(Clases.data.setFormatList(modelo.getMy_dict()));//LE DA EL FORMATO CORRECTO AL CÓDIGO
                 }else{
-                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra en la Base de Datos.");
+                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra registrado", "¡ERROR!", 0);
                     modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                     modelo.clearArrayList();//ELIMINA LOS DATOS DE LA ARRAYLIST
                     modelo.setMy_dict(Clases.data.getElements());
@@ -97,7 +97,7 @@ public class C_Buscar implements ActionListener {
                     modelo.addIntoArrayList(Clases.data.Quick_sort(0).get(index));//LLAMA AL METODO DE ORDENACIÓN Y PIDE UN ELEMENTO ESPECIFICO CON EL INDEX
                     modelo.setMy_dict(Clases.data.setFormatList(modelo.getMy_dict()));
                 }else{
-                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra en la Base de Datos.");
+                    JOptionPane.showMessageDialog(null, "El elemento buscado no se encuentra registrado", "¡ERROR!", 0);
                     modelo.setRowCount(0);//ELIMINA LOS DATOS DE LA TABLA
                     modelo.clearArrayList();//ELIMINA LOS DATOS DE LA ARRAYLIST
                     modelo.setMy_dict(Clases.data.getElements());
