@@ -78,7 +78,7 @@ public class Cola extends javax.swing.JFrame {
             }
             this.RenderTable();
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un pendiente.");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un pendiente para cambiar su estado.", "¡Acción no valida!",WIDTH);
         }
     }
 

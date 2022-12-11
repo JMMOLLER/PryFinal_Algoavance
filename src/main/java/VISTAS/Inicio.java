@@ -36,7 +36,7 @@ public class Inicio extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Registros de Mantenimientos");
+        setTitle("Registro de Mantenimientos");
         setBackground(new java.awt.Color(0, 153, 153));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
