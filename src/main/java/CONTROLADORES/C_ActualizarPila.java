@@ -42,7 +42,7 @@ public class C_ActualizarPila implements ActionListener {
     private void setValueToTextFields(){
         this.vista.txtId.setText("P"+this.dato[0]);
         this.vista.txtDes.setText(this.dato[1]);
-        this.vista.txtPrio.setText(this.dato[2]);
+        this.vista.cboPrioridad.setSelectedItem(this.dato[2]);
         this.vista.txtProve.setText(this.dato[3]);
         this.vista.txtCosto.setText(this.dato[4]);
         this.vista.txtRaz.setText(this.dato[5]);
@@ -77,7 +77,7 @@ public class C_ActualizarPila implements ActionListener {
                 String Descripcion=vista.txtDes.getText();
                 String Razonsocial=vista.txtRaz.getText();
                 String Proveedor=vista.txtProve.getText();
-                String Prioridad=vista.txtPrio.getText();
+                String Prioridad=vista.cboPrioridad.getSelectedItem().toString();
                 float Costo = 0;
                 Costo = Float.parseFloat(vista.txtCosto.getText());
                 String nuevo[] = this.ActualizarDato(Descripcion, Prioridad, Proveedor, Costo, Razonsocial);

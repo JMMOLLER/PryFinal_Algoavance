@@ -30,11 +30,11 @@ public class ActualizarPila extends javax.swing.JFrame {
         txtProve = new javax.swing.JTextField();
         txtCosto = new javax.swing.JTextField();
         txtRaz = new javax.swing.JTextField();
-        txtPrio = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JToggleButton();
+        cboPrioridad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mostrar Pila");
@@ -94,8 +94,6 @@ public class ActualizarPila extends javax.swing.JFrame {
 
         txtRaz.setBackground(new java.awt.Color(204, 255, 255));
 
-        txtPrio.setBackground(new java.awt.Color(204, 255, 255));
-
         txtId.setEditable(false);
         txtId.setBackground(new java.awt.Color(204, 255, 255));
         txtId.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +117,10 @@ public class ActualizarPila extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("GUARDAR");
+
+        cboPrioridad.setBackground(new java.awt.Color(204, 255, 255));
+        cboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALTA", "MEDIA", "BAJA" }));
+        cboPrioridad.setSelectedIndex(1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,7 +151,7 @@ public class ActualizarPila extends javax.swing.JFrame {
                             .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtRaz, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtPrio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(132, 132, 132)
                                 .addComponent(btnGuardar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -180,8 +182,8 @@ public class ActualizarPila extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtPrio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -275,6 +277,7 @@ public class ActualizarPila extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JToggleButton btnGuardar;
     public javax.swing.JToggleButton btnVolver;
+    public javax.swing.JComboBox<String> cboPrioridad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -288,7 +291,6 @@ public class ActualizarPila extends javax.swing.JFrame {
     public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtDes;
     public javax.swing.JTextField txtId;
-    public javax.swing.JTextField txtPrio;
     public javax.swing.JTextField txtProve;
     public javax.swing.JTextField txtRaz;
     // End of variables declaration//GEN-END:variables

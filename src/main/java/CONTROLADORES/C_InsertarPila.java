@@ -43,7 +43,7 @@ public class C_InsertarPila implements ActionListener{
                 String Descripcion=vista.txtDescrip.getText();
                 String Razonsocial=vista.txtRazsocial.getText();
                 String Proveedor=vista.txtProveedor.getText();
-                String Prioridad=vista.txtPrioridad.getText();
+                String Prioridad=vista.cboPrioridad.getSelectedItem().toString();
                 float Costo = 0;
                 Costo = Float.parseFloat(vista.txtCosto.getText());
                 String dato[] = {this.getID(),Descripcion,Prioridad,Proveedor,String.format("%.2f",Costo),Razonsocial};
@@ -71,7 +71,7 @@ public class C_InsertarPila implements ActionListener{
                 vista.txtDescrip.setText(null);
                 vista.txtRazsocial.setText(null);
                 vista.txtProveedor.setText(null);
-                vista.txtPrioridad.setText(null);
+                vista.cboPrioridad.setSelectedIndex(1);
                 vista.txtCosto.setText("0.00");
                 vista.btnGuarda.setSelected(false);
         }else if(e.getSource().equals(vista.btnVolver)){

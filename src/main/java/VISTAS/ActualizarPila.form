@@ -127,7 +127,7 @@
                               <Component id="txtCosto" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                               <Component id="txtRaz" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txtPrio" min="-2" pref="300" max="-2" attributes="0"/>
+                                  <Component id="cboPrioridad" min="-2" pref="300" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                                   <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -171,8 +171,8 @@
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPrio" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="btnGuardar" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="cboPrioridad" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -307,16 +307,6 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPrio">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="cc" type="rgb"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtId">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
@@ -370,6 +360,25 @@
             <Property name="text" type="java.lang.String" value="GUARDAR"/>
           </Properties>
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboPrioridad">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="ALTA"/>
+                <StringItem index="1" value="MEDIA"/>
+                <StringItem index="2" value="BAJA"/>
+              </StringArray>
+            </Property>
+            <Property name="selectedIndex" type="int" value="1"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
