@@ -1,6 +1,5 @@
 package Clases;
 
-import Clases.Nodo;
 import java.util.Arrays;
 
 public class Lista_enlazada {
@@ -49,24 +48,14 @@ public class Lista_enlazada {
     }
     
     //Metodo para buscar 
-    public void Buscar(String dato, int indice){
+    public boolean Buscar(String[] credentials){
         Nodo bus = inicio;
-        boolean x = false;
-        while(bus != null && !bus.getDato()[indice].equals(dato)){
-            
+        while(bus != null){
+            if(Arrays.equals(bus.getDato(), credentials))
+                return true;
             bus = bus.getSiguienteNodo();
-            
-            if(bus != null && bus.getDato()[indice].equals(dato)){
-                x = true;
-            }
-            
         }
-        if(bus==null){
-            System.out.println("Elemento no encontado -->" +x);
-        }
-        else{
-           System.out.println("Elemento encontrado -->" +x); 
-        }   
+        return false;
     }
     
     //Método para eliminar un elemento del inicio

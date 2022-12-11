@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author jlmmj
  */
 public class data {
-private static final TablaHash Hash = new TablaHash(100);
+private static TablaHash Hash=new TablaHash(0);
 
 /*
 ORDEN DEL ARRAY EN LA TABLA HASH:
@@ -36,12 +36,8 @@ indice  valor
      */
     public static void setElements() {
         DAO.Implement im = new DAO.Implement();
-        if(!Hash.getIsInitialized()){
-            Lista_enlazada lista = im.cargar_datos_locales();
-            while(!lista.estaVacio()){
-                Hash.agregar(lista.getDato());
-                lista.getSiguiente();
-            }
+        if(!Hash.isInitialized()){
+            Hash = im.cargar_datos_locales();
         }
     }
     

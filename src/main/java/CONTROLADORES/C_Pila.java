@@ -52,10 +52,14 @@ public class C_Pila implements ActionListener {
             this.vista.setVisible(false);
         }else if(e.getSource().equals(vista.btnBuscar)){
             try {
+                if(vista.txtDato.getText().trim().equals("")){throw new Error();}
                 Table("Busqueda", vista.txtDato.getText());
             } catch (SQLException | CloneNotSupportedException ex) {
                 Logger.getLogger(C_Pila.class.getName()).log(Level.SEVERE, null, ex);
+            }catch(Error ez){
+                JOptionPane.showMessageDialog(null, "No puede buscar un dato vacío.", "¡ADVERTENCIA!", 0);
             }
+            vista.btnBuscar.setSelected(false);
         }else if(e.getSource().equals(vista.btnEliminar)){
             try {
                 int index=Pila.TBL_AREA.getSelectedRow();
@@ -92,7 +96,7 @@ public class C_Pila implements ActionListener {
             view.setVisible(true);
             this.vista.setVisible(false);
         }else{
-            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡ATENCIÓN!", 0);
+            JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡ADVERTENCIA!", 0);
         }
     }
     

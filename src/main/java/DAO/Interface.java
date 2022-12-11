@@ -6,10 +6,11 @@
 package DAO;
 
 import Clases.Lista_enlazada;
+import Clases.TablaHash;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public abstract interface Interface {
     public abstract ArrayList<String[]> Cargar_datos() throws SQLException;
-    public abstract Lista_enlazada cargar_datos_locales();
+    public abstract TablaHash cargar_datos_locales();
 }

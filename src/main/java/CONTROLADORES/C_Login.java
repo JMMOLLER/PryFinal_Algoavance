@@ -4,6 +4,8 @@
  */
 package CONTROLADORES;
 
+import Clases.Lista_enlazada;
+import Clases.Usuarios;
 import VISTAS.IniciarSesion;
 import VISTAS.Inicio;
 import java.awt.Color;
@@ -20,11 +22,13 @@ import javax.swing.JOptionPane;
  */
 public class C_Login implements ActionListener {
     private final IniciarSesion vista;
+    private final Clases.Usuarios users;
 
     public C_Login(IniciarSesion vista) {
         this.vista = vista;
         this.vista.btnLogin.addActionListener(this);
         this.vista.btnExit.addActionListener(this);
+        this.users = new Usuarios(new Lista_enlazada());
     }
     
     public void Iniciar(){
@@ -41,8 +45,8 @@ public class C_Login implements ActionListener {
             String user, pass;
             user = this.vista.txtUser.getText();
             pass = this.vista.txtPass.getText();
-            /* user.equals("admin23") && pass.equals("12345") */
-            if(true){
+            /* users.login(user, pass) */
+            if(users.login(user, pass)){
                 Inicio view = new Inicio();
                 C_Inicio ctrl = new C_Inicio(view);
                 ctrl.Iniciar();

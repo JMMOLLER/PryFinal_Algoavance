@@ -24,7 +24,7 @@ public class TablaHash {
         contador=0;
     }
     
-    public boolean getIsInitialized(){
+    public boolean isInitialized(){
         return this.isInitialized;
     }
     
