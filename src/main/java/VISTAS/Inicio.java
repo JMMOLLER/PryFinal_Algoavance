@@ -123,6 +123,11 @@ public class Inicio extends javax.swing.JFrame {
         jmAdmin.add(jmNuevoA);
 
         jMenuItem2.setText("Información");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jmAdmin.add(jMenuItem2);
 
         jmSalir.setText("Salir");
@@ -174,6 +179,12 @@ public class Inicio extends javax.swing.JFrame {
         this.setVisible(false);
         nu.setVisible(true);
     }//GEN-LAST:event_jmNuevoAActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        Info inf= new Info();
+        inf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

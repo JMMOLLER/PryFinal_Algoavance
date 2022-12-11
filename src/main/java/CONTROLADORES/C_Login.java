@@ -54,7 +54,6 @@ public class C_Login implements ActionListener {
                 view.setVisible(true);
                 this.vista.setVisible(false);
             }
-            /* users.login(user, pass) */
             else if(users.login(user, pass)){
                 Inicio view = new Inicio();
                 C_Inicio ctrl = new C_Inicio(view);
