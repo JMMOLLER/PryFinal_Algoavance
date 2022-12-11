@@ -148,7 +148,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         Panel_1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btnDibujar = new javax.swing.JButton();
-        btnInsertar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TBL_AREA = new javax.swing.JTable();
@@ -187,16 +186,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         btnDibujar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDibujarActionPerformed(evt);
-            }
-        });
-
-        btnInsertar.setBackground(new java.awt.Color(0, 102, 102));
-        btnInsertar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnInsertar.setForeground(new java.awt.Color(255, 255, 255));
-        btnInsertar.setText("BUSCAR");
-        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertarActionPerformed(evt);
             }
         });
 
@@ -292,9 +281,7 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnInsertar)
-                .addGap(51, 51, 51)
+                .addGap(150, 150, 150)
                 .addComponent(btnMostrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -312,7 +299,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CB_ARBOL, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,11 +364,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
         this.renderTable(true, method);
     }//GEN-LAST:event_btnMostrarActionPerformed
 
-    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-        // TODO add your handling code here:
-        //
-    }//GEN-LAST:event_btnInsertarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -422,7 +403,6 @@ public class FormatoArbolBinario extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_1;
     private javax.swing.JTable TBL_AREA;
     public javax.swing.JButton btnDibujar;
-    private javax.swing.JButton btnInsertar;
     private javax.swing.JToggleButton btnMostrar;
     public javax.swing.JButton btnVolver1;
     private javax.swing.JLabel jLabel2;
