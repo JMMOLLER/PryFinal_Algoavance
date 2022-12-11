@@ -19,7 +19,7 @@ public class TablaHash {
     //Constructor
 
     public TablaHash(int tam) {
-        tamanio = tam; //Estamos inicializando el tamaño
+        tamanio = tam;//Estamos inicializando el tamaño
         arreglo = new String[tam][];
         contador=0;
     }
@@ -103,5 +103,9 @@ public class TablaHash {
     
     public void printIndice(int index){
         System.out.println(Arrays.toString(arreglo[index]));
+    }
+    
+    public void deleteElement(String ID){
+        arreglo[Integer.parseInt(ID)]=null;
     }
 }

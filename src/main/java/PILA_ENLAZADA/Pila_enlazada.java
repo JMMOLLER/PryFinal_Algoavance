@@ -38,10 +38,6 @@ public class Pila_enlazada {
         this.inicio = this.inicio.getSiguienteNodo();
     }
     
-    public void setnElementos(int nElementos) {
-        this.nElementos = nElementos;
-    }
-    
     public void Insertar(String[] dato){
         Nodo nuevo= new Nodo(dato);
         nuevo.setSiguienteNodo(inicio);
@@ -60,8 +56,8 @@ public class Pila_enlazada {
     }
     
     public void cargar_datos(){
-        for(String[] datos : Clases.data.getElements()){
-            if(datos!=null)this.Insertar(datos);
+        for(String[] datos : Clases.data.getTablaHash().getNotNullData()){
+            this.Insertar(datos);
         }
     }
     
@@ -102,13 +98,20 @@ public class Pila_enlazada {
         while(temp!=null){
             if(!temp.getDato()[0].equals(ID) ){
                 nuevo.add(temp.getDato());
+            }else{
+                nElementos--;
             }
             temp=temp.getSiguienteNodo();
         }
-        inicio=null;
+        this.resetPila();
         for(String[] dato: nuevo){
             this.Insertar(dato);
         }
-        this.EnviarDatos();
+        Clases.data.getTablaHash().deleteElement(ID);
+    }
+    
+    private void resetPila(){
+        inicio=null;
+        nElementos=0;
     }
 }

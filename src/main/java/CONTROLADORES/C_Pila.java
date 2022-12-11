@@ -33,7 +33,6 @@ public class C_Pila implements ActionListener {
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnVolver.addActionListener(this);
         this.vista.btnBuscar.addActionListener(this);
-        this.vista.btnReset.addActionListener(this);
     }
     
     public void Iniciar() throws SQLException, CloneNotSupportedException{
@@ -70,6 +69,7 @@ public class C_Pila implements ActionListener {
                 }else{
                     JOptionPane.showMessageDialog(null, "Antes debe escoger una fila a eliminar", "¡ADVERTENCIA!", 0);
                 }
+                vista.btnEliminar.setSelected(false);
             } catch (SQLException | CloneNotSupportedException ex) {
                 Logger.getLogger(C_Pila.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -85,14 +85,6 @@ public class C_Pila implements ActionListener {
             ctrl.Iniciar();
             view.setVisible(true);
             this.vista.setVisible(false);
-        }else if(e.getSource().equals(vista.btnReset)){
-            try {
-                vista.txtDato.setText(null);
-                Table("Reset", null);
-                JOptionPane.showMessageDialog(null, "Se reinició la tabla correctamente", "¡LISTO!", 0);
-            } catch (SQLException | CloneNotSupportedException ex) {
-                JOptionPane.showMessageDialog(null, "Se generó un problema al intentar reiniciar la tabla", "¡ERROR!", 0);
-            }
         }else{
             JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡ATENCIÓN!", 0);
         }
