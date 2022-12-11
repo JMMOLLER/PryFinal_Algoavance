@@ -18,6 +18,7 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         BTN_BUSCAR = new javax.swing.JButton();
         BTN_LISTAR = new javax.swing.JButton();
@@ -26,6 +27,13 @@ public class Inicio extends javax.swing.JFrame {
         BTN_COLA = new javax.swing.JButton();
         BTN_LOGOUT = new javax.swing.JToggleButton();
         BTN_ARBOL = new javax.swing.JToggleButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jmAdmin = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jmSalir = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registros de Mantenimientos");
@@ -103,6 +111,26 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
+        jmAdmin.setText("Opciones");
+
+        jMenuItem1.setText("Crear nuevo administrador");
+        jmAdmin.add(jMenuItem1);
+
+        jMenuItem2.setText("Información");
+        jmAdmin.add(jMenuItem2);
+
+        jmSalir.setText("Salir");
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
+        jmAdmin.add(jmSalir);
+
+        jMenuBar1.add(jmAdmin);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +143,7 @@ public class Inicio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -128,6 +156,11 @@ public class Inicio extends javax.swing.JFrame {
         FormatoArbolBinario ar = new FormatoArbolBinario();
         ar.setVisible(true);
     }//GEN-LAST:event_BTN_ARBOLActionPerformed
+
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jmSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +204,12 @@ public class Inicio extends javax.swing.JFrame {
     public javax.swing.JToggleButton BTN_LOGOUT;
     public javax.swing.JButton BTN_ORDENAMIENTO;
     public javax.swing.JButton BTN_PILA;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu jmAdmin;
+    private javax.swing.JMenuItem jmSalir;
     // End of variables declaration//GEN-END:variables
 }
