@@ -58,6 +58,12 @@ public class C_ActualizarPila implements ActionListener {
             String.format("%.2f",Costo),Razonsocial
         };
     }
+    
+    private boolean chechValidInputs(){
+        return !(vista.txtDes.getText().trim()).equals("") &&
+                !(vista.txtRaz.getText().trim()).equals("") &&
+                !(vista.txtProve.getText().trim()).equals("");
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -74,9 +80,10 @@ public class C_ActualizarPila implements ActionListener {
             }
         }if(e.getSource().equals(vista.btnGuardar)){
             try{
+                if(!this.chechValidInputs()){throw new Error();}
                 String Descripcion=vista.txtDes.getText();
-                String Razonsocial=vista.txtRaz.getText();
-                String Proveedor=vista.txtProve.getText();
+                String Razonsocial=vista.txtRaz.getText().toUpperCase();
+                String Proveedor=vista.txtProve.getText().toUpperCase();
                 String Prioridad=vista.cboPrioridad.getSelectedItem().toString();
                 float Costo = 0;
                 Costo = Float.parseFloat(vista.txtCosto.getText());
@@ -96,13 +103,15 @@ public class C_ActualizarPila implements ActionListener {
                         Logger.getLogger(C_Inicio.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            }catch(HeadlessException | NumberFormatException ex){
+            }catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(null, "Solo se permiten números en el campo \"Costo\".", "¡ATENCIÓN!", 0);
-                System.out.println(ex);
+            }catch(Error ez){
+                JOptionPane.showMessageDialog(null, "No puede dejar campos vacíos.", "¡ATENCIÓN!", 0);
             }
                 this.Pila = new Pila_enlazada();
                 this.dato = this.Pila.Buscar(vista.txtId.getText());
                 this.setValueToTextFields();
+                this.vista.btnGuardar.setSelected(false);
         }else{
             JOptionPane.showMessageDialog(null, "¡UPS, parece que aún no hemos programado esa función!", "¡HA OCURRIDO UN ERROR!", 0);
         }

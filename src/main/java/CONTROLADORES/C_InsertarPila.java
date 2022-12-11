@@ -36,13 +36,20 @@ public class C_InsertarPila implements ActionListener{
         return "P"+Clases.data.getTablaHash().getLastID();
     }
     
+    private boolean chechValidInputs(){
+        return !(vista.txtDescrip.getText().trim()).equals("") &&
+                !(vista.txtRazsocial.getText().trim()).equals("") &&
+                !(vista.txtProveedor.getText().trim()).equals("");
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(vista.btnGuarda)){         
             try{
+                if(!this.chechValidInputs()){throw new Error();}
                 String Descripcion=vista.txtDescrip.getText();
-                String Razonsocial=vista.txtRazsocial.getText();
-                String Proveedor=vista.txtProveedor.getText();
+                String Razonsocial=vista.txtRazsocial.getText().toUpperCase();
+                String Proveedor=vista.txtProveedor.getText().toUpperCase();
                 String Prioridad=vista.cboPrioridad.getSelectedItem().toString();
                 float Costo = 0;
                 Costo = Float.parseFloat(vista.txtCosto.getText());
@@ -66,6 +73,8 @@ public class C_InsertarPila implements ActionListener{
                 }
             }catch(NumberFormatException  ex){
                 JOptionPane.showMessageDialog(null, "Solo se permiten números en esta sección", "¡ATENCIÓN!", 0);
+            }catch(Error ez){
+                JOptionPane.showMessageDialog(null, "No puede dejar campos vacíos.", "¡ATENCIÓN!", 0);
             }
                 vista.txtID.setText(getNextID());
                 vista.txtDescrip.setText(null);
