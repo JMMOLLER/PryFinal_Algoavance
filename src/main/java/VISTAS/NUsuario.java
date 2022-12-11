@@ -5,14 +5,18 @@
 package VISTAS;
 
 import CONTROLADORES.C_Inicio;
+import Clases.Usuarios;
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jlmmj
  */
 public class NUsuario extends javax.swing.JFrame {
-
+private final Usuarios Users;
     /**
      * Creates new form Usuarios
      */
@@ -20,6 +24,34 @@ public class NUsuario extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(0, 102, 102));
         this.setLocationRelativeTo(this);
+        this.Users = Clases.data.getUsersClass();
+    }
+    
+    private boolean chechValidInputs(){
+        return !(txtUser.getText().trim()).equals("") &&
+               !(txtPass.getText().trim()).equals("") &&
+               !(txtConfirmar.getText().trim()).equals("");
+    }
+    
+    private boolean validatePasswords(){
+        return txtPass.getText().equals(txtConfirmar.getText());
+    }
+    
+    private boolean checkUserLength(){
+        return txtUser.getText().trim().length()>3;
+    }
+    
+    private boolean checkPassLength(){
+        return txtPass.getText().trim().length()>3;
+    }
+    
+    private String validations(){
+        String message=null;
+        if(!this.chechValidInputs()){message="No puede dejar campos vacíos.";}
+        else if(!this.validatePasswords()){message="Las contraseñas no coinciden.";}
+        else if(!this.checkUserLength()){message="El nombre de usuario es muy corto.";}
+        else if(!this.checkPassLength()){message="La contraseña es muy corta.";}
+        return message;
     }
 
     /**
@@ -181,7 +213,28 @@ public class NUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+        try{
+            String validation = this.validations();
+            if(validation!=null){throw new Error(validation);}
+            Users.addUser(txtUser.getText(), txtPass.getText());
+            ImageIcon icon = new ImageIcon(getClass().getResource("/icon/check.png"));
+            int response = JOptionPane.showConfirmDialog(null,
+                "Nueva cuenta de Administardor agregada con exito.\n¿Desea agregar otro usuario?", "¡AGREGADO CORRECTAMENTE!", WIDTH,HEIGHT,icon);
+            if(response==1){
+                Inicio view= new Inicio();
+                C_Inicio ctrl= new C_Inicio(view);
+                ctrl.Iniciar();
+                view.setVisible(true);
+                this.setVisible(false);
+            }else{
+                txtUser.setText(null);
+                txtPass.setText(null);
+                txtConfirmar.setText(null);
+            }
+        }catch(Error ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "¡ATENCIÓN!", 0);
+        }
+        btnRegistrar.setSelected(false);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
@@ -213,10 +266,8 @@ public class NUsuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NUsuario().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NUsuario().setVisible(true);
         });
     }
 

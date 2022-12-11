@@ -9,7 +9,6 @@ import Clases.Pila_enlazada;
 import VISTAS.ActualizarPila;
 import VISTAS.Pila;
 import java.awt.Color;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

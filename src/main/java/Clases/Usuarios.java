@@ -4,7 +4,6 @@
  */
 package Clases;
 
-import java.util.Arrays;
 
 /**
  *
@@ -17,7 +16,6 @@ public class Usuarios {
     public Usuarios(Lista_enlazada users) {
         this.users = users;
         this.nUsuarios = 0;
-        this.users.agregarInicio(new String[]{"admin23","12345"});
     }
     
     public void addUser(String usr, String pass){
@@ -29,5 +27,13 @@ public class Usuarios {
     public boolean login(String usr, String pass){
         final String[] credentials = {usr, pass};
         return users.Buscar(credentials);
+    }
+    
+    public boolean existsUsers(){
+        return nUsuarios>0;
+    }
+    
+    public boolean checkDefaultCredentials(String usr, String pass){
+        return usr.equals("admin23")&&pass.equals("12345");
     }
 }

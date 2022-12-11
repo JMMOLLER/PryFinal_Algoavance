@@ -9,6 +9,7 @@ import java.util.Arrays;
  */
 public class data {
 private static TablaHash Hash=new TablaHash(0);
+private static Usuarios Users=new Usuarios(new Lista_enlazada());
 
 /*
 ORDEN DEL ARRAY EN LA TABLA HASH:
@@ -50,6 +51,10 @@ indice  valor
         for(String[] elemento: datos){
             Hash.agregar(elemento);
         }
+    }
+    
+    public static Usuarios getUsersClass(){
+        return Users;
     }
     
     public static ArrayList<String[]> setFormatList(ArrayList<String[]> datos){//SU FUNCION ES DARLE EL FORMATO CORRECTO AL CODIGO

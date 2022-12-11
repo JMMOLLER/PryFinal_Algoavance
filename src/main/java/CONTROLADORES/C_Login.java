@@ -11,6 +11,7 @@ import VISTAS.Inicio;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
@@ -29,7 +30,7 @@ public class C_Login implements ActionListener {
         this.vista = vista;
         this.vista.btnLogin.addActionListener(this);
         this.vista.btnExit.addActionListener(this);
-        this.users = new Usuarios(new Lista_enlazada());
+        this.users = Clases.data.getUsersClass();
     }
     
     public void Iniciar(){
@@ -46,8 +47,15 @@ public class C_Login implements ActionListener {
             String user, pass;
             user = this.vista.txtUser.getText();
             pass = this.vista.txtPass.getText();
+            if(!users.existsUsers() && users.checkDefaultCredentials(user, pass)){
+                Inicio view = new Inicio();
+                C_Inicio ctrl = new C_Inicio(view);
+                ctrl.Iniciar();
+                view.setVisible(true);
+                this.vista.setVisible(false);
+            }
             /* users.login(user, pass) */
-            if(true){
+            else if(users.login(user, pass)){
                 Inicio view = new Inicio();
                 C_Inicio ctrl = new C_Inicio(view);
                 ctrl.Iniciar();
@@ -55,8 +63,10 @@ public class C_Login implements ActionListener {
                 this.vista.setVisible(false);
             }
             else{
-                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta", "¡ERROR!", WIDTH);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/icon/error.png"));
+                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta", "¡CREDENCIALES NO VÁLIDAS!", HEIGHT, icon);
             }
+            vista.btnLogin.setSelected(false);
         }else if(e.getSource().equals(vista.btnExit)){
             System.exit(0);
         }else{
