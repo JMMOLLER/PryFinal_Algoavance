@@ -53,11 +53,6 @@ public class InsertarPila extends javax.swing.JFrame {
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("VOLVER");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -101,11 +96,6 @@ public class InsertarPila extends javax.swing.JFrame {
 
         txtID.setEditable(false);
         txtID.setBackground(new java.awt.Color(204, 255, 255));
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,14 +232,6 @@ public class InsertarPila extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        
-    }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -279,10 +261,8 @@ public class InsertarPila extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InsertarPila().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new InsertarPila().setVisible(true);
         });
     }
 

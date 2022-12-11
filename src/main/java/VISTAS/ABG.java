@@ -131,10 +131,8 @@ private ArbolBinario ab= new ArbolBinario();
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ABG().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ABG().setVisible(true);
         });
     }
 

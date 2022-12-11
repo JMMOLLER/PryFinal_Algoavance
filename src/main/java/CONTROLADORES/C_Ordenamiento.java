@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
  * @author jlmmj
  */
 public class C_Ordenamiento implements ActionListener {
-    private final ImageIcon check = new ImageIcon(getClass().getResource("/icon/check.png"));
     private final ImageIcon error = new ImageIcon(getClass().getResource("/icon/error.png"));
     private final Ordenamiento vista;
     private final M_Ordenamiento modelo;

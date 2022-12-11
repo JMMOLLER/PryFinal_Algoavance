@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class data {
 private static TablaHash Hash=new TablaHash(0);
-private static Usuarios Users=new Usuarios(new Lista_enlazada());
+private static final Usuarios Users=new Usuarios(new Lista_enlazada());
 
 /*
 ORDEN DEL ARRAY EN LA TABLA HASH:

@@ -4,8 +4,6 @@
  */
 package CONTROLADORES;
 
-import Clases.Lista_enlazada;
-import Clases.Usuarios;
 import VISTAS.IniciarSesion;
 import VISTAS.Inicio;
 import java.awt.Color;
@@ -13,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
-import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

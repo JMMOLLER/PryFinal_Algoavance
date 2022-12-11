@@ -66,7 +66,6 @@ public class TablaHash {
     
     public String getLastID(){
         int ID=0;
-        final String LastID;
         for (String[] arreglo1 : arreglo) {
             if(arreglo1!=null){
                 final int arregloID = Integer.parseInt(arreglo1[0]);

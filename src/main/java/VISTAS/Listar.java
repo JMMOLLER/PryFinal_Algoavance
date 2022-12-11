@@ -34,11 +34,6 @@ public class Listar extends javax.swing.JFrame {
         BTN_BACK.setBackground(new java.awt.Color(0, 102, 102));
         BTN_BACK.setForeground(new java.awt.Color(255, 255, 255));
         BTN_BACK.setText("VOLVER");
-        BTN_BACK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_BACKActionPerformed(evt);
-            }
-        });
 
         TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
         TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
@@ -97,10 +92,6 @@ public class Listar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BTN_BACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BACKActionPerformed
-
-    }//GEN-LAST:event_BTN_BACKActionPerformed
 
     /**
      * @param args the command line arguments

@@ -38,11 +38,6 @@ public class Buscar extends javax.swing.JFrame {
         BTN_BACK.setBackground(new java.awt.Color(0, 102, 102));
         BTN_BACK.setForeground(new java.awt.Color(255, 255, 255));
         BTN_BACK.setText("VOLVER");
-        BTN_BACK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_BACKActionPerformed(evt);
-            }
-        });
 
         TXT_BUSCAR.setBackground(new java.awt.Color(0, 102, 102));
         TXT_BUSCAR.setForeground(new java.awt.Color(255, 255, 255));
@@ -50,11 +45,6 @@ public class Buscar extends javax.swing.JFrame {
         BTN_BUSCAR.setBackground(new java.awt.Color(0, 102, 102));
         BTN_BUSCAR.setForeground(new java.awt.Color(255, 255, 255));
         BTN_BUSCAR.setText("BUSCAR");
-        BTN_BUSCAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_BUSCARActionPerformed(evt);
-            }
-        });
 
         TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
         TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
@@ -138,14 +128,6 @@ public class Buscar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BTN_BACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BACKActionPerformed
-
-    }//GEN-LAST:event_BTN_BACKActionPerformed
-
-    private void BTN_BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BUSCARActionPerformed
-        
-    }//GEN-LAST:event_BTN_BUSCARActionPerformed
 
     /**
      * @param args the command line arguments

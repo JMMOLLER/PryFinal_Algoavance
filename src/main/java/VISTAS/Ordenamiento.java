@@ -37,11 +37,6 @@ public class Ordenamiento extends javax.swing.JFrame {
         BTN_ORDENAR.setBackground(new java.awt.Color(0, 102, 102));
         BTN_ORDENAR.setForeground(new java.awt.Color(255, 255, 255));
         BTN_ORDENAR.setText("ORDENAR");
-        BTN_ORDENAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_ORDENARActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -52,11 +47,6 @@ public class Ordenamiento extends javax.swing.JFrame {
         BTN_RESET.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         BTN_RESET.setForeground(new java.awt.Color(255, 255, 255));
         BTN_RESET.setText("RESET");
-        BTN_RESET.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_RESETActionPerformed(evt);
-            }
-        });
 
         TBL_AREA.setBackground(new java.awt.Color(204, 255, 255));
         TBL_AREA.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,11 +83,6 @@ public class Ordenamiento extends javax.swing.JFrame {
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("VOLVER");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,18 +139,6 @@ public class Ordenamiento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BTN_ORDENARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ORDENARActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BTN_ORDENARActionPerformed
-
-    private void BTN_RESETActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_RESETActionPerformed
-
-    }//GEN-LAST:event_BTN_RESETActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments

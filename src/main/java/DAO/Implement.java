@@ -1,6 +1,5 @@
 package DAO;
 
-import Clases.Lista_enlazada;
 import Clases.TablaHash;
 import java.sql.Connection;
 import java.sql.ResultSet;
