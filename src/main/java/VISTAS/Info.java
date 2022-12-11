@@ -35,6 +35,7 @@ public class Info extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setTitle("Información");
+        setResizable(false);
 
         TXT_TITTLE.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         TXT_TITTLE.setForeground(new java.awt.Color(204, 255, 255));
