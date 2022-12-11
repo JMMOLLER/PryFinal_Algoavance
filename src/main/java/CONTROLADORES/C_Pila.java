@@ -34,7 +34,7 @@ public class C_Pila implements ActionListener {
         this.vista.btnVolver.addActionListener(this);
         this.vista.btnBuscar.addActionListener(this);
     }
-    
+       
     public void Iniciar() throws SQLException, CloneNotSupportedException{
         this.vista.setLocationRelativeTo(this.vista);
         this.vista.getContentPane().setBackground(new Color(0, 102, 102));
@@ -74,11 +74,17 @@ public class C_Pila implements ActionListener {
                 Logger.getLogger(C_Pila.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(e.getSource().equals(vista.btnActualizar)){
-            ActualizarPila ip = new ActualizarPila();
-            C_ActualizarPila ctrl= new C_ActualizarPila(ip);
-            ctrl.Iniciar();
-            ip.setVisible(true);
-            this.vista.setVisible(false);
+            final int index=Pila.TBL_AREA.getSelectedRow();
+            if(index>-1){
+                String ID = Pila.TBL_AREA.getValueAt(index, 0).toString().replace("P", "");
+                ActualizarPila ap = new ActualizarPila();
+                C_ActualizarPila ctrl= new C_ActualizarPila(ap, ID);
+                ctrl.Iniciar();
+                ap.setVisible(true);
+                this.vista.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "Antes debe escoger una fila a actualizar", "¡ADVERTENCIA!", 0);
+            }
         }else if(e.getSource().equals(vista.btnVolver)){
             Inicio view= new Inicio();
             C_Inicio ctrl= new C_Inicio(view);

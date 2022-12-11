@@ -40,6 +40,7 @@ public class Pila_enlazada {
     
     public void Insertar(String[] dato){
         Nodo nuevo= new Nodo(dato);
+        dato[0]=dato[0].replace("P", "");
         nuevo.setSiguienteNodo(inicio);
         this.inicio=nuevo;
         nElementos++;
@@ -83,8 +84,9 @@ public class Pila_enlazada {
         Nodo temp= inicio;
         String[] dato=null;
         while(temp!=null){
-            if(Integer.parseInt(temp.getDato()[0])==Integer.parseInt(ID)){
-                dato=temp.getDato();
+            int ID_temp = Integer.parseInt(temp.getDato()[0].replace("P", ""));
+            if(ID_temp==Integer.parseInt(ID)){
+                dato=temp.getDato().clone();
                 break;
             }
             temp=temp.getSiguienteNodo();
@@ -110,8 +112,13 @@ public class Pila_enlazada {
         Clases.data.getTablaHash().deleteElement(ID);
     }
     
+    public void buscarYremplazar(int ID, String[] nuevo){
+        Clases.data.getTablaHash().editElement(ID, nuevo);
+    }
+    
     private void resetPila(){
         inicio=null;
         nElementos=0;
     }
+    
 }

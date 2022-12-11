@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author jlmmj
  */
 public class TablaHash {
-    static String[][] arreglo;
+    private static String[][] arreglo;
     int tamanio, contador;
     private boolean isInitialized = false;
     
@@ -107,5 +107,9 @@ public class TablaHash {
     
     public void deleteElement(String ID){
         arreglo[Integer.parseInt(ID)]=null;
+    }
+    
+    public void editElement(int ID, String[] nuevo){
+        arreglo[ID]=nuevo;
     }
 }

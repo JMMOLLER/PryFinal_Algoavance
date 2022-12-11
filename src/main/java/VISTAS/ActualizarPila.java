@@ -1,7 +1,6 @@
 
 package VISTAS;
 
-import java.awt.Color;
 
 public class ActualizarPila extends javax.swing.JFrame {
 
@@ -97,6 +96,7 @@ public class ActualizarPila extends javax.swing.JFrame {
 
         txtPrio.setBackground(new java.awt.Color(204, 255, 255));
 
+        txtId.setEditable(false);
         txtId.setBackground(new java.awt.Color(204, 255, 255));
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,11 +285,11 @@ public class ActualizarPila extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtCosto;
-    private javax.swing.JTextField txtDes;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtPrio;
-    private javax.swing.JTextField txtProve;
-    private javax.swing.JTextField txtRaz;
+    public javax.swing.JTextField txtCosto;
+    public javax.swing.JTextField txtDes;
+    public javax.swing.JTextField txtId;
+    public javax.swing.JTextField txtPrio;
+    public javax.swing.JTextField txtProve;
+    public javax.swing.JTextField txtRaz;
     // End of variables declaration//GEN-END:variables
 }
