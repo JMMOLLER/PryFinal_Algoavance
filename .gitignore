@@ -43,6 +43,10 @@ hs_err_pid*
 replay_pid*
 
 ### Maven ###
+target/maven-status
+target/maven-archiver
+target/surefire-reports
+target/test-classes
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
