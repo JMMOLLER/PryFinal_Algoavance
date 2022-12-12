@@ -36,6 +36,7 @@ public class C_Login implements ActionListener {
         ImageIcon icon = new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\ico\\login-ico-48x48.png");   
         JLabel userLabel = new JLabel("Full Name :", icon, JLabel.LEFT);
         this.vista.getContentPane().add(userLabel);
+        this.vista.getRootPane().setDefaultButton(this.vista.btnLogin);
     }
             
     @Override
